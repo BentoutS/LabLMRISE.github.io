@@ -92,7 +92,7 @@
     padding: 14px 28px; max-width: 1180px; margin: 0 auto;
   }
   .brand{ display:flex; align-items:center; gap: 12px; }
-  .brand img{ width: 38px; height: 38px; border-radius: 9px; box-shadow: var(--shadow-sm); }
+  .brand img{ width: 56px; height: 56px; border-radius: 12px; box-shadow: var(--shadow-md); }
   .brand-text{ display:flex; flex-direction: column; line-height:1.15; }
   .brand-text strong{ font-family: var(--display); font-size: 16.5px; letter-spacing: 0.02em; }
   .brand-text span{ font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.06em; }
@@ -203,6 +203,27 @@
   .mission-grid{
     display:grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
   }
+
+  /* ============ RESEARCH AREAS ============ */
+  .areas-grid{
+    display:grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+  }
+  .area-card{
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 20px; text-align: center; box-shadow: var(--shadow-sm);
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .area-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent-cyan); }
+  .area-icon{
+    width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+    display:flex; align-items:center; justify-content:center; color: #fff;
+  }
+  .area-icon .icon{ width: 24px; height: 24px; stroke: #fff; }
+  .area-card h3{ font-size: 15.5px; margin-bottom: 8px; line-height: 1.3; }
+  .area-card p{ font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+  @media (max-width: 1000px){ .areas-grid{ grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 620px){ .areas-grid{ grid-template-columns: repeat(2,1fr); } }
   .mcard{
     background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
     padding: 28px 26px; transition: border-color .2s, transform .2s, box-shadow .2s;
@@ -258,7 +279,27 @@
   .tcard-members{
     max-height: 0; overflow: hidden; transition: max-height .35s ease;
   }
-  .tcard.open .tcard-members{ max-height: 500px; }
+  .tcard.open .tcard-members{ max-height: 1000px; }
+  .tcard-block{ margin-top: 16px; }
+  .tcard-block h4{
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--text-dim); display:flex; align-items:center; gap: 6px; margin-bottom: 10px; font-weight: 500;
+  }
+  .tcard-block h4 .icon{ width: 13px; height: 13px; color: var(--accent-violet); }
+  .topic-tags{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .topic-tag{
+    font-size: 12px; padding: 5px 12px; border-radius: 999px; background: var(--bg-panel-alt);
+    color: var(--text-muted); border: 1px solid var(--border);
+  }
+  .pub-list{ list-style: none; }
+  .pub-list li{
+    font-size: 13px; color: var(--text-muted); padding: 8px 0 8px 18px; position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-list li::before{ content:"—"; position:absolute; left:0; color: var(--accent-cyan); }
+  .pub-list li a{ color: var(--accent-cyan); font-family: var(--mono); font-size: 11.5px; }
+  .pub-list li a:hover{ text-decoration: underline; }
+  .pub-empty{ font-size: 12.5px; color: var(--text-dim); font-style: italic; }
   .tcard-members table{ width:100%; border-collapse: collapse; margin-top: 16px; }
   .tcard-members th{
     text-align:left; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
@@ -333,7 +374,7 @@
   }
   footer p{ font-size: 12.5px; color: var(--text-dim); }
   footer .flogo{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 12px; }
-  footer .flogo img{ width: 26px; height:26px; border-radius: 6px; }
+  footer .flogo img{ width: 46px; height:46px; border-radius: 10px; box-shadow: var(--shadow-sm); }
   footer .flogo strong{ font-family: var(--display); font-size: 14px; }
   .visitor-stats{ display:flex; align-items:center; justify-content:center; gap: 14px; margin-top: 16px; flex-wrap: wrap; }
   .visitor-stats img{ height: 20px; border-radius: 4px; }
@@ -377,6 +418,12 @@
   <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="4" cy="5" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="20" cy="5" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="4" cy="19" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="20" cy="19" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M5.6 6.4 10 10.4M18.4 6.4 14 10.4M5.6 17.6 10 13.6M18.4 17.6 14 13.6" stroke="currentColor" stroke-width="1.6"/></symbol>
   <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="1" transform="rotate(-45 12 12)" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 9 1.5 1.5M11 6l1.5 1.5M14 3l1.5 1.5M6 11l1.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="9" ry="3.6" stroke="currentColor" fill="none" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" stroke="currentColor" fill="none" stroke-width="1.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" stroke="currentColor" fill="none" stroke-width="1.6" transform="rotate(120 12 12)"/></symbol>
+  <symbol id="i-dna" viewBox="0 0 24 24"><path d="M6 3c0 6 12 12 12 18M18 3c0 6-12 12-12 18" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/><path d="M7.5 7h9M6.5 12h11M7.5 17h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.8"/><rect x="9.5" y="9.5" width="5" height="5" stroke="currentColor" fill="none" stroke-width="1.6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.1 5.9l-1.7 1.7M7.6 16.4l-1.7 1.7M18.1 18.1l-1.7-1.7M7.6 7.6 5.9 5.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 2h7l4 4v16H7z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v4h4M9.5 12h6M9.5 15.5h6M9.5 8.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="4.7" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
 <header class="site">
@@ -390,6 +437,7 @@
     </a>
     <div class="nav-links">
       <a href="#mission">Mission</a>
+      <a href="#research-areas">Research Areas</a>
       <a href="#teams">Teams</a>
       <a href="#direction">Direction</a>
       <a href="#contact">Contact</a>
@@ -539,13 +587,51 @@
     </div>
   </section>
 
+  <!-- ================= RESEARCH AREAS ================= -->
+  <section id="research-areas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Cross-cutting expertise</span>
+        <h2>Research areas</h2>
+        <p>MRISE Lab's 8 teams work across five interconnected scientific domains, from fundamental materials science to applied AI and systems engineering.</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-flask"/></svg></div>
+          <h3>Chemistry &amp; Nanomaterials</h3>
+          <p>Development and characterization of advanced materials and nanocomposites.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-atom"/></svg></div>
+          <h3>Physics &amp; Materials Science</h3>
+          <p>Research on physical properties, materials characterization and advanced materials.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-dna"/></svg></div>
+          <h3>Biological Sciences &amp; Biomathematics</h3>
+          <p>Mathematical and computational approaches to biological and biomedical problems.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-cpu"/></svg></div>
+          <h3>Artificial Intelligence</h3>
+          <p>Machine learning, data analysis and intelligent systems.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-gear"/></svg></div>
+          <h3>Systems Engineering</h3>
+          <p>Modeling, optimization, control and engineering applications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= TEAMS ================= -->
   <section id="teams">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">8 teams</span>
         <h2>Our research teams</h2>
-        <p>Each team covers its own thematic focus within the laboratory. Click a team to view its members.</p>
+        <p>Each team covers its own thematic focus within the laboratory. Click a team to view its research topics, members, and publications.</p>
       </div>
       <div class="teams-grid" id="teamsGrid"></div>
     </div>
@@ -658,6 +744,7 @@ const teams = [
     acro: "",
     title: "Chemical and Biological Studies on Nanomaterials Composites",
     lead: "Dr Lamia Bennabi",
+    topics: ["Nanomaterials", "Polymer composites", "Chemical characterization", "Biological applications"],
     members: [
       ["Bennabi Lamia", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Argoub Asmaa", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
@@ -670,6 +757,7 @@ const teams = [
     acro: "",
     title: "Polymers and Composite Materials",
     lead: "Dr Wahiba Chaibi",
+    topics: ["Polymer synthesis", "Composite materials", "Materials characterization", "Mechanical properties"],
     members: [
       ["Chaibi Wahiba", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Beneabboun Radjaa", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
@@ -681,11 +769,12 @@ const teams = [
     n: 3,
     acro: "",
     title: "Physical Engineering of Materials",
-    lead: "Dr Aze Eddine Adjadj",
+    lead: "Dr Adjadj Aze Eddine",
+    topics: ["Materials physics", "Thin films", "Structural characterization", "Physical properties of materials"],
     members: [
-      ["Dr  Aze Eddine Adjadj", "FST, University of Ain Temouchent", "Team Leader", "chef"],
+      ["Dr Adjadj Aze Eddine", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Abedesslam Boucif", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      [" Amina Belkadi", "FST, University of Ain Temouchent", "Permanent Member", "permanent"]
+      ["Belkadi Amina", "FST, University of Ain Temouchent", "Permanent Member", "permanent"]
     ]
   },
   {
@@ -693,6 +782,7 @@ const teams = [
     acro: "",
     title: "Innovative Materials, AI and Environmental Valorization",
     lead: "Pr Hafida Marouf",
+    topics: ["Innovative materials", "Machine learning for materials prediction", "Environmental valorization", "Data-driven materials design"],
     members: [
       ["Dr Marouf Hafida", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Dounane Nawel", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
@@ -707,7 +797,13 @@ const teams = [
     n: 5,
     acro: "MCASM",
     title: "Advanced Biomathematics Innovation",
-    lead: "Pr Soufiane Bentout",
+    lead: "Pr  Soufiane Bentout",
+    topics: ["Mathematical biology", "Epidemiological modeling", "Dynamical systems", "Computational biomathematics"],
+    publications: [
+      "Bentout, S. (2026). Analysis of traveling wave solutions for an SIS model with age structure. <i>Zeitschrift für angewandte Mathematik und Physik</i>, 77, 79. <a href=\"https://doi.org/10.1007/s00033-025-02703-7\" target=\"_blank\" rel=\"noopener\">doi.org/10.1007/s00033-025-02703-7</a>",
+      "Bentout, S., Djilali, S., Naik, P.A. (2026). Asymptotic profiles of a generalized reaction-diffusion viral-infection model with logistic source. <i>Journal of Mathematical Analysis and Applications</i>, 556(1), 130146. <a href=\"https://doi.org/10.1016/j.jmaa.2025.130146\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.jmaa.2025.130146</a>",
+      "Djilali, S., Bentout, S., Kuniya, T. (2026). Threshold analysis for a diffusive SIS epidemic model with infection-age. <i>Mathematical Biosciences</i>, 109729. <a href=\"https://doi.org/10.1016/j.mbs.2026.109729\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.mbs.2026.109729</a>"
+    ],
     link: "https://bentouts.github.io/Team1/Team1.html",
     members: [
       ["Bentout Soufiane", "FST, University of Ain Temouchent", "Team Leader", "chef"],
@@ -722,6 +818,7 @@ const teams = [
     acro: "",
     title: "Environment and Stochastic Processes",
     lead: "Dr Tabti Affaf",
+    topics: ["Stochastic modeling", "Environmental systems", "Applied probability", "Data analysis"],
     members: [
       ["Affaf Tabti", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Bennafla Djamila", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
@@ -734,6 +831,7 @@ const teams = [
     acro: "ISE-FMAS",
     title: "Industrial Systems Engineering: Fluids, Materials and Advanced Structures",
     lead: "Pr Benzenine Hamidou",
+    topics: ["Fluid mechanics", "Advanced structures", "Systems modeling", "Industrial optimization"],
     members: [
       ["Pr Benzenine Hamidou", "Professor", "Team Leader", "chef"],
       ["Dr Bahram Kadour", "MCA", "Member", "permanent"],
@@ -747,6 +845,7 @@ const teams = [
     acro: "HPAMEA",
     title: "High-Performance Advanced Materials for Engineering Applications",
     lead: "Dr Chaib Mohammed",
+    topics: ["High-performance materials", "Mechanical engineering applications", "Materials testing", "Structural design"],
     members: [
       ["Dr Chaib Mohammed", "MCA", "Team Leader", "chef"],
       ["Pr Ziadi Abdelkader", "Professor", "Member", "permanent"],
@@ -772,6 +871,20 @@ teams.forEach(team => {
     </tr>`;
   }).join('');
 
+  const topicsHtml = (team.topics && team.topics.length)
+    ? `<div class="tcard-block">
+        <h4><svg class="icon"><use href="#i-target"/></svg>Research topics</h4>
+        <div class="topic-tags">${team.topics.map(t => `<span class="topic-tag">${t}</span>`).join('')}</div>
+      </div>`
+    : '';
+
+  const pubsHtml = `<div class="tcard-block">
+      <h4><svg class="icon"><use href="#i-doc"/></svg>Recent publications</h4>
+      ${(team.publications && team.publications.length)
+        ? `<ul class="pub-list">${team.publications.map(p => `<li>${p}</li>`).join('')}</ul>`
+        : `<p class="pub-empty">Publications for this team will be added soon.</p>`}
+    </div>`;
+
   card.innerHTML = `
     <div class="tcard-top">
       <span class="tcard-id"><svg class="icon"><use href="#i-network"/></svg>TEAM ${String(team.n).padStart(2,'0')}</span>
@@ -784,10 +897,15 @@ teams.forEach(team => {
       <svg class="icon"><use href="#i-chevron"/></svg>
     </div>
     <div class="tcard-members">
-      <table>
-        <thead><tr><th>Name</th><th>Affiliation</th><th>Role</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
+      ${topicsHtml}
+      <div class="tcard-block">
+        <h4><svg class="icon"><use href="#i-users"/></svg>Members</h4>
+        <table>
+          <thead><tr><th>Name</th><th>Affiliation</th><th>Role</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${pubsHtml}
       ${team.link ? `<a class="team-link" href="${team.link}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>Team page</a>` : ''}
     </div>
   `;
