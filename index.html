@@ -155,8 +155,25 @@
   }
   svg.net{ width: 100%; height: auto; }
   .net-line{ stroke: rgba(111,76,224,0.28); stroke-width: 1.4; }
-  .net-node{ fill: var(--bg-panel); stroke: var(--accent-cyan); stroke-width: 1.8; filter: drop-shadow(0 2px 6px rgba(23,29,51,0.08)); }
+  .net-node{ fill: var(--bg-panel); stroke: var(--accent-cyan); stroke-width: 1.8; filter: drop-shadow(0 2px 6px rgba(23,29,51,0.08)); transition: fill .2s, stroke .2s, transform .2s; }
   .net-node.hub{ fill: url(#hubGrad); stroke: none; }
+  .net-node-group{ cursor: pointer; }
+  .net-node-group:hover .net-node{ stroke: var(--accent-violet); transform: scale(1.08); transform-origin: center; }
+  .net-node-group:hover .net-num{ fill: var(--accent-violet); }
+  .net-node-group.active .net-node{ fill: var(--accent-violet); stroke: var(--accent-violet); }
+  .net-node-group.active .net-num{ fill: #fff; }
+  .net-tooltip{
+    display:flex; align-items:center; gap: 14px; background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-top: 18px; box-shadow: var(--shadow-sm);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .net-tooltip.filled{ border-color: var(--accent-violet); box-shadow: var(--shadow-md); }
+  .net-tooltip-num{
+    font-family: var(--mono); font-size: 13px; font-weight: 600; color: #fff; background: var(--accent-violet);
+    width: 30px; height: 30px; border-radius: 8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .net-tooltip-title{ display:block; font-size: 13.5px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .net-tooltip-hint{ display:block; font-size: 11.5px; color: var(--accent-cyan); font-family: var(--mono); margin-top: 3px; }
   .net-label{ font-family: var(--mono); font-size: 12px; fill: var(--text-muted); }
   .net-num{ font-family: var(--display); font-size: 15px; font-weight: 600; fill: var(--text); }
   .net-hub-text{ font-family: var(--display); font-size: 13px; font-weight: 700; fill: #fff; }
@@ -417,15 +434,22 @@
           <text class="net-hub-text" x="300" y="296" text-anchor="middle">MRISE</text>
           <text class="net-hub-text" x="300" y="313" text-anchor="middle" style="font-size:10px; font-weight:500; opacity:.9">LAB</text>
 
-          <g><circle class="net-node" cx="300" cy="80" r="30"/><text class="net-num" x="300" y="86" text-anchor="middle">1</text></g>
-          <g><circle class="net-node" cx="455.6" cy="144.4" r="30"/><text class="net-num" x="455.6" y="150.4" text-anchor="middle">2</text></g>
-          <g><circle class="net-node" cx="520" cy="300" r="30"/><text class="net-num" x="520" y="306" text-anchor="middle">3</text></g>
-          <g><circle class="net-node" cx="455.6" cy="455.6" r="30"/><text class="net-num" x="455.6" y="461.6" text-anchor="middle">4</text></g>
-          <g><circle class="net-node" cx="300" cy="520" r="30"/><text class="net-num" x="300" y="526" text-anchor="middle">5</text></g>
-          <g><circle class="net-node" cx="144.4" cy="455.6" r="30"/><text class="net-num" x="144.4" y="461.6" text-anchor="middle">6</text></g>
-          <g><circle class="net-node" cx="80" cy="300" r="30"/><text class="net-num" x="80" y="306" text-anchor="middle">7</text></g>
-          <g><circle class="net-node" cx="144.4" cy="144.4" r="30"/><text class="net-num" x="144.4" y="150.4" text-anchor="middle">8</text></g>
+          <g id="node-1" class="net-node-group"><circle class="net-node" cx="300" cy="80" r="30"/><text class="net-num" x="300" y="86" text-anchor="middle">1</text></g>
+          <g id="node-2" class="net-node-group"><circle class="net-node" cx="455.6" cy="144.4" r="30"/><text class="net-num" x="455.6" y="150.4" text-anchor="middle">2</text></g>
+          <g id="node-3" class="net-node-group"><circle class="net-node" cx="520" cy="300" r="30"/><text class="net-num" x="520" y="306" text-anchor="middle">3</text></g>
+          <g id="node-4" class="net-node-group"><circle class="net-node" cx="455.6" cy="455.6" r="30"/><text class="net-num" x="455.6" y="461.6" text-anchor="middle">4</text></g>
+          <g id="node-5" class="net-node-group"><circle class="net-node" cx="300" cy="520" r="30"/><text class="net-num" x="300" y="526" text-anchor="middle">5</text></g>
+          <g id="node-6" class="net-node-group"><circle class="net-node" cx="144.4" cy="455.6" r="30"/><text class="net-num" x="144.4" y="461.6" text-anchor="middle">6</text></g>
+          <g id="node-7" class="net-node-group"><circle class="net-node" cx="80" cy="300" r="30"/><text class="net-num" x="80" y="306" text-anchor="middle">7</text></g>
+          <g id="node-8" class="net-node-group"><circle class="net-node" cx="144.4" cy="144.4" r="30"/><text class="net-num" x="144.4" y="150.4" text-anchor="middle">8</text></g>
         </svg>
+        <div id="netTooltip" class="net-tooltip">
+          <span class="net-tooltip-num" id="netTooltipNum">01</span>
+          <div>
+            <span class="net-tooltip-title" id="netTooltipTitle">Tap a numbered node to preview a team</span>
+            <span class="net-tooltip-hint" id="netTooltipHint">Select any of the 8 nodes above</span>
+          </div>
+        </div>
         <p class="net-caption">8 teams · 1 multidisciplinary laboratory</p>
       </div>
     </div>
@@ -571,7 +595,7 @@
           </div>
         </div>
         <div class="map-embed">
-          <iframe title="MRISE Lab location" loading="lazy" src="https://www.google.com/maps?q=University%20of%20Ain%20Temouchent%2C%20Belhadj%20Bouchaib&output=embed"></iframe>
+          <iframe title="MRISE Lab location" loading="lazy" src="https://www.google.com/maps?q=35.2999,-1.1480&z=15&output=embed"></iframe>
         </div>
       </div>
     </div>
@@ -622,7 +646,7 @@ const teams = [
     n: 3,
     acro: "",
     title: "Physical Engineering of Materials",
-    lead: "Dr Adjadj Aze Eddine",
+    lead: "Dr  Aze Eddine Adjadj",
     members: [
       ["Dr Adjadj Aze Eddine", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Abedesslam Boucif", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
@@ -640,7 +664,7 @@ const teams = [
       ["Beddad Fatima", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
       ["Mouaici Fethi", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
       ["Saïd Abderrahmane", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Khadidja Benslama", "University of GHILIZEN", "Permanent Member", "permanent"],
+      ["Khadidja Benslama", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
       ["Ramli Aicha", "University of Mascara", "Associate Member", "associe"]
     ]
   },
@@ -648,14 +672,14 @@ const teams = [
     n: 5,
     acro: "MCASM",
     title: "Advanced Biomathematics Innovation",
-    lead: "Pr Bentout Soufiane",
+    lead: "Pr Soufiane Bentout",
     link: "https://bentouts.github.io/Team1/Team1.html",
     members: [
-      ["Soufiane Bentout ", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Zoukha Belattar", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      [" Fatima Boukhalfa", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      [" Imane Mammar", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Salih Djilali ", "FSEI, University of Chlef", "Associate Member", "associe"]
+      ["Bentout Soufiane", "FST, University of Ain Temouchent", "Team Leader", "chef"],
+      ["Belattar Zoukha", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
+      ["Boukhalfa Fatima", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
+      ["Mammar Imane", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
+      ["Djilali Salih", "FSEI, University of Chlef", "Associate Member", "associe"]
     ]
   },
   {
@@ -702,6 +726,7 @@ const grid = document.getElementById('teamsGrid');
 teams.forEach(team => {
   const card = document.createElement('div');
   card.className = 'tcard';
+  card.id = 'team-' + team.n;
 
   const rows = team.members.map(m => {
     const badgeClass = m[3] === 'chef' ? 'chef' : (m[3] === 'permanent' ? 'permanent' : 'associe');
@@ -738,6 +763,39 @@ teams.forEach(team => {
   });
 
   grid.appendChild(card);
+});
+
+// ---- Hero network diagram interactivity ----
+const tooltip = document.getElementById('netTooltip');
+const tooltipNum = document.getElementById('netTooltipNum');
+const tooltipTitle = document.getElementById('netTooltipTitle');
+const tooltipHint = document.getElementById('netTooltipHint');
+let activeNode = null;
+
+teams.forEach(team => {
+  const node = document.getElementById('node-' + team.n);
+  if (!node) return;
+
+  node.addEventListener('click', () => {
+    // update tooltip
+    tooltipNum.textContent = String(team.n).padStart(2, '0');
+    tooltipTitle.textContent = team.title;
+    tooltipHint.textContent = 'Team leader: ' + team.lead + ' — tap again to open ↓';
+    tooltip.classList.add('filled');
+
+    // highlight selected node only
+    if (activeNode) activeNode.classList.remove('active');
+    node.classList.add('active');
+    activeNode = node;
+
+    // jump to and expand the matching team card
+    const targetCard = document.getElementById('team-' + team.n);
+    if (targetCard) {
+      targetCard.classList.add('open');
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      targetCard.style.borderColor = 'var(--accent-violet)';
+    }
+  });
 });
 </script>
 
