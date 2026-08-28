@@ -634,15 +634,15 @@
   </div>
 </footer>
 
-<!-- Option 2: GoatCounter analytics script — replace YOUR-CODE after signup, see setup notes below -->
-<script data-goatcounter="https://YOUR-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- Option 2: GoatCounter analytics script — replace mrise-lab after signup, see setup notes below -->
+<script data-goatcounter="https://mrise-lab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Option 2: pull the live total from GoatCounter's public counter endpoint.
 // Does nothing (fails silently) until you've completed the setup steps below.
-fetch('https://YOUR-CODE.goatcounter.com/counter/TOTAL.json')
+fetch('https://mrise-lab.goatcounter.com/counter/TOTAL.json')
   .then(r => r.ok ? r.json() : null)
   .then(data => {
     if (data && data.count) {
@@ -710,11 +710,11 @@ const teams = [
     lead: "Pr Soufiane Bentout",
     link: "https://bentouts.github.io/Team1/Team1.html",
     members: [
-      ["Bentout Soufiane", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Belattar Zoukha", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Boukhalfa Fatima", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Mammar Imane", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Djilali Salih", "FSEI, University of Chlef", "Associate Member", "associe"]
+      ["Soufiane Bentout ", "FST, University of Ain Temouchent", "Team Leader", "chef"],
+      ["Zoukha Belattar", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
+      ["Fatima Boukhalfa", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
+      ["Imane Mammar", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
+      ["Salih Djilali", "FSEI, University of Chlef", "Associate Member", "associe"]
     ]
   },
   {
