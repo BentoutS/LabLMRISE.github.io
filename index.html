@@ -335,6 +335,13 @@
   footer .flogo{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 12px; }
   footer .flogo img{ width: 26px; height:26px; border-radius: 6px; }
   footer .flogo strong{ font-family: var(--display); font-size: 14px; }
+  .visitor-stats{ display:flex; align-items:center; justify-content:center; gap: 14px; margin-top: 16px; flex-wrap: wrap; }
+  .visitor-stats img{ height: 20px; border-radius: 4px; }
+  .gc-total{
+    font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 999px; background: var(--bg-panel);
+  }
+  .gc-total:empty{ display:none; }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 880px){
@@ -610,11 +617,39 @@
       <strong>MRISE Lab</strong>
     </div>
     <p>© <span id="year"></span> Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering — University of Ain Temouchent, Belhadj Bouchaib.</p>
+
+    <!--
+      VISITOR COUNTER — two options wired up below.
+      See the "visitor-counter-setup" comment near the closing </body> tag for setup steps.
+    -->
+    <div class="visitor-stats">
+      <!-- Option 1: no-signup badge (works immediately once the site is live at a public URL) -->
+      <img id="visitorBadge"
+           src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbentouts.github.io%2FLabLMRISE.github.io%2F&label=Visitors&countColor=%236F4CE0&style=flat"
+           alt="Visitor count badge">
+
+      <!-- Option 2: live total pulled from GoatCounter (needs the free signup, see setup notes) -->
+      <span id="gcTotal" class="gc-total"></span>
+    </div>
   </div>
 </footer>
 
+<!-- Option 2: GoatCounter analytics script — replace YOUR-CODE after signup, see setup notes below -->
+<script data-goatcounter="https://YOUR-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Option 2: pull the live total from GoatCounter's public counter endpoint.
+// Does nothing (fails silently) until you've completed the setup steps below.
+fetch('https://YOUR-CODE.goatcounter.com/counter/TOTAL.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (data && data.count) {
+      document.getElementById('gcTotal').textContent = data.count + ' total visits';
+    }
+  })
+  .catch(() => { /* GoatCounter not configured yet — badge above still works */ });
 
 // ---- Teams data ----
 const teams = [
@@ -646,7 +681,7 @@ const teams = [
     n: 3,
     acro: "",
     title: "Physical Engineering of Materials",
-    lead: "Dr  Aze Eddine Adjadj",
+    lead: "Dr Adjadj Aze Eddine",
     members: [
       ["Dr Adjadj Aze Eddine", "FST, University of Ain Temouchent", "Team Leader", "chef"],
       ["Abedesslam Boucif", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
