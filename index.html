@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #F6F7FB;
@@ -88,7 +88,7 @@
     border-bottom: 1px solid var(--border);
   }
   nav{
-    display:flex; align-items:center; justify-content: space-between;
+    display:flex; align-items:center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
     padding: 14px 28px; max-width: 1180px; margin: 0 auto;
   }
   .brand{ display:flex; align-items:center; gap: 12px; }
@@ -106,6 +106,15 @@
   }
   .nav-cta:hover{ background: var(--accent-violet); border-color: var(--accent-violet); color: #fff !important; }
   .nav-toggle{ display:none; background:none; border:none; color: var(--text); font-size: 22px; cursor:pointer; }
+
+  .lang-switch{ display:flex; align-items:center; gap: 2px; background: var(--bg-panel-alt); border-radius: 999px; padding: 3px; }
+  .lang-switch button{
+    font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .03em;
+    border: none; background: transparent; color: var(--text-dim); padding: 6px 11px; border-radius: 999px;
+    cursor: pointer; transition: background .2s, color .2s;
+  }
+  .lang-switch button:hover{ color: var(--text); }
+  .lang-switch button.active{ background: var(--accent-violet); color: #fff; }
 
   /* ============ HERO ============ */
   .hero{
@@ -316,7 +325,12 @@
   .badge.associe{ background: rgba(201,127,18,0.12); color: var(--accent-amber); }
   .badge.chef{ background: rgba(111,76,224,0.13); color: var(--accent-violet); }
 
-  .team-link{ display:inline-flex; gap:6px; align-items:center; margin-top:14px; font-size: 12.5px; color: var(--accent-cyan); font-weight: 500; }
+  .team-link{
+    display:inline-flex; gap:6px; align-items:center; margin-top:12px; font-size: 12px; font-weight: 600;
+    color: var(--accent-violet); background: var(--bg-panel-alt); border: 1px solid var(--border-strong);
+    padding: 6px 13px; border-radius: 999px; transition: background .2s, border-color .2s;
+  }
+  .team-link:hover{ background: var(--accent-violet); color: #fff; border-color: var(--accent-violet); }
   .team-link .icon{ width: 13px; height: 13px; }
 
   /* ============ DIRECTOR / ABOUT ============ */
@@ -396,6 +410,31 @@
     .director-photo{ max-width: 220px; margin: 0 auto; }
     .contact-panel{ grid-template-columns: 1fr; padding: 30px; }
   }
+
+  /* ============ ARABIC / RTL ============ */
+  html[lang="ar"] body{ font-family: 'Cairo', var(--body); }
+  html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4{ font-family: 'Cairo', var(--display); }
+  html[lang="ar"] .eyebrow, html[lang="ar"] .mnum, html[lang="ar"] .tcard-id, html[lang="ar"] .tcard-acro,
+  html[lang="ar"] .hero-meta div, html[lang="ar"] .fact span, html[lang="ar"] .badge, html[lang="ar"] .cline .k,
+  html[lang="ar"] .net-caption, html[lang="ar"] .net-tooltip-hint, html[lang="ar"] .toggle-hint, html[lang="ar"] .lang-switch button{
+    font-family: 'Cairo', var(--mono);
+  }
+  html[dir="rtl"] body{ direction: rtl; }
+  html[dir="rtl"] .eyebrow::before{ order: 2; }
+  html[dir="rtl"] .fact{ border-left: none; border-right: 1px solid var(--border); padding-left: 0; padding-right: 18px; }
+  html[dir="rtl"] .mcard ul li, html[dir="rtl"] .pub-list li{ padding-left: 0; padding-right: 18px; }
+  html[dir="rtl"] .mcard ul li::before{ left: auto; right: 0; }
+  html[dir="rtl"] .pub-list li::before{ left: auto; right: 0; }
+  html[dir="rtl"] .tcard .toggle-hint .icon, html[dir="rtl"] .btn .icon{ transform: scaleX(-1); }
+  html[dir="rtl"] .tcard.open .toggle-hint .icon{ transform: scaleX(-1) rotate(180deg); }
+  html[dir="rtl"] .director-info .role,
+  html[dir="rtl"] .hero-meta div,
+  html[dir="rtl"] .cline,
+  html[dir="rtl"] .dlinks a,
+  html[dir="rtl"] .fact,
+  html[dir="rtl"] .lang-switch,
+  html[dir="rtl"] .tcard-id,
+  html[dir="rtl"] .lead{ direction: rtl; }
 </style>
 </head>
 <body>
@@ -432,17 +471,22 @@
       <img src="assets/logo.png" alt="MRISE Lab logo">
       <div class="brand-text">
         <strong>MRISE Lab</strong>
-        <span>UNIV. AIN TEMOUCHENT</span>
+        <span data-i18n="brand.sub">UNIV. AIN TEMOUCHENT</span>
       </div>
     </a>
     <div class="nav-links">
-      <a href="#mission">Mission</a>
-      <a href="#research-areas">Research Areas</a>
-      <a href="#teams">Teams</a>
-      <a href="#direction">Direction</a>
-      <a href="#contact">Contact</a>
+      <a href="#mission" data-i18n="nav.mission">Mission</a>
+      <a href="#research-areas" data-i18n="nav.areas">Research Areas</a>
+      <a href="#teams" data-i18n="nav.teams">Teams</a>
+      <a href="#direction" data-i18n="nav.direction">Direction</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </div>
-    <a href="#contact" class="nav-cta"><svg class="icon"><use href="#i-mail"/></svg>Contact us</a>
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a href="#contact" class="nav-cta"><svg class="icon"><use href="#i-mail"/></svg><span data-i18n="nav.cta">Contact us</span></a>
   </nav>
 </header>
 
@@ -452,17 +496,17 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">Faculty of Science and Technology — University of Ain Temouchent, Belhadj Bouchaib</span>
-        <h1>Laboratory for Multidisciplinary <span class="acc">Research &amp; Innovation</span> in Sciences and Engineering</h1>
-        <p class="lede">MRISE Lab brings together 8 research teams working across materials science, chemistry, physics, biomathematics, artificial intelligence and systems engineering — driving scientific and technological innovation in Ain Temouchent.</p>
+        <span class="eyebrow" data-i18n="hero.eyebrow">Faculty of Science and Technology — University of Ain Temouchent, Belhadj Bouchaib</span>
+        <h1 data-i18n-html="hero.title">Laboratory for Multidisciplinary <span class="acc">Research &amp; Innovation</span> in Sciences and Engineering</h1>
+        <p class="lede" data-i18n="hero.lede">MRISE Lab brings together 8 research teams working across materials science, chemistry, physics, biomathematics, artificial intelligence and systems engineering — driving scientific and technological innovation in Ain Temouchent.</p>
         <div class="hero-meta">
-          <div><svg class="icon"><use href="#i-users"/></svg><strong>8</strong>&nbsp;research teams</div>
-          <div><svg class="icon"><use href="#i-flask"/></svg><strong>57</strong>&nbsp;researchers</div>
-          <div><svg class="icon"><use href="#i-award"/></svg>Director:&nbsp;<strong>Dr Lamia Bennabi</strong></div>
+          <div><svg class="icon"><use href="#i-users"/></svg><strong>8</strong>&nbsp;<span data-i18n="hero.meta.teams">research teams</span></div>
+          <div><svg class="icon"><use href="#i-flask"/></svg><strong>57</strong>&nbsp;<span data-i18n="hero.meta.researchers">researchers</span></div>
+          <div><svg class="icon"><use href="#i-award"/></svg><span data-i18n="hero.meta.directorLabel">Director:</span>&nbsp;<strong>Dr Lamia Bennabi</strong></div>
         </div>
         <div class="btn-row">
-          <a href="#teams" class="btn btn-primary">Explore our teams <svg class="icon"><use href="#i-arrow-right"/></svg></a>
-          <a href="#contact" class="btn btn-ghost"><svg class="icon"><use href="#i-mail"/></svg>Contact us</a>
+          <a href="#teams" class="btn btn-primary"><span data-i18n="hero.btnExplore">Explore our teams</span> <svg class="icon"><use href="#i-arrow-right"/></svg></a>
+          <a href="#contact" class="btn btn-ghost"><svg class="icon"><use href="#i-mail"/></svg><span data-i18n="nav.cta">Contact us</span></a>
         </div>
       </div>
 
@@ -501,11 +545,11 @@
         <div id="netTooltip" class="net-tooltip">
           <span class="net-tooltip-num" id="netTooltipNum">01</span>
           <div>
-            <span class="net-tooltip-title" id="netTooltipTitle">Tap a numbered node to preview a team</span>
-            <span class="net-tooltip-hint" id="netTooltipHint">Select any of the 8 nodes above</span>
+            <span class="net-tooltip-title" id="netTooltipTitle" data-i18n="hero.tooltipDefaultTitle">Tap a numbered node to preview a team</span>
+            <span class="net-tooltip-hint" id="netTooltipHint" data-i18n="hero.tooltipDefaultHint">Select any of the 8 nodes above</span>
           </div>
         </div>
-        <p class="net-caption">8 teams · 1 multidisciplinary laboratory</p>
+        <p class="net-caption" data-i18n="hero.netCaption">8 teams · 1 multidisciplinary laboratory</p>
       </div>
     </div>
   </section>
@@ -513,10 +557,10 @@
   <!-- ================= QUICK FACTS ================= -->
   <section class="facts" style="padding-top:0;">
     <div class="wrap">
-      <div class="fact"><svg class="icon"><use href="#i-users"/></svg><div><strong>8</strong><span>RESEARCH TEAMS</span></div></div>
-      <div class="fact"><svg class="icon"><use href="#i-flask"/></svg><div><strong>57</strong><span>RESEARCHERS</span></div></div>
-      <div class="fact"><svg class="icon"><use href="#i-ruler"/></svg><div><strong>240 m²</strong><span>4 OFFICES · 2 WORKSHOPS</span></div></div>
-      <div class="fact"><svg class="icon"><use href="#i-building"/></svg><div><strong>02</strong><span>SUPPORT STAFF</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-users"/></svg><div><strong>8</strong><span data-i18n="facts.teams">RESEARCH TEAMS</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-flask"/></svg><div><strong>57</strong><span data-i18n="facts.researchers">RESEARCHERS</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-ruler"/></svg><div><strong>240 m²</strong><span data-i18n="facts.area">4 OFFICES · 2 WORKSHOPS</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-building"/></svg><div><strong>02</strong><span data-i18n="facts.support">SUPPORT STAFF</span></div></div>
     </div>
   </section>
 
@@ -524,63 +568,63 @@
   <section id="mission">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Why this laboratory</span>
-        <h2>One multidisciplinary laboratory, four levers of impact</h2>
-        <p>The creation of the laboratory at the University of Ain Temouchent, Belhadj Bouchaib strengthens scientific research, academic training, the institution's reputation, and technology transfer.</p>
+        <span class="eyebrow" data-i18n="mission.eyebrow">Why this laboratory</span>
+        <h2 data-i18n="mission.h2">One multidisciplinary laboratory, four levers of impact</h2>
+        <p data-i18n="mission.p">The creation of the laboratory at the University of Ain Temouchent, Belhadj Bouchaib strengthens scientific research, academic training, the institution's reputation, and technology transfer.</p>
       </div>
 
       <div class="mission-grid">
         <div class="mcard">
           <div class="mcard-top">
-            <span class="mnum">01 — RESEARCH</span>
+            <span class="mnum" data-i18n="mission.c1.num">01 — RESEARCH</span>
             <div class="mcard-icon"><svg class="icon"><use href="#i-lightbulb"/></svg></div>
           </div>
-          <h3>Strengthening scientific research</h3>
+          <h3 data-i18n="mission.c1.h3">Strengthening scientific research</h3>
           <ul>
-            <li><b>Encourage innovation</b> through cross-disciplinary collaboration to solve complex problems.</li>
-            <li><b>Develop research projects</b> with appropriate equipment and framework.</li>
-            <li><b>Facilitate access to funding</b>, both national and international.</li>
-            <li><b>Increase scientific output</b> and the quality of publications.</li>
+            <li data-i18n-html="mission.c1.li1"><b>Encourage innovation</b> through cross-disciplinary collaboration to solve complex problems.</li>
+            <li data-i18n-html="mission.c1.li2"><b>Develop research projects</b> with appropriate equipment and framework.</li>
+            <li data-i18n-html="mission.c1.li3"><b>Facilitate access to funding</b>, both national and international.</li>
+            <li data-i18n-html="mission.c1.li4"><b>Increase scientific output</b> and the quality of publications.</li>
           </ul>
         </div>
 
         <div class="mcard">
           <div class="mcard-top">
-            <span class="mnum">02 — TRAINING</span>
+            <span class="mnum" data-i18n="mission.c2.num">02 — TRAINING</span>
             <div class="mcard-icon"><svg class="icon"><use href="#i-cap"/></svg></div>
           </div>
-          <h3>Improving academic and professional training</h3>
+          <h3 data-i18n="mission.c2.h3">Improving academic and professional training</h3>
           <ul>
-            <li><b>Train students and PhD candidates</b> in a hands-on learning environment.</li>
-            <li><b>Develop technical skills</b> in equipment handling and research methodology.</li>
-            <li><b>Supervise internships</b> and final-year projects.</li>
-            <li><b>Host seminars and workshops</b> as a platform for scientific exchange.</li>
+            <li data-i18n-html="mission.c2.li1"><b>Train students and PhD candidates</b> in a hands-on learning environment.</li>
+            <li data-i18n-html="mission.c2.li2"><b>Develop technical skills</b> in equipment handling and research methodology.</li>
+            <li data-i18n-html="mission.c2.li3"><b>Supervise internships</b> and final-year projects.</li>
+            <li data-i18n-html="mission.c2.li4"><b>Host seminars and workshops</b> as a platform for scientific exchange.</li>
           </ul>
         </div>
 
         <div class="mcard">
           <div class="mcard-top">
-            <span class="mnum">03 — INSTITUTION</span>
+            <span class="mnum" data-i18n="mission.c3.num">03 — INSTITUTION</span>
             <div class="mcard-icon"><svg class="icon"><use href="#i-building"/></svg></div>
           </div>
-          <h3>Contributing to the institution's development</h3>
+          <h3 data-i18n="mission.c3.h3">Contributing to the institution's development</h3>
           <ul>
-            <li><b>Strengthen visibility</b> and reputation, nationally and internationally.</li>
-            <li><b>Build partnerships</b> with universities, companies and research institutions.</li>
-            <li><b>Advance applied research</b> serving the socio-economic sector of Ain Temouchent.</li>
+            <li data-i18n-html="mission.c3.li1"><b>Strengthen visibility</b> and reputation, nationally and internationally.</li>
+            <li data-i18n-html="mission.c3.li2"><b>Build partnerships</b> with universities, companies and research institutions.</li>
+            <li data-i18n-html="mission.c3.li3"><b>Advance applied research</b> serving the socio-economic sector of Ain Temouchent.</li>
           </ul>
         </div>
 
         <div class="mcard">
           <div class="mcard-top">
-            <span class="mnum">04 — INNOVATION</span>
+            <span class="mnum" data-i18n="mission.c4.num">04 — INNOVATION</span>
             <div class="mcard-icon"><svg class="icon"><use href="#i-rocket"/></svg></div>
           </div>
-          <h3>Innovation and technology transfer</h3>
+          <h3 data-i18n="mission.c4.h3">Innovation and technology transfer</h3>
           <ul>
-            <li><b>Develop patents and prototypes</b> in chemistry, materials physics, engineering, biology, pharmaceuticals and AI.</li>
-            <li><b>Collaborate with companies</b> to enable technology transfer.</li>
-            <li><b>Support the incubation</b> of startups and entrepreneurial projects.</li>
+            <li data-i18n-html="mission.c4.li1"><b>Develop patents and prototypes</b> in chemistry, materials physics, engineering, biology, pharmaceuticals and AI.</li>
+            <li data-i18n-html="mission.c4.li2"><b>Collaborate with companies</b> to enable technology transfer.</li>
+            <li data-i18n-html="mission.c4.li3"><b>Support the incubation</b> of startups and entrepreneurial projects.</li>
           </ul>
         </div>
       </div>
@@ -591,35 +635,35 @@
   <section id="research-areas">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Cross-cutting expertise</span>
-        <h2>Research areas</h2>
-        <p>MRISE Lab's 8 teams work across five interconnected scientific domains, from fundamental materials science to applied AI and systems engineering.</p>
+        <span class="eyebrow" data-i18n="areas.eyebrow">Cross-cutting expertise</span>
+        <h2 data-i18n="areas.h2">Research areas</h2>
+        <p data-i18n="areas.p">MRISE Lab's 8 teams work across five interconnected scientific domains, from fundamental materials science to applied AI and systems engineering.</p>
       </div>
       <div class="areas-grid">
         <div class="area-card">
           <div class="area-icon"><svg class="icon"><use href="#i-flask"/></svg></div>
-          <h3>Chemistry &amp; Nanomaterials</h3>
-          <p>Development and characterization of advanced materials and nanocomposites.</p>
+          <h3 data-i18n="areas.c1.h3">Chemistry &amp; Nanomaterials</h3>
+          <p data-i18n="areas.c1.p">Development and characterization of advanced materials and nanocomposites.</p>
         </div>
         <div class="area-card">
           <div class="area-icon"><svg class="icon"><use href="#i-atom"/></svg></div>
-          <h3>Physics &amp; Materials Science</h3>
-          <p>Research on physical properties, materials characterization and advanced materials.</p>
+          <h3 data-i18n="areas.c2.h3">Physics &amp; Materials Science</h3>
+          <p data-i18n="areas.c2.p">Research on physical properties, materials characterization and advanced materials.</p>
         </div>
         <div class="area-card">
           <div class="area-icon"><svg class="icon"><use href="#i-dna"/></svg></div>
-          <h3>Biological Sciences &amp; Biomathematics</h3>
-          <p>Mathematical and computational approaches to biological and biomedical problems.</p>
+          <h3 data-i18n="areas.c3.h3">Biological Sciences &amp; Biomathematics</h3>
+          <p data-i18n="areas.c3.p">Mathematical and computational approaches to biological and biomedical problems.</p>
         </div>
         <div class="area-card">
           <div class="area-icon"><svg class="icon"><use href="#i-cpu"/></svg></div>
-          <h3>Artificial Intelligence</h3>
-          <p>Machine learning, data analysis and intelligent systems.</p>
+          <h3 data-i18n="areas.c4.h3">Artificial Intelligence</h3>
+          <p data-i18n="areas.c4.p">Machine learning, data analysis and intelligent systems.</p>
         </div>
         <div class="area-card">
           <div class="area-icon"><svg class="icon"><use href="#i-gear"/></svg></div>
-          <h3>Systems Engineering</h3>
-          <p>Modeling, optimization, control and engineering applications.</p>
+          <h3 data-i18n="areas.c5.h3">Systems Engineering</h3>
+          <p data-i18n="areas.c5.p">Modeling, optimization, control and engineering applications.</p>
         </div>
       </div>
     </div>
@@ -629,9 +673,9 @@
   <section id="teams">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">8 teams</span>
-        <h2>Our research teams</h2>
-        <p>Each team covers its own thematic focus within the laboratory. Click a team to view its research topics, members, and publications.</p>
+        <span class="eyebrow" data-i18n="teams.eyebrow">8 teams</span>
+        <h2 data-i18n="teams.h2">Our research teams</h2>
+        <p data-i18n="teams.p">Each team covers its own thematic focus within the laboratory. Click a team to view its research topics, members, and publications.</p>
       </div>
       <div class="teams-grid" id="teamsGrid"></div>
     </div>
@@ -642,13 +686,13 @@
     <div class="wrap director">
       <div class="director-photo" aria-hidden="true"></div>
       <div class="director-info">
-        <span class="role"><svg class="icon"><use href="#i-award"/></svg>Laboratory Director</span>
+        <span class="role"><svg class="icon"><use href="#i-award"/></svg><span data-i18n="director.role">Laboratory Director</span></span>
         <h3>Dr Lamia Bennabi</h3>
-        <p>Associate Professor (MCA), member of the Scientific Committee of the Department of Materials Science — Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib. Also leader of Team 1, "Chemical and Biological Studies on Nanomaterials Composites."</p>
+        <p data-i18n="director.bio">Associate Professor (MCA), member of the Scientific Committee of the Department of Materials Science — Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib. Also leader of Team 1, "Chemical and Biological Studies on Nanomaterials Composites."</p>
         <div class="dstats">
-          <div><strong>15</strong><span>PUBLICATIONS</span></div>
-          <div><strong>42</strong><span>CITATIONS</span></div>
-          <div><strong>4</strong><span>H-INDEX</span></div>
+          <div><strong>15</strong><span data-i18n="director.publications">PUBLICATIONS</span></div>
+          <div><strong>42</strong><span data-i18n="director.citations">CITATIONS</span></div>
+          <div><strong>4</strong><span data-i18n="director.hindex">H-INDEX</span></div>
         </div>
         <div class="dlinks">
           <a href="mailto:lamia.bennabi@univ-temouchent.edu.dz"><svg class="icon"><use href="#i-mail"/></svg>lamia.bennabi@univ-temouchent.edu.dz</a>
@@ -662,29 +706,29 @@
   <section id="contact">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Contact</span>
-        <h2>Have a question, a partnership, or a collaboration in mind?</h2>
+        <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+        <h2 data-i18n="contact.h2">Have a question, a partnership, or a collaboration in mind?</h2>
       </div>
       <div class="contact-panel">
         <div class="cinfo">
           <h3>MRISE Lab</h3>
-          <p>Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib.</p>
+          <p data-i18n="contact.p">Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib.</p>
 
           <div class="cline">
             <div class="cicon"><svg class="icon"><use href="#i-pin"/></svg></div>
-            <div class="ctext"><span class="k">Address</span><span class="v">Route de Sidi Bel Abbès, N101, Ain Temouchent 46000, Algeria</span></div>
+            <div class="ctext"><span class="k" data-i18n="contact.address">Address</span><span class="v">Route de Sidi Bel Abbès, N101, Ain Temouchent 46000, Algeria</span></div>
           </div>
           <div class="cline">
             <div class="cicon"><svg class="icon"><use href="#i-mail"/></svg></div>
-            <div class="ctext"><span class="k">Email</span><span class="v"><a href="mailto:lamia.bennabi@univ-temouchent.edu.dz">lamia.bennabi@univ-temouchent.edu.dz</a></span></div>
+            <div class="ctext"><span class="k" data-i18n="contact.email">Email</span><span class="v"><a href="mailto:lamia.bennabi@univ-temouchent.edu.dz">lamia.bennabi@univ-temouchent.edu.dz</a></span></div>
           </div>
           <div class="cline">
             <div class="cicon"><svg class="icon"><use href="#i-phone"/></svg></div>
-            <div class="ctext"><span class="k">Phone</span><span class="v">043 79 83 97</span></div>
+            <div class="ctext"><span class="k" data-i18n="contact.phone">Phone</span><span class="v">043 79 83 97</span></div>
           </div>
           <div class="cline">
             <div class="cicon"><svg class="icon"><use href="#i-globe"/></svg></div>
-            <div class="ctext"><span class="k">Website</span><span class="v"><a href="https://www.univ-temouchent.edu.dz" target="_blank" rel="noopener">univ-temouchent.edu.dz</a></span></div>
+            <div class="ctext"><span class="k" data-i18n="contact.website">Website</span><span class="v"><a href="https://www.univ-temouchent.edu.dz" target="_blank" rel="noopener">univ-temouchent.edu.dz</a></span></div>
           </div>
         </div>
         <div class="map-embed">
@@ -702,7 +746,7 @@
       <img src="assets/logo.png" alt="MRISE Lab logo">
       <strong>MRISE Lab</strong>
     </div>
-    <p>© <span id="year"></span> Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering — University of Ain Temouchent, Belhadj Bouchaib.</p>
+    <p>© <span id="year"></span> <span data-i18n="footer.copyright">Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering — University of Ain Temouchent, Belhadj Bouchaib.</span></p>
 
     <!--
       VISITOR COUNTER — two options wired up below.
@@ -737,6 +781,281 @@ fetch('https://mrise-lab.goatcounter.com/counter/TOTAL.json')
   })
   .catch(() => { /* GoatCounter not configured yet — badge above still works */ });
 
+// ==================================================================
+// ============ TRANSLATIONS (EN / FR / AR) ============
+// ==================================================================
+const I18N = {
+  en: {
+    "brand.sub": "UNIV. AIN TEMOUCHENT",
+    "nav.mission": "Mission",
+    "nav.areas": "Research Areas",
+    "nav.teams": "Teams",
+    "nav.direction": "Direction",
+    "nav.contact": "Contact",
+    "nav.cta": "Contact us",
+    "hero.eyebrow": "Faculty of Science and Technology — University of Ain Temouchent, Belhadj Bouchaib",
+    "hero.title": 'Laboratory for Multidisciplinary <span class="acc">Research &amp; Innovation</span> in Sciences and Engineering',
+    "hero.lede": "MRISE Lab brings together 8 research teams working across materials science, chemistry, physics, biomathematics, artificial intelligence and systems engineering — driving scientific and technological innovation in Ain Temouchent.",
+    "hero.meta.teams": "research teams",
+    "hero.meta.researchers": "researchers",
+    "hero.meta.directorLabel": "Director:",
+    "hero.btnExplore": "Explore our teams",
+    "hero.tooltipDefaultTitle": "Tap a numbered node to preview a team",
+    "hero.tooltipDefaultHint": "Select any of the 8 nodes above",
+    "hero.netCaption": "8 teams · 1 multidisciplinary laboratory",
+    "facts.teams": "RESEARCH TEAMS",
+    "facts.researchers": "RESEARCHERS",
+    "facts.area": "4 OFFICES · 2 WORKSHOPS",
+    "facts.support": "SUPPORT STAFF",
+    "mission.eyebrow": "Why this laboratory",
+    "mission.h2": "One multidisciplinary laboratory, four levers of impact",
+    "mission.p": "The creation of the laboratory at the University of Ain Temouchent, Belhadj Bouchaib strengthens scientific research, academic training, the institution's reputation, and technology transfer.",
+    "mission.c1.num": "01 — RESEARCH",
+    "mission.c1.h3": "Strengthening scientific research",
+    "mission.c1.li1": "<b>Encourage innovation</b> through cross-disciplinary collaboration to solve complex problems.",
+    "mission.c1.li2": "<b>Develop research projects</b> with appropriate equipment and framework.",
+    "mission.c1.li3": "<b>Facilitate access to funding</b>, both national and international.",
+    "mission.c1.li4": "<b>Increase scientific output</b> and the quality of publications.",
+    "mission.c2.num": "02 — TRAINING",
+    "mission.c2.h3": "Improving academic and professional training",
+    "mission.c2.li1": "<b>Train students and PhD candidates</b> in a hands-on learning environment.",
+    "mission.c2.li2": "<b>Develop technical skills</b> in equipment handling and research methodology.",
+    "mission.c2.li3": "<b>Supervise internships</b> and final-year projects.",
+    "mission.c2.li4": "<b>Host seminars and workshops</b> as a platform for scientific exchange.",
+    "mission.c3.num": "03 — INSTITUTION",
+    "mission.c3.h3": "Contributing to the institution's development",
+    "mission.c3.li1": "<b>Strengthen visibility</b> and reputation, nationally and internationally.",
+    "mission.c3.li2": "<b>Build partnerships</b> with universities, companies and research institutions.",
+    "mission.c3.li3": "<b>Advance applied research</b> serving the socio-economic sector of Ain Temouchent.",
+    "mission.c4.num": "04 — INNOVATION",
+    "mission.c4.h3": "Innovation and technology transfer",
+    "mission.c4.li1": "<b>Develop patents and prototypes</b> in chemistry, materials physics, engineering, biology, pharmaceuticals and AI.",
+    "mission.c4.li2": "<b>Collaborate with companies</b> to enable technology transfer.",
+    "mission.c4.li3": "<b>Support the incubation</b> of startups and entrepreneurial projects.",
+    "areas.eyebrow": "Cross-cutting expertise",
+    "areas.h2": "Research areas",
+    "areas.p": "MRISE Lab's 8 teams work across five interconnected scientific domains, from fundamental materials science to applied AI and systems engineering.",
+    "areas.c1.h3": "Chemistry &amp; Nanomaterials",
+    "areas.c1.p": "Development and characterization of advanced materials and nanocomposites.",
+    "areas.c2.h3": "Physics &amp; Materials Science",
+    "areas.c2.p": "Research on physical properties, materials characterization and advanced materials.",
+    "areas.c3.h3": "Biological Sciences &amp; Biomathematics",
+    "areas.c3.p": "Mathematical and computational approaches to biological and biomedical problems.",
+    "areas.c4.h3": "Artificial Intelligence",
+    "areas.c4.p": "Machine learning, data analysis and intelligent systems.",
+    "areas.c5.h3": "Systems Engineering",
+    "areas.c5.p": "Modeling, optimization, control and engineering applications.",
+    "teams.eyebrow": "8 teams",
+    "teams.h2": "Our research teams",
+    "teams.p": "Each team covers its own thematic focus within the laboratory. Click a team to view its research topics, members, and publications.",
+    "director.role": "Laboratory Director",
+    "director.bio": 'Associate Professor (MCA), member of the Scientific Committee of the Department of Materials Science — Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib. Also leader of Team 1, "Chemical and Biological Studies on Nanomaterials Composites."',
+    "director.publications": "PUBLICATIONS",
+    "director.citations": "CITATIONS",
+    "director.hindex": "H-INDEX",
+    "contact.eyebrow": "Contact",
+    "contact.h2": "Have a question, a partnership, or a collaboration in mind?",
+    "contact.p": "Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib.",
+    "contact.address": "Address",
+    "contact.email": "Email",
+    "contact.phone": "Phone",
+    "contact.website": "Website",
+    "footer.copyright": "Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering — University of Ain Temouchent, Belhadj Bouchaib."
+  },
+  fr: {
+    "brand.sub": "UNIV. AIN TÉMOUCHENT",
+    "nav.mission": "Mission",
+    "nav.areas": "Domaines de recherche",
+    "nav.teams": "Équipes",
+    "nav.direction": "Direction",
+    "nav.contact": "Contact",
+    "nav.cta": "Nous contacter",
+    "hero.eyebrow": "Faculté des Sciences et de la Technologie — Université de Ain Temouchent, Belhadj Bouchaib",
+    "hero.title": 'Laboratoire de Recherche Multidisciplinaire et d\'<span class="acc">Innovation</span> en Sciences et Ingénierie',
+    "hero.lede": "MRISE Lab réunit 8 équipes de recherche autour des matériaux, de la chimie, de la physique, des biomathématiques, de l'intelligence artificielle et de l'ingénierie des systèmes — au service de l'innovation scientifique et technologique à Ain Temouchent.",
+    "hero.meta.teams": "équipes de recherche",
+    "hero.meta.researchers": "chercheurs",
+    "hero.meta.directorLabel": "Directrice :",
+    "hero.btnExplore": "Découvrir nos équipes",
+    "hero.tooltipDefaultTitle": "Touchez un nœud numéroté pour voir une équipe",
+    "hero.tooltipDefaultHint": "Sélectionnez l'un des 8 nœuds ci-dessus",
+    "hero.netCaption": "8 équipes · 1 laboratoire multidisciplinaire",
+    "facts.teams": "ÉQUIPES DE RECHERCHE",
+    "facts.researchers": "CHERCHEURS",
+    "facts.area": "4 BUREAUX · 2 ATELIERS",
+    "facts.support": "PERSONNEL DE SOUTIEN",
+    "mission.eyebrow": "Pourquoi ce laboratoire",
+    "mission.h2": "Un laboratoire multidisciplinaire, quatre leviers d'impact",
+    "mission.p": "La création du laboratoire à l'Université de Ain Temouchent, Belhadj Bouchaib renforce la recherche scientifique, la formation académique, le rayonnement de l'établissement et le transfert de technologie.",
+    "mission.c1.num": "01 — RECHERCHE",
+    "mission.c1.h3": "Renforcement de la recherche scientifique",
+    "mission.c1.li1": "<b>Encourager l'innovation</b> par la collaboration entre disciplines pour résoudre des problèmes complexes.",
+    "mission.c1.li2": "<b>Développer des projets de recherche</b> avec des équipements et un cadre adaptés.",
+    "mission.c1.li3": "<b>Faciliter l'obtention de financements</b>, nationaux et internationaux.",
+    "mission.c1.li4": "<b>Accroître la production scientifique</b> et la qualité des publications.",
+    "mission.c2.num": "02 — FORMATION",
+    "mission.c2.h3": "Amélioration de la formation académique et professionnelle",
+    "mission.c2.li1": "<b>Former les étudiants et doctorants</b> dans un environnement d'apprentissage pratique.",
+    "mission.c2.li2": "<b>Développer les compétences techniques</b> en manipulation d'équipements et méthodologie.",
+    "mission.c2.li3": "<b>Encadrer les stages</b> et projets de fin d'études.",
+    "mission.c2.li4": "<b>Organiser séminaires et workshops</b> comme plateforme d'échange scientifique.",
+    "mission.c3.num": "03 — ÉTABLISSEMENT",
+    "mission.c3.h3": "Contribution au développement de l'établissement",
+    "mission.c3.li1": "<b>Renforcer la visibilité</b> et la notoriété, nationale et internationale.",
+    "mission.c3.li2": "<b>Développer des partenariats</b> avec universités, entreprises et institutions.",
+    "mission.c3.li3": "<b>Valoriser la recherche appliquée</b> au service du secteur socio-économique d'Ain Temouchent.",
+    "mission.c4.num": "04 — INNOVATION",
+    "mission.c4.h3": "Innovation et transfert de technologie",
+    "mission.c4.li1": "<b>Développer brevets et prototypes</b> en chimie, physique des matériaux, ingénierie, biologie, pharmaceutique et IA.",
+    "mission.c4.li2": "<b>Collaborer avec les entreprises</b> pour le transfert technologique.",
+    "mission.c4.li3": "<b>Accompagner l'incubation</b> de startups et projets entrepreneuriaux.",
+    "areas.eyebrow": "Expertise transversale",
+    "areas.h2": "Domaines de recherche",
+    "areas.p": "Les 8 équipes de MRISE Lab couvrent cinq domaines scientifiques interconnectés, de la science des matériaux fondamentale à l'IA appliquée et l'ingénierie des systèmes.",
+    "areas.c1.h3": "Chimie &amp; Nanomatériaux",
+    "areas.c1.p": "Développement et caractérisation de matériaux avancés et de nanocomposites.",
+    "areas.c2.h3": "Physique &amp; Science des Matériaux",
+    "areas.c2.p": "Recherche sur les propriétés physiques, la caractérisation et les matériaux avancés.",
+    "areas.c3.h3": "Sciences Biologiques &amp; Biomathématiques",
+    "areas.c3.p": "Approches mathématiques et computationnelles des problèmes biologiques et biomédicaux.",
+    "areas.c4.h3": "Intelligence Artificielle",
+    "areas.c4.p": "Apprentissage automatique, analyse de données et systèmes intelligents.",
+    "areas.c5.h3": "Ingénierie des Systèmes",
+    "areas.c5.p": "Modélisation, optimisation, contrôle et applications en ingénierie.",
+    "teams.eyebrow": "8 équipes",
+    "teams.h2": "Nos équipes de recherche",
+    "teams.p": "Chaque équipe couvre un axe thématique propre au sein du laboratoire. Cliquez sur une équipe pour voir ses thèmes de recherche, ses membres et ses publications.",
+    "director.role": "Directrice du laboratoire",
+    "director.bio": 'Maître de Conférences A (MCA), membre du Comité scientifique du Département de Sciences de la Matière — Faculté des Sciences et de la Technologie, Université de Ain Temouchent, Belhadj Bouchaib. Également cheffe de l\'Équipe 1, « Chemical and Biological Studies on Nanomaterials Composites ».',
+    "director.publications": "PUBLICATIONS",
+    "director.citations": "CITATIONS",
+    "director.hindex": "INDICE H",
+    "contact.eyebrow": "Contact",
+    "contact.h2": "Une question, un partenariat, une collaboration en tête ?",
+    "contact.p": "Faculté des Sciences et de la Technologie, Université de Ain Temouchent, Belhadj Bouchaib.",
+    "contact.address": "Adresse",
+    "contact.email": "Email",
+    "contact.phone": "Téléphone",
+    "contact.website": "Site web",
+    "footer.copyright": "Laboratoire de Recherche Multidisciplinaire et d'Innovation en Sciences et Ingénierie — Université de Ain Temouchent, Belhadj Bouchaib."
+  },
+  ar: {
+    "brand.sub": "جامعة عين تموشنت",
+    "nav.mission": "الرسالة",
+    "nav.areas": "مجالات البحث",
+    "nav.teams": "الفرق",
+    "nav.direction": "الإدارة",
+    "nav.contact": "اتصل بنا",
+    "nav.cta": "اتصل بنا",
+    "hero.eyebrow": "كلية العلوم والتكنولوجيا — جامعة عين تموشنت، بلحاج بوشعيب",
+    "hero.title": 'مخبر البحث المتعدد التخصصات <span class="acc">للابتكار</span> في العلوم والهندسة',
+    "hero.lede": "يجمع مخبر MRISE ثماني فرق بحثية تعمل في مجالات علوم المواد والكيمياء والفيزياء والرياضيات الحيوية والذكاء الاصطناعي وهندسة الأنظمة، لدفع الابتكار العلمي والتكنولوجي في عين تموشنت.",
+    "hero.meta.teams": "فرق بحثية",
+    "hero.meta.researchers": "باحث",
+    "hero.meta.directorLabel": "المديرة:",
+    "hero.btnExplore": "اكتشف فرقنا",
+    "hero.tooltipDefaultTitle": "اضغط على عقدة مرقّمة لمعاينة فريق",
+    "hero.tooltipDefaultHint": "اختر أحد العقد الثماني أعلاه",
+    "hero.netCaption": "8 فرق · مخبر واحد متعدد التخصصات",
+    "facts.teams": "فرق بحثية",
+    "facts.researchers": "باحثون",
+    "facts.area": "4 مكاتب · ورشتان",
+    "facts.support": "أعوان الدعم",
+    "mission.eyebrow": "لماذا هذا المخبر",
+    "mission.h2": "مخبر متعدد التخصصات، أربعة روافع للأثر",
+    "mission.p": "يعزّز إنشاء المخبر في جامعة عين تموشنت، بلحاج بوشعيب البحث العلمي والتكوين الأكاديمي وسمعة المؤسسة ونقل التكنولوجيا.",
+    "mission.c1.num": "01 — البحث",
+    "mission.c1.h3": "تعزيز البحث العلمي",
+    "mission.c1.li1": "<b>تشجيع الابتكار</b> من خلال التعاون بين التخصصات لحل المشكلات المعقدة.",
+    "mission.c1.li2": "<b>تطوير مشاريع بحثية</b> بتجهيزات وإطار عمل مناسبين.",
+    "mission.c1.li3": "<b>تسهيل الحصول على التمويل</b> الوطني والدولي.",
+    "mission.c1.li4": "<b>زيادة الإنتاج العلمي</b> وجودة المنشورات.",
+    "mission.c2.num": "02 — التكوين",
+    "mission.c2.h3": "تحسين التكوين الأكاديمي والمهني",
+    "mission.c2.li1": "<b>تكوين الطلبة والدكاترة</b> في بيئة تعلّم عملية.",
+    "mission.c2.li2": "<b>تطوير المهارات التقنية</b> في استخدام التجهيزات ومنهجية البحث.",
+    "mission.c2.li3": "<b>الإشراف على التربصات</b> ومشاريع نهاية الدراسة.",
+    "mission.c2.li4": "<b>تنظيم ندوات وورشات عمل</b> كمنصة للتبادل العلمي.",
+    "mission.c3.num": "03 — المؤسسة",
+    "mission.c3.h3": "المساهمة في تطوير المؤسسة",
+    "mission.c3.li1": "<b>تعزيز الظهور</b> والسمعة على المستويين الوطني والدولي.",
+    "mission.c3.li2": "<b>بناء شراكات</b> مع الجامعات والشركات ومؤسسات البحث.",
+    "mission.c3.li3": "<b>تثمين البحث التطبيقي</b> لخدمة القطاع الاجتماعي والاقتصادي بعين تموشنت.",
+    "mission.c4.num": "04 — الابتكار",
+    "mission.c4.h3": "الابتكار ونقل التكنولوجيا",
+    "mission.c4.li1": "<b>تطوير براءات اختراع ونماذج أولية</b> في الكيمياء وفيزياء المواد والهندسة والبيولوجيا والصيدلة والذكاء الاصطناعي.",
+    "mission.c4.li2": "<b>التعاون مع الشركات</b> لتفعيل نقل التكنولوجيا.",
+    "mission.c4.li3": "<b>دعم احتضان</b> المؤسسات الناشئة والمشاريع الريادية.",
+    "areas.eyebrow": "خبرة متعددة المجالات",
+    "areas.h2": "مجالات البحث",
+    "areas.p": "تعمل فرق MRISE Lab الثماني عبر خمسة مجالات علمية مترابطة، من علوم المواد الأساسية إلى الذكاء الاصطناعي التطبيقي وهندسة الأنظمة.",
+    "areas.c1.h3": "الكيمياء والمواد النانوية",
+    "areas.c1.p": "تطوير وتوصيف المواد المتقدمة والمركبات النانوية.",
+    "areas.c2.h3": "الفيزياء وعلوم المواد",
+    "areas.c2.p": "بحوث حول الخصائص الفيزيائية وتوصيف المواد المتقدمة.",
+    "areas.c3.h3": "العلوم البيولوجية والرياضيات الحيوية",
+    "areas.c3.p": "مقاربات رياضية وحاسوبية للمشكلات البيولوجية والطبية الحيوية.",
+    "areas.c4.h3": "الذكاء الاصطناعي",
+    "areas.c4.p": "التعلم الآلي وتحليل البيانات والأنظمة الذكية.",
+    "areas.c5.h3": "هندسة الأنظمة",
+    "areas.c5.p": "النمذجة والتحسين والتحكم والتطبيقات الهندسية.",
+    "teams.eyebrow": "8 فرق",
+    "teams.h2": "فرقنا البحثية",
+    "teams.p": "يغطي كل فريق محوراً موضوعياً خاصاً به داخل المخبر. اضغط على فريق لعرض محاور بحثه وأعضائه ومنشوراته.",
+    "director.role": "مديرة المخبر",
+    "director.bio": 'أستاذة محاضرة قسم أ (MCA)، عضو اللجنة العلمية لقسم علوم المادة — كلية العلوم والتكنولوجيا، جامعة عين تموشنت، بلحاج بوشعيب. كما تقود الفريق 1، "دراسات كيميائية وبيولوجية حول مركبات المواد النانوية".',
+    "director.publications": "المنشورات",
+    "director.citations": "الاستشهادات",
+    "director.hindex": "مؤشر H",
+    "contact.eyebrow": "اتصل بنا",
+    "contact.h2": "هل لديك سؤال أو شراكة أو تعاون في ذهنك؟",
+    "contact.p": "كلية العلوم والتكنولوجيا، جامعة عين تموشنت، بلحاج بوشعيب.",
+    "contact.address": "العنوان",
+    "contact.email": "البريد الإلكتروني",
+    "contact.phone": "الهاتف",
+    "contact.website": "الموقع الإلكتروني",
+    "footer.copyright": "مخبر البحث المتعدد التخصصات للابتكار في العلوم والهندسة — جامعة عين تموشنت، بلحاج بوشعيب."
+  }
+};
+
+// Role badge labels + generic team-card UI strings (used by the JS team-card renderer)
+const ROLE_LABELS = {
+  en: { chef: "Team Leader", permanent: "Permanent Member", associe: "Associate Member", phd: "Member — PhD Student" },
+  fr: { chef: "Cheffe / Chef d'équipe", permanent: "Membre permanent", associe: "Membre associé", phd: "Membre — doctorant" },
+  ar: { chef: "رئيس/ة الفريق", permanent: "عضو دائم", associe: "عضو منتسب", phd: "عضو — طالب دكتوراه" }
+};
+const TEAM_UI = {
+  en: { team: "TEAM", teamLeader: "Team Leader", viewMembers: "View members", topics: "Research topics", members: "Members", publications: "Recent publications", pubsEmpty: "Publications for this team will be added soon.", teamPage: "Team page", thName: "Name", thAffiliation: "Affiliation", thRole: "Role" },
+  fr: { team: "ÉQUIPE", teamLeader: "Cheffe / Chef d'équipe", viewMembers: "Voir les membres", topics: "Thèmes de recherche", members: "Membres", publications: "Publications récentes", pubsEmpty: "Les publications de cette équipe seront ajoutées prochainement.", teamPage: "Page de l'équipe", thName: "Nom", thAffiliation: "Affiliation", thRole: "Rôle" },
+  ar: { team: "الفريق", teamLeader: "رئيس/ة الفريق", viewMembers: "عرض الأعضاء", topics: "محاور البحث", members: "الأعضاء", publications: "المنشورات الحديثة", pubsEmpty: "ستُضاف منشورات هذا الفريق قريباً.", teamPage: "صفحة الفريق", thName: "الاسم", thAffiliation: "الانتماء", thRole: "الصفة" }
+};
+
+let currentLang = localStorage.getItem('mrise-lang') || 'en';
+
+function applyTranslations(lang){
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('#langSwitch button').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  localStorage.setItem('mrise-lang', lang);
+  renderTeamCards();
+}
+
+document.querySelectorAll('#langSwitch button').forEach(btn => {
+  btn.addEventListener('click', () => applyTranslations(btn.getAttribute('data-lang')));
+});
+
 // ---- Teams data ----
 const teams = [
   {
@@ -746,10 +1065,10 @@ const teams = [
     lead: "Dr Lamia Bennabi",
     topics: ["Nanomaterials", "Polymer composites", "Chemical characterization", "Biological applications"],
     members: [
-      ["Bennabi Lamia", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Argoub Asmaa", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Abdelemalek Ilham", "University of Tiaret", "Associate Member", "associe"],
-      ["Benouar Houcine", "Faculty of Biology, University of Naama", "Associate Member", "associe"]
+      ["Bennabi Lamia", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Argoub Asmaa", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Abdelemalek Ilham", "University of Tiaret", "associe", "associe"],
+      ["Benouar Houcine", "Faculty of Biology, University of Naama", "associe", "associe"]
     ]
   },
   {
@@ -759,10 +1078,10 @@ const teams = [
     lead: "Dr Wahiba Chaibi",
     topics: ["Polymer synthesis", "Composite materials", "Materials characterization", "Mechanical properties"],
     members: [
-      ["Chaibi Wahiba", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Beneabboun Radjaa", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Derriche Zahra", "University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Bekhti Nabila", "University of Mascara", "Associate Member", "associe"]
+      ["Chaibi Wahiba", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Beneabboun Radjaa", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Derriche Zahra", "University of Ain Temouchent", "permanent", "permanent"],
+      ["Bekhti Nabila", "University of Mascara", "associe", "associe"]
     ]
   },
   {
@@ -772,9 +1091,9 @@ const teams = [
     lead: "Dr Adjadj Aze Eddine",
     topics: ["Materials physics", "Thin films", "Structural characterization", "Physical properties of materials"],
     members: [
-      ["Dr Adjadj Aze Eddine", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Abedesslam Boucif", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Belkadi Amina", "FST, University of Ain Temouchent", "Permanent Member", "permanent"]
+      ["Dr Adjadj Aze Eddine", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Abedesslam Boucif", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Belkadi Amina", "FST, University of Ain Temouchent", "permanent", "permanent"]
     ]
   },
   {
@@ -784,20 +1103,20 @@ const teams = [
     lead: "Pr Hafida Marouf",
     topics: ["Innovative materials", "Machine learning for materials prediction", "Environmental valorization", "Data-driven materials design"],
     members: [
-      ["Dr Marouf Hafida", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Dounane Nawel", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Beddad Fatima", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Mouaici Fethi", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Saïd Abderrahmane", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Khadidja Benslama", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Ramli Aicha", "University of Mascara", "Associate Member", "associe"]
+      ["Dr  Hafida Marouf ", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Dounane Nawel", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Beddad Fatima", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Mouaici Fethi", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Saïd Abderrahmane", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Khadidja Benslama", "University of Relizane", "associe", "associe"],
+      ["Ramli Aicha", "University of Mascara", "associe", "associe"]
     ]
   },
   {
     n: 5,
     acro: "MCASM",
     title: "Advanced Biomathematics Innovation",
-    lead: "Pr  Soufiane Bentout",
+    lead: "Pr Soufiane Bentout",
     topics: ["Mathematical biology", "Epidemiological modeling", "Dynamical systems", "Computational biomathematics"],
     publications: [
       "Bentout, S. (2026). Analysis of traveling wave solutions for an SIS model with age structure. <i>Zeitschrift für angewandte Mathematik und Physik</i>, 77, 79. <a href=\"https://doi.org/10.1007/s00033-025-02703-7\" target=\"_blank\" rel=\"noopener\">doi.org/10.1007/s00033-025-02703-7</a>",
@@ -806,11 +1125,11 @@ const teams = [
     ],
     link: "https://bentouts.github.io/Team1/Team1.html",
     members: [
-      ["Bentout Soufiane", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Belattar Zoukha", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Boukhalfa Fatima", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Mammar Imane", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Djilali Salih", "FSEI, University of Chlef", "Associate Member", "associe"]
+      ["Soufiane Bentout", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Zoukha Belattar", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Fatima Boukhalfa", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Imane Mammar", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Salih Djilali", "FSEI, University of Chlef", "associe", "associe"]
     ]
   },
   {
@@ -820,10 +1139,10 @@ const teams = [
     lead: "Dr Tabti Affaf",
     topics: ["Stochastic modeling", "Environmental systems", "Applied probability", "Data analysis"],
     members: [
-      ["Affaf Tabti", "FST, University of Ain Temouchent", "Team Leader", "chef"],
-      ["Bennafla Djamila", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Macene Rahmouna", "FST, University of Ain Temouchent", "Permanent Member", "permanent"],
-      ["Sedouk Ibrahim", "FSEI, University of Bechar", "Associate Member", "associe"]
+      ["Affaf Tabti", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Bennafla Djamila", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Macene Rahmouna", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Sedouk Ibrahim", "FSEI, University of Bechar", "associe", "associe"]
     ]
   },
   {
@@ -833,11 +1152,11 @@ const teams = [
     lead: "Pr Benzenine Hamidou",
     topics: ["Fluid mechanics", "Advanced structures", "Systems modeling", "Industrial optimization"],
     members: [
-      ["Pr Benzenine Hamidou", "Professor", "Team Leader", "chef"],
-      ["Dr Bahram Kadour", "MCA", "Member", "permanent"],
-      ["Dr Saimi Ahmed", "MCA", "Member", "permanent"],
-      ["Dr Guendouz Bouhelal", "MCB", "Member", "permanent"],
-      ["Brakna Abdelkader", "PhD Student", "Member — PhD Student", "associe"]
+      ["Pr Benzenine Hamidou", "Professor", "chef", "chef"],
+      ["Dr Bahram Kadour", "MCA", "permanent", "permanent"],
+      ["Dr Saimi Ahmed", "MCA", "permanent", "permanent"],
+      ["Dr Guendouz Bouhelal", "MCB", "permanent", "permanent"],
+      ["Brakna Abdelkader", "PhD Student", "phd", "associe"]
     ]
   },
   {
@@ -847,76 +1166,85 @@ const teams = [
     lead: "Dr Chaib Mohammed",
     topics: ["High-performance materials", "Mechanical engineering applications", "Materials testing", "Structural design"],
     members: [
-      ["Dr Chaib Mohammed", "MCA", "Team Leader", "chef"],
-      ["Pr Ziadi Abdelkader", "Professor", "Member", "permanent"],
-      ["Dr Achour Bouchra", "MCB", "Member", "permanent"],
-      ["Dr Dahmane Sid Ahmed", "PhD", "Member", "permanent"],
+      ["Dr Chaib Mohammed", "MCA", "chef", "chef"],
+      ["Pr Ziadi Abdelkader", "Professor", "permanent", "permanent"],
+      ["Dr Achour Bouchra", "MCB", "permanent", "permanent"],
+      ["Dr Dahmane Sid Ahmed", "PhD", "permanent", "permanent"],
       ["Mahmoud Meguehout", "—", "Member", "associe"]
     ]
   }
 ];
 
-const grid = document.getElementById('teamsGrid');
-teams.forEach(team => {
-  const card = document.createElement('div');
-  card.className = 'tcard';
-  card.id = 'team-' + team.n;
+function renderTeamCards(){
+  const grid = document.getElementById('teamsGrid');
+  const openIds = new Set(Array.from(grid.querySelectorAll('.tcard.open')).map(c => c.id));
+  grid.innerHTML = '';
 
-  const rows = team.members.map(m => {
-    const badgeClass = m[3] === 'chef' ? 'chef' : (m[3] === 'permanent' ? 'permanent' : 'associe');
-    return `<tr>
-      <td>${m[0]}</td>
-      <td>${m[1]}</td>
-      <td><span class="badge ${badgeClass}">${m[2]}</span></td>
-    </tr>`;
-  }).join('');
+  teams.forEach(team => {
+    const card = document.createElement('div');
+    card.className = 'tcard';
+    card.id = 'team-' + team.n;
+    if (openIds.has(card.id)) card.classList.add('open');
 
-  const topicsHtml = (team.topics && team.topics.length)
-    ? `<div class="tcard-block">
-        <h4><svg class="icon"><use href="#i-target"/></svg>Research topics</h4>
-        <div class="topic-tags">${team.topics.map(t => `<span class="topic-tag">${t}</span>`).join('')}</div>
-      </div>`
-    : '';
+    const rows = team.members.map(m => {
+      const roleKey = m[3];
+      const roleLabel = (ROLE_LABELS[currentLang] && ROLE_LABELS[currentLang][m[2]]) || m[2];
+      return `<tr>
+        <td>${m[0]}</td>
+        <td>${m[1]}</td>
+        <td><span class="badge ${roleKey}">${roleLabel}</span></td>
+      </tr>`;
+    }).join('');
 
-  const pubsHtml = `<div class="tcard-block">
-      <h4><svg class="icon"><use href="#i-doc"/></svg>Recent publications</h4>
-      ${(team.publications && team.publications.length)
-        ? `<ul class="pub-list">${team.publications.map(p => `<li>${p}</li>`).join('')}</ul>`
-        : `<p class="pub-empty">Publications for this team will be added soon.</p>`}
-    </div>`;
+    const t = TEAM_UI[currentLang];
 
-  card.innerHTML = `
-    <div class="tcard-top">
-      <span class="tcard-id"><svg class="icon"><use href="#i-network"/></svg>TEAM ${String(team.n).padStart(2,'0')}</span>
-      ${team.acro ? `<span class="tcard-acro">${team.acro}</span>` : ''}
-    </div>
-    <h3>${team.title}</h3>
-    <p class="lead"><svg class="icon"><use href="#i-award"/></svg>Team Leader: <b>${team.lead}</b></p>
-    <div class="toggle-hint">
-      View members
-      <svg class="icon"><use href="#i-chevron"/></svg>
-    </div>
-    <div class="tcard-members">
-      ${topicsHtml}
-      <div class="tcard-block">
-        <h4><svg class="icon"><use href="#i-users"/></svg>Members</h4>
-        <table>
-          <thead><tr><th>Name</th><th>Affiliation</th><th>Role</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
+    const topicsHtml = (team.topics && team.topics.length)
+      ? `<div class="tcard-block">
+          <h4><svg class="icon"><use href="#i-target"/></svg>${t.topics}</h4>
+          <div class="topic-tags">${team.topics.map(x => `<span class="topic-tag">${x}</span>`).join('')}</div>
+        </div>`
+      : '';
+
+    const pubsHtml = `<div class="tcard-block">
+        <h4><svg class="icon"><use href="#i-doc"/></svg>${t.publications}</h4>
+        ${(team.publications && team.publications.length)
+          ? `<ul class="pub-list">${team.publications.map(p => `<li>${p}</li>`).join('')}</ul>`
+          : `<p class="pub-empty">${t.pubsEmpty}</p>`}
+      </div>`;
+
+    card.innerHTML = `
+      <div class="tcard-top">
+        <span class="tcard-id"><svg class="icon"><use href="#i-network"/></svg>${t.team} ${String(team.n).padStart(2,'0')}</span>
+        ${team.acro ? `<span class="tcard-acro">${team.acro}</span>` : ''}
       </div>
-      ${pubsHtml}
-      ${team.link ? `<a class="team-link" href="${team.link}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>Team page</a>` : ''}
-    </div>
-  `;
+      <h3>${team.title}</h3>
+      <p class="lead"><svg class="icon"><use href="#i-award"/></svg>${t.teamLeader}: <b>${team.lead}</b></p>
+      ${team.link ? `<a class="team-link" href="${team.link}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>${t.teamPage}</a>` : ''}
+      <div class="toggle-hint">
+        ${t.viewMembers}
+        <svg class="icon"><use href="#i-chevron"/></svg>
+      </div>
+      <div class="tcard-members">
+        ${topicsHtml}
+        <div class="tcard-block">
+          <h4><svg class="icon"><use href="#i-users"/></svg>${t.members}</h4>
+          <table>
+            <thead><tr><th>${t.thName}</th><th>${t.thAffiliation}</th><th>${t.thRole}</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        ${pubsHtml}
+      </div>
+    `;
 
-  card.addEventListener('click', (e) => {
-    if (e.target.closest('.team-link')) return;
-    card.classList.toggle('open');
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.team-link')) return;
+      card.classList.toggle('open');
+    });
+
+    grid.appendChild(card);
   });
-
-  grid.appendChild(card);
-});
+}
 
 // ---- Hero network diagram interactivity ----
 const tooltip = document.getElementById('netTooltip');
@@ -930,18 +1258,16 @@ teams.forEach(team => {
   if (!node) return;
 
   node.addEventListener('click', () => {
-    // update tooltip
     tooltipNum.textContent = String(team.n).padStart(2, '0');
     tooltipTitle.textContent = team.title;
-    tooltipHint.textContent = 'Team leader: ' + team.lead + ' — tap again to open ↓';
+    const leaderWord = TEAM_UI[currentLang].teamLeader;
+    tooltipHint.textContent = leaderWord + ': ' + team.lead + ' — ↓';
     tooltip.classList.add('filled');
 
-    // highlight selected node only
     if (activeNode) activeNode.classList.remove('active');
     node.classList.add('active');
     activeNode = node;
 
-    // jump to and expand the matching team card
     const targetCard = document.getElementById('team-' + team.n);
     if (targetCard) {
       targetCard.classList.add('open');
@@ -950,6 +1276,9 @@ teams.forEach(team => {
     }
   });
 });
+
+// ---- Initialize language on load ----
+applyTranslations(currentLang);
 </script>
 
 </body>
