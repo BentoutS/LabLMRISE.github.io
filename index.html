@@ -325,6 +325,14 @@
   .badge.associe{ background: rgba(201,127,18,0.12); color: var(--accent-amber); }
   .badge.chef{ background: rgba(111,76,224,0.13); color: var(--accent-violet); }
 
+  .profile-links{ display:flex; align-items:center; gap: 8px; }
+  .profile-links a{
+    color: var(--text-dim); width: 26px; height: 26px; border-radius: 7px; background: var(--bg-panel-alt);
+    display:flex; align-items:center; justify-content:center; transition: background .2s, color .2s;
+  }
+  .profile-links a .icon{ width: 14px; height: 14px; }
+  .profile-links a:hover{ background: var(--accent-violet); color: #fff; }
+
   .team-link{
     display:inline-flex; gap:6px; align-items:center; margin-top:12px; font-size: 12px; font-weight: 600;
     color: var(--accent-violet); background: var(--bg-panel-alt); border: 1px solid var(--border-strong);
@@ -462,6 +470,7 @@
   <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.8"/><rect x="9.5" y="9.5" width="5" height="5" stroke="currentColor" fill="none" stroke-width="1.6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.1 5.9l-1.7 1.7M7.6 16.4l-1.7 1.7M18.1 18.1l-1.7-1.7M7.6 7.6 5.9 5.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 2h7l4 4v16H7z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v4h4M9.5 12h6M9.5 15.5h6M9.5 8.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" fill="none" stroke-width="1.7"/><path d="M8 17c.5-1.8 2-2.8 4-2.8s3.5 1 4 2.8" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="4.7" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
@@ -1025,9 +1034,9 @@ const ROLE_LABELS = {
   ar: { chef: "رئيس/ة الفريق", permanent: "عضو دائم", associe: "عضو منتسب", phd: "عضو — طالب دكتوراه" }
 };
 const TEAM_UI = {
-  en: { team: "TEAM", teamLeader: "Team Leader", viewMembers: "View members", topics: "Research topics", members: "Members", publications: "Recent publications", pubsEmpty: "Publications for this team will be added soon.", teamPage: "Team page", thName: "Name", thAffiliation: "Affiliation", thRole: "Role" },
-  fr: { team: "ÉQUIPE", teamLeader: "Cheffe / Chef d'équipe", viewMembers: "Voir les membres", topics: "Thèmes de recherche", members: "Membres", publications: "Publications récentes", pubsEmpty: "Les publications de cette équipe seront ajoutées prochainement.", teamPage: "Page de l'équipe", thName: "Nom", thAffiliation: "Affiliation", thRole: "Rôle" },
-  ar: { team: "الفريق", teamLeader: "رئيس/ة الفريق", viewMembers: "عرض الأعضاء", topics: "محاور البحث", members: "الأعضاء", publications: "المنشورات الحديثة", pubsEmpty: "ستُضاف منشورات هذا الفريق قريباً.", teamPage: "صفحة الفريق", thName: "الاسم", thAffiliation: "الانتماء", thRole: "الصفة" }
+  en: { team: "TEAM", teamLeader: "Team Leader", viewMembers: "View members", topics: "Research topics", members: "Members", publications: "Recent publications", pubsEmpty: "Publications for this team will be added soon.", teamPage: "Team page", thName: "Name", thAffiliation: "Affiliation", thRole: "Role", thLinks: "Links" },
+  fr: { team: "ÉQUIPE", teamLeader: "Cheffe / Chef d'équipe", viewMembers: "Voir les membres", topics: "Thèmes de recherche", members: "Membres", publications: "Publications récentes", pubsEmpty: "Les publications de cette équipe seront ajoutées prochainement.", teamPage: "Page de l'équipe", thName: "Nom", thAffiliation: "Affiliation", thRole: "Rôle", thLinks: "Liens" },
+  ar: { team: "الفريق", teamLeader: "رئيس/ة الفريق", viewMembers: "عرض الأعضاء", topics: "محاور البحث", members: "الأعضاء", publications: "المنشورات الحديثة", pubsEmpty: "ستُضاف منشورات هذا الفريق قريباً.", teamPage: "صفحة الفريق", thName: "الاسم", thAffiliation: "الانتماء", thRole: "الصفة", thLinks: "روابط" }
 };
 
 let currentLang = localStorage.getItem('mrise-lang') || 'en';
@@ -1065,10 +1074,10 @@ const teams = [
     lead: "Dr Lamia Bennabi",
     topics: ["Nanomaterials", "Polymer composites", "Chemical characterization", "Biological applications"],
     members: [
-      ["Bennabi Lamia", "FST, University of Ain Temouchent", "chef", "chef"],
-      ["Argoub Asmaa", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Abdelemalek Ilham", "University of Tiaret", "associe", "associe"],
-      ["Benouar Houcine", "Faculty of Biology, University of Naama", "associe", "associe"]
+      ["Lamia Bennabi", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Asmaa Argoub", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Ilham Abdelemalek", "University of Tiaret", "associe", "associe"],
+      ["Houcine Benouar", "Faculty of Biology, University of Naama", "associe", "associe"]
     ]
   },
   {
@@ -1078,22 +1087,22 @@ const teams = [
     lead: "Dr Wahiba Chaibi",
     topics: ["Polymer synthesis", "Composite materials", "Materials characterization", "Mechanical properties"],
     members: [
-      ["Chaibi Wahiba", "FST, University of Ain Temouchent", "chef", "chef"],
-      ["Beneabboun Radjaa", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Derriche Zahra", "University of Ain Temouchent", "permanent", "permanent"],
-      ["Bekhti Nabila", "University of Mascara", "associe", "associe"]
+      ["Wahiba Chaibi", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Radjaa Beneabboun", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Zahra Derriche", "University of Ain Temouchent", "permanent", "permanent"],
+      ["Nabila Bekhti", "University of Mascara", "associe", "associe"]
     ]
   },
   {
     n: 3,
     acro: "",
     title: "Physical Engineering of Materials",
-    lead: "Dr Adjadj Aze Eddine",
+    lead: "Dr Aze Eddine Adjadj",
     topics: ["Materials physics", "Thin films", "Structural characterization", "Physical properties of materials"],
     members: [
-      ["Dr Adjadj Aze Eddine", "FST, University of Ain Temouchent", "chef", "chef"],
-      ["Abedesslam Boucif", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Belkadi Amina", "FST, University of Ain Temouchent", "permanent", "permanent"]
+      ["Dr Aze Eddine Adjadj", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Boucif Abedesslam", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Amina Belkadi", "FST, University of Ain Temouchent", "permanent", "permanent"]
     ]
   },
   {
@@ -1103,13 +1112,13 @@ const teams = [
     lead: "Pr Hafida Marouf",
     topics: ["Innovative materials", "Machine learning for materials prediction", "Environmental valorization", "Data-driven materials design"],
     members: [
-      ["Dr  Hafida Marouf ", "FST, University of Ain Temouchent", "chef", "chef"],
-      ["Dounane Nawel", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Beddad Fatima", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Mouaici Fethi", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Saïd Abderrahmane", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Dr Hafida Marouf", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Nawel Dounane", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Fatima Beddad", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Fethi Mouaici", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Abderrahmane Saïd", "FST, University of Ain Temouchent", "permanent", "permanent"],
       ["Khadidja Benslama", "University of Relizane", "associe", "associe"],
-      ["Ramli Aicha", "University of Mascara", "associe", "associe"]
+      ["Aicha Ramli", "University of Mascara", "associe", "associe"]
     ]
   },
   {
@@ -1125,7 +1134,11 @@ const teams = [
     ],
     link: "https://bentouts.github.io/Team1/Team1.html",
     members: [
-      ["Soufiane Bentout", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Soufiane Bentout", "FST, University of Ain Temouchent", "chef", "chef", {
+        scholar: "https://scholar.google.com/citations?user=mfAJBVcAAAAJ&hl=fr",
+        orcid: "https://orcid.org/0000-0002-3699-7346",
+        researchgate: "https://www.researchgate.net/profile/Soufiane-Bentout"
+      }],
       ["Zoukha Belattar", "FST, University of Ain Temouchent", "permanent", "permanent"],
       ["Fatima Boukhalfa", "FST, University of Ain Temouchent", "permanent", "permanent"],
       ["Imane Mammar", "FST, University of Ain Temouchent", "permanent", "permanent"],
@@ -1136,41 +1149,41 @@ const teams = [
     n: 6,
     acro: "",
     title: "Environment and Stochastic Processes",
-    lead: "Dr Tabti Affaf",
+    lead: "Dr Affaf Tabti",
     topics: ["Stochastic modeling", "Environmental systems", "Applied probability", "Data analysis"],
     members: [
       ["Affaf Tabti", "FST, University of Ain Temouchent", "chef", "chef"],
-      ["Bennafla Djamila", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Macene Rahmouna", "FST, University of Ain Temouchent", "permanent", "permanent"],
-      ["Sedouk Ibrahim", "FSEI, University of Bechar", "associe", "associe"]
+      ["Djamila Bennafla", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Rahmouna Macene", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Ibrahim Sedouk", "FSEI, University of Bechar", "associe", "associe"]
     ]
   },
   {
     n: 7,
     acro: "ISE-FMAS",
     title: "Industrial Systems Engineering: Fluids, Materials and Advanced Structures",
-    lead: "Pr Benzenine Hamidou",
+    lead: "Pr Hamidou Benzenine",
     topics: ["Fluid mechanics", "Advanced structures", "Systems modeling", "Industrial optimization"],
     members: [
-      ["Pr Benzenine Hamidou", "Professor", "chef", "chef"],
-      ["Dr Bahram Kadour", "MCA", "permanent", "permanent"],
-      ["Dr Saimi Ahmed", "MCA", "permanent", "permanent"],
-      ["Dr Guendouz Bouhelal", "MCB", "permanent", "permanent"],
-      ["Brakna Abdelkader", "PhD Student", "phd", "associe"]
+      ["Pr Hamidou Benzenine", "Professor", "chef", "chef"],
+      ["Dr Kadour Bahram", "MCA", "permanent", "permanent"],
+      ["Dr Ahmed Saimi", "MCA", "permanent", "permanent"],
+      ["Dr Bouhelal Guendouz", "MCB", "permanent", "permanent"],
+      ["Abdelkader Brakna", "PhD Student", "phd", "associe"]
     ]
   },
   {
     n: 8,
     acro: "HPAMEA",
     title: "High-Performance Advanced Materials for Engineering Applications",
-    lead: "Dr Chaib Mohammed",
+    lead: "Dr Mohammed Chaib",
     topics: ["High-performance materials", "Mechanical engineering applications", "Materials testing", "Structural design"],
     members: [
-      ["Dr Chaib Mohammed", "MCA", "chef", "chef"],
-      ["Pr Ziadi Abdelkader", "Professor", "permanent", "permanent"],
-      ["Dr Achour Bouchra", "MCB", "permanent", "permanent"],
-      ["Dr Dahmane Sid Ahmed", "PhD", "permanent", "permanent"],
-      ["Mahmoud Meguehout", "—", "Member", "associe"]
+      ["Dr Mohammed Chaib", "MCA", "chef", "chef"],
+      ["Pr Abdelkader Ziadi", "Professor", "permanent", "permanent"],
+      ["Dr Bouchra Achour", "MCB", "permanent", "permanent"],
+      ["Dr Sid Ahmed Dahmane", "PhD", "permanent", "permanent"],
+      ["Mahmoud Meguehout", "—", "associe", "associe"]
     ]
   }
 ];
@@ -1189,10 +1202,18 @@ function renderTeamCards(){
     const rows = team.members.map(m => {
       const roleKey = m[3];
       const roleLabel = (ROLE_LABELS[currentLang] && ROLE_LABELS[currentLang][m[2]]) || m[2];
+      const p = m[4];
+      const linksHtml = p ? `<div class="profile-links">
+          ${p.orcid ? `<a href="${p.orcid}" target="_blank" rel="noopener" title="ORCID"><svg class="icon"><use href="#i-badge"/></svg></a>` : ''}
+          ${p.scholar ? `<a href="${p.scholar}" target="_blank" rel="noopener" title="Google Scholar"><svg class="icon"><use href="#i-cap"/></svg></a>` : ''}
+          ${p.researchgate ? `<a href="${p.researchgate}" target="_blank" rel="noopener" title="ResearchGate"><svg class="icon"><use href="#i-network"/></svg></a>` : ''}
+          ${p.email ? `<a href="mailto:${p.email}" title="${p.email}"><svg class="icon"><use href="#i-mail"/></svg></a>` : ''}
+        </div>` : '';
       return `<tr>
         <td>${m[0]}</td>
         <td>${m[1]}</td>
         <td><span class="badge ${roleKey}">${roleLabel}</span></td>
+        <td>${linksHtml}</td>
       </tr>`;
     }).join('');
 
@@ -1229,7 +1250,7 @@ function renderTeamCards(){
         <div class="tcard-block">
           <h4><svg class="icon"><use href="#i-users"/></svg>${t.members}</h4>
           <table>
-            <thead><tr><th>${t.thName}</th><th>${t.thAffiliation}</th><th>${t.thRole}</th></tr></thead>
+            <thead><tr><th>${t.thName}</th><th>${t.thAffiliation}</th><th>${t.thRole}</th><th>${t.thLinks}</th></tr></thead>
             <tbody>${rows}</tbody>
           </table>
         </div>
