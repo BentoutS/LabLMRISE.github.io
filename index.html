@@ -262,12 +262,39 @@
   }
   .tcard{
     background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 24px 24px 20px; cursor: pointer; transition: border-color .2s, box-shadow .2s;
-    box-shadow: var(--shadow-sm);
+    padding: 24px 24px 20px; cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s;
+    box-shadow: var(--shadow-sm); overflow: hidden;
   }
-  .tcard:hover{ border-color: var(--accent-violet); box-shadow: var(--shadow-md); }
+  .tcard:hover{ border-color: var(--accent-violet); box-shadow: var(--shadow-md); transform: translateY(-3px); }
   .tcard.open{ background: var(--bg-panel-alt); border-color: var(--accent-violet); }
   .tcard-top{ display:flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
+
+  .tcard-banner{
+    margin: -24px -24px 16px -24px; height: 108px; background-size: cover; background-position: center;
+    position: relative;
+  }
+  .tcard-banner-placeholder{
+    display:flex; align-items:center; justify-content:center;
+  }
+  .banner-icon{ width: 42px; height: 42px; stroke: rgba(255,255,255,0.9); opacity: .95; }
+  .tcard-hue-1{ background: linear-gradient(135deg, #0EA5B7, #6F4CE0); }
+  .tcard-hue-2{ background: linear-gradient(135deg, #6F4CE0, #C97F12); }
+  .tcard-hue-3{ background: linear-gradient(135deg, #2962B4, #0EA5B7); }
+  .tcard-hue-4{ background: linear-gradient(135deg, #8B6BF2, #2962B4); }
+  .tcard-hue-5{ background: linear-gradient(135deg, #0EA5B7, #2E8B57); }
+  .tcard-hue-6{ background: linear-gradient(135deg, #2E8B57, #0EA5B7); }
+  .tcard-hue-7{ background: linear-gradient(135deg, #C97F12, #6F4CE0); }
+  .tcard-hue-8{ background: linear-gradient(135deg, #2962B4, #C97F12); }
+
+  .m-cell{ display:flex; align-items:center; gap: 9px; }
+  .m-avatar{
+    width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  }
+  .m-avatar-initials{
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+    color: #fff; font-family: var(--mono); font-size: 10px; font-weight: 600;
+  }
   .tcard-id{
     font-family: var(--mono); font-size: 11.5px; color: var(--accent-cyan); letter-spacing: .06em;
     display:flex; align-items:center; gap:7px;
@@ -469,6 +496,8 @@
   <symbol id="i-dna" viewBox="0 0 24 24"><path d="M6 3c0 6 12 12 12 18M18 3c0 6-12 12-12 18" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/><path d="M7.5 7h9M6.5 12h11M7.5 17h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.8"/><rect x="9.5" y="9.5" width="5" height="5" stroke="currentColor" fill="none" stroke-width="1.6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.1 5.9l-1.7 1.7M7.6 16.4l-1.7 1.7M18.1 18.1l-1.7-1.7M7.6 7.6 5.9 5.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C10 4 4 10 4 18v2h2c8 0 14-6 14-16z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 19c3-5 7-9 12-12" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21 4 16.5v-9L12 3z" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 3v9M12 12 4 7.5M12 12l8-4.5M12 12v9" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linejoin="round"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 2h7l4 4v16H7z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v4h4M9.5 12h6M9.5 15.5h6M9.5 8.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-badge" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" fill="none" stroke-width="1.7"/><path d="M8 17c.5-1.8 2-2.8 4-2.8s3.5 1 4 2.8" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="4.7" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
@@ -1069,15 +1098,13 @@ document.querySelectorAll('#langSwitch button').forEach(btn => {
 const teams = [
   {
     n: 1,
+    icon: "flask",
     acro: "",
     title: "Chemical and Biological Studies on Nanomaterials Composites",
     lead: "Dr Lamia Bennabi",
     topics: ["Nanomaterials", "Polymer composites", "Chemical characterization", "Biological applications"],
     members: [
-      ["Lamia Bennabi", "FST, University of Ain Temouchent", "chef", "chef" , {
-        scholar: "https://scholar.google.com/citations?user=jzgAGz4AAAAJ&hl=fr&oi=ao",
-        researchgate: "https://www.researchgate.net/profile/Bennabi-Lamia"
-      }],
+      ["Lamia Bennabi", "FST, University of Ain Temouchent", "chef", "chef"],
       ["Asmaa Argoub", "FST, University of Ain Temouchent", "permanent", "permanent"],
       ["Ilham Abdelemalek", "University of Tiaret", "associe", "associe"],
       ["Houcine Benouar", "Faculty of Biology, University of Naama", "associe", "associe"]
@@ -1085,6 +1112,7 @@ const teams = [
   },
   {
     n: 2,
+    icon: "ruler",
     acro: "",
     title: "Polymers and Composite Materials",
     lead: "Dr Wahiba Chaibi",
@@ -1098,6 +1126,7 @@ const teams = [
   },
   {
     n: 3,
+    icon: "atom",
     acro: "",
     title: "Physical Engineering of Materials",
     lead: "Dr Aze Eddine Adjadj",
@@ -1110,6 +1139,7 @@ const teams = [
   },
   {
     n: 4,
+    icon: "cpu",
     acro: "",
     title: "Innovative Materials, AI and Environmental Valorization",
     lead: "Pr Hafida Marouf",
@@ -1126,6 +1156,7 @@ const teams = [
   },
   {
     n: 5,
+    icon: "dna",
     acro: "MCASM",
     title: "Advanced Biomathematics Innovation",
     lead: "Pr Soufiane Bentout",
@@ -1150,6 +1181,7 @@ const teams = [
   },
   {
     n: 6,
+    icon: "leaf",
     acro: "",
     title: "Environment and Stochastic Processes",
     lead: "Dr Affaf Tabti",
@@ -1163,6 +1195,7 @@ const teams = [
   },
   {
     n: 7,
+    icon: "gear",
     acro: "ISE-FMAS",
     title: "Industrial Systems Engineering: Fluids, Materials and Advanced Structures",
     lead: "Pr Hamidou Benzenine",
@@ -1177,6 +1210,7 @@ const teams = [
   },
   {
     n: 8,
+    icon: "cube",
     acro: "HPAMEA",
     title: "High-Performance Advanced Materials for Engineering Applications",
     lead: "Dr Mohammed Chaib",
@@ -1206,6 +1240,10 @@ function renderTeamCards(){
       const roleKey = m[3];
       const roleLabel = (ROLE_LABELS[currentLang] && ROLE_LABELS[currentLang][m[2]]) || m[2];
       const p = m[4];
+      const initials = m[0].split(' ').filter(Boolean).map(w => w[0]).slice(0,2).join('').toUpperCase();
+      const avatarHtml = (p && p.photo)
+        ? `<img class="m-avatar" src="${p.photo}" alt="${m[0]}">`
+        : `<span class="m-avatar m-avatar-initials">${initials}</span>`;
       const linksHtml = p ? `<div class="profile-links">
           ${p.orcid ? `<a href="${p.orcid}" target="_blank" rel="noopener" title="ORCID"><svg class="icon"><use href="#i-badge"/></svg></a>` : ''}
           ${p.scholar ? `<a href="${p.scholar}" target="_blank" rel="noopener" title="Google Scholar"><svg class="icon"><use href="#i-cap"/></svg></a>` : ''}
@@ -1213,7 +1251,7 @@ function renderTeamCards(){
           ${p.email ? `<a href="mailto:${p.email}" title="${p.email}"><svg class="icon"><use href="#i-mail"/></svg></a>` : ''}
         </div>` : '';
       return `<tr>
-        <td>${m[0]}</td>
+        <td><div class="m-cell">${avatarHtml}<span>${m[0]}</span></div></td>
         <td>${m[1]}</td>
         <td><span class="badge ${roleKey}">${roleLabel}</span></td>
         <td>${linksHtml}</td>
@@ -1236,7 +1274,14 @@ function renderTeamCards(){
           : `<p class="pub-empty">${t.pubsEmpty}</p>`}
       </div>`;
 
+    const bannerHtml = team.photo
+      ? `<div class="tcard-banner" style="background-image:url('${team.photo}')"></div>`
+      : `<div class="tcard-banner tcard-banner-placeholder tcard-hue-${team.n}">
+          <svg class="banner-icon"><use href="#i-${team.icon}"/></svg>
+        </div>`;
+
     card.innerHTML = `
+      ${bannerHtml}
       <div class="tcard-top">
         <span class="tcard-id"><svg class="icon"><use href="#i-network"/></svg>${t.team} ${String(team.n).padStart(2,'0')}</span>
         ${team.acro ? `<span class="tcard-acro">${team.acro}</span>` : ''}
