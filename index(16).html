@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRISE Lab — Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering</title>
+<meta name="description" content="MRISE Lab — Multidisciplinary research laboratory at the University of Ain Temouchent, Belhadj Bouchaib. 8 research teams, 57 researchers, working across materials science, chemistry, physics, biomathematics, AI and engineering.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F7FB;
+    --bg-panel: #FFFFFF;
+    --bg-panel-alt: #EFF2FA;
+    --bg-raised: #E7EBF6;
+    --accent-violet: #6F4CE0;
+    --accent-cyan: #0EA5B7;
+    --accent-amber: #C97F12;
+    --text: #171D33;
+    --text-muted: #4E5872;
+    --text-dim: #838DA8;
+    --border: rgba(23,29,51,0.09);
+    --border-strong: rgba(23,29,51,0.18);
+    --radius: 14px;
+    --shadow-sm: 0 1px 2px rgba(23,29,51,0.04), 0 1px 1px rgba(23,29,51,0.03);
+    --shadow-md: 0 10px 30px rgba(23,29,51,0.07), 0 2px 8px rgba(23,29,51,0.04);
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style: none; }
+
+  .icon{ width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+
+  /* background texture */
+  body::before{
+    content:"";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(111,76,224,0.09), transparent 40%),
+      radial-gradient(circle at 88% 18%, rgba(14,165,183,0.08), transparent 42%),
+      radial-gradient(circle at 50% 95%, rgba(111,76,224,0.06), transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px; height: 1px;
+    background: var(--accent-cyan);
+    display: inline-block;
+  }
+
+  h1,h2,h3,h4{ font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; }
+
+  /* ============ NAV ============ */
+  header.site{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(246,247,251,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav{
+    display:flex; align-items:center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    padding: 14px 28px; max-width: 1180px; margin: 0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap: 12px; }
+  .brand img{ width: 56px; height: 56px; border-radius: 12px; box-shadow: var(--shadow-md); }
+  .brand-text{ display:flex; flex-direction: column; line-height:1.15; }
+  .brand-text strong{ font-family: var(--display); font-size: 16.5px; letter-spacing: 0.02em; }
+  .brand-text span{ font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.06em; }
+  .nav-links{ display:flex; gap: 30px; align-items: center; }
+  .nav-links a{ font-size: 14px; color: var(--text-muted); transition: color .2s; font-weight: 500; }
+  .nav-links a:hover{ color: var(--accent-violet); }
+  .nav-cta{
+    border: 1px solid var(--border-strong); padding: 9px 18px; border-radius: 999px;
+    font-size: 13.5px; color: var(--text) !important; transition: all .2s;
+    display: inline-flex; align-items: center; gap: 8px; font-weight: 500;
+  }
+  .nav-cta:hover{ background: var(--accent-violet); border-color: var(--accent-violet); color: #fff !important; }
+  .nav-toggle{ display:none; background:none; border:none; color: var(--text); font-size: 22px; cursor:pointer; }
+
+  .lang-switch{ display:flex; align-items:center; gap: 2px; background: var(--bg-panel-alt); border-radius: 999px; padding: 3px; }
+  .lang-switch button{
+    font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .03em;
+    border: none; background: transparent; color: var(--text-dim); padding: 6px 11px; border-radius: 999px;
+    cursor: pointer; transition: background .2s, color .2s;
+  }
+  .lang-switch button:hover{ color: var(--text); }
+  .lang-switch button.active{ background: var(--accent-violet); color: #fff; }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding: 88px 0 60px;
+    position: relative;
+  }
+  .hero-bg-image{
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    z-index: 0; opacity: 0.14; pointer-events: none;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 95%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 95%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero h1{
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.06;
+    margin: 18px 0 10px;
+  }
+  .hero h1 .acc{
+    background: linear-gradient(100deg, var(--accent-cyan), var(--accent-violet));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .lede{
+    font-size: 17px; color: var(--text-muted); max-width: 520px; margin-bottom: 30px;
+  }
+  .hero-meta{
+    display:flex; flex-wrap: wrap; gap: 22px; margin-bottom: 34px;
+  }
+  .hero-meta div{
+    font-size: 13px; color: var(--text-muted); font-family: var(--mono);
+    display:flex; align-items:center; gap: 8px;
+  }
+  .hero-meta .icon{ width:16px; height:16px; color: var(--accent-violet); }
+  .hero-meta strong{ color: var(--text); font-weight: 600; font-family: var(--body); }
+  .btn-row{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{
+    padding: 13px 24px; border-radius: 10px; font-size: 14.5px; font-weight: 500;
+    display:inline-flex; align-items:center; gap:9px; transition: all .2s; cursor:pointer; border:none;
+  }
+  .btn .icon{ width:16px; height:16px; }
+  .btn-primary{ background: var(--accent-violet); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-primary:hover{ background: #5c39d6; transform: translateY(-1px); }
+  .btn-ghost{ border: 1px solid var(--border-strong); color: var(--text); background: var(--bg-panel); }
+  .btn-ghost:hover{ border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+  /* network diagram */
+  .hero-visual{ position: relative; }
+  .net-caption{
+    text-align:center; font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    margin-top: -6px; letter-spacing: .04em;
+  }
+  svg.net{ width: 100%; height: auto; }
+  .net-line{ stroke: rgba(111,76,224,0.28); stroke-width: 1.4; }
+  .net-node{ fill: var(--bg-panel); stroke: var(--accent-cyan); stroke-width: 1.8; filter: drop-shadow(0 2px 6px rgba(23,29,51,0.08)); transition: fill .2s, stroke .2s, transform .2s; }
+  .net-node.hub{ fill: url(#hubGrad); stroke: none; }
+  .net-node-group{ cursor: pointer; }
+  .net-node-group:hover .net-node{ stroke: var(--accent-violet); transform: scale(1.08); transform-origin: center; }
+  .net-node-group:hover .net-num{ fill: var(--accent-violet); }
+  .net-node-group.active .net-node{ fill: var(--accent-violet); stroke: var(--accent-violet); }
+  .net-node-group.active .net-num{ fill: #fff; }
+  .net-tooltip{
+    display:flex; align-items:center; gap: 14px; background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-top: 18px; box-shadow: var(--shadow-sm);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .net-tooltip.filled{ border-color: var(--accent-violet); box-shadow: var(--shadow-md); }
+  .net-tooltip-num{
+    font-family: var(--mono); font-size: 13px; font-weight: 600; color: #fff; background: var(--accent-violet);
+    width: 30px; height: 30px; border-radius: 8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .net-tooltip-title{ display:block; font-size: 13.5px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .net-tooltip-hint{ display:block; font-size: 11.5px; color: var(--accent-cyan); font-family: var(--mono); margin-top: 3px; }
+  .net-label{ font-family: var(--mono); font-size: 12px; fill: var(--text-muted); }
+  .net-num{ font-family: var(--display); font-size: 15px; font-weight: 600; fill: var(--text); }
+  .net-hub-text{ font-family: var(--display); font-size: 13px; font-weight: 700; fill: #fff; }
+
+  /* ============ SECTION shared ============ */
+  section{ padding: 88px 0; position: relative; }
+  .section-head{ max-width: 640px; margin-bottom: 46px; }
+  .section-head h2{ font-size: clamp(26px,3.4vw,36px); margin-top: 14px; }
+  .section-head p{ color: var(--text-muted); margin-top: 12px; font-size: 15.5px; }
+
+  /* ============ QUICK FACTS STRIP ============ */
+  .facts{
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 34px 0;
+  }
+  .facts .wrap{
+    display:grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+  }
+  .fact{ display:flex; align-items:flex-start; gap: 14px; border-left: 1px solid var(--border); padding-left: 18px; }
+  .fact .icon{ width: 22px; height: 22px; color: var(--accent-violet); margin-top: 3px; }
+  .fact strong{
+    display:block; font-family: var(--display); font-size: 28px; color: var(--text);
+  }
+  .fact span{ font-size: 12px; color: var(--text-dim); font-family: var(--mono); letter-spacing: .03em; }
+
+  /* ============ MISSION ============ */
+  .mission-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+  }
+
+  /* ============ DAILY QUOTE ============ */
+  #daily-quote{ padding: 0 0 88px; }
+  .quote-panel{
+    position: relative; background: linear-gradient(135deg, var(--bg-panel-alt), var(--bg-raised));
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 48px 56px;
+    text-align: center; max-width: 780px; margin: 0 auto; box-shadow: var(--shadow-sm); overflow: hidden;
+  }
+  .quote-panel::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 15% 15%, rgba(111,76,224,0.10), transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(14,165,183,0.10), transparent 45%);
+    pointer-events:none;
+  }
+  .quote-mark{ width: 34px; height: 34px; color: var(--accent-violet); opacity: .5; margin-bottom: 6px; }
+  .quote-text{
+    font-family: var(--display); font-size: clamp(19px, 2.4vw, 25px); font-style: italic;
+    line-height: 1.45; color: var(--text); max-width: 620px; margin: 0 auto 22px; position: relative;
+  }
+  .quote-author-row{ display:flex; align-items:center; justify-content:center; gap: 12px; margin-bottom: 14px; }
+  .quote-avatar{
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+    color: #fff; font-family: var(--mono); font-weight: 600; font-size: 14px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .quote-author-row > div{ text-align: left; }
+  html[dir="rtl"] .quote-author-row > div{ text-align: right; }
+  .quote-author{ display:block; font-family: var(--display); font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .quote-field{ display:block; font-family: var(--mono); font-size: 11px; color: var(--accent-cyan); letter-spacing: .04em; }
+  .quote-caption{ font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: .04em; }
+  @media (max-width: 620px){ .quote-panel{ padding: 36px 26px; } }
+
+  /* ============ RESEARCH AREAS ============ */
+  .areas-grid{
+    display:grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+  }
+  .area-card{
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 20px; text-align: center; box-shadow: var(--shadow-sm);
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .area-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent-cyan); }
+  .area-icon{
+    width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+    display:flex; align-items:center; justify-content:center; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .area-icon .icon{ width: 24px; height: 24px; stroke: #fff; }
+  .area-photo{
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
+  }
+  .area-card h3{ font-size: 15.5px; margin-bottom: 8px; line-height: 1.3; }
+  .area-card p{ font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+  @media (max-width: 1000px){ .areas-grid{ grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 620px){ .areas-grid{ grid-template-columns: repeat(2,1fr); } }
+  .mcard{
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 26px; transition: border-color .2s, transform .2s, box-shadow .2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .mcard:hover{ border-color: var(--accent-violet); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .mcard-top{ display:flex; align-items:center; justify-content: space-between; }
+  .mcard-icon{
+    width: 42px; height: 42px; border-radius: 10px; background: var(--bg-panel-alt);
+    display:flex; align-items:center; justify-content:center; color: var(--accent-violet);
+  }
+  .mcard-icon .icon{ width: 22px; height: 22px; }
+  .mcard .mnum{ font-family: var(--mono); font-size: 11.5px; color: var(--accent-amber); letter-spacing: .08em; }
+  .mcard h3{ font-size: 19px; margin: 16px 0 14px; }
+  .mcard ul li{
+    font-size: 14px; color: var(--text-muted); padding-left: 18px; position: relative; margin-bottom: 9px;
+  }
+  .mcard ul li::before{
+    content:""; position:absolute; left:0; top: 8px; width:6px; height:6px; border-radius: 50%;
+    background: var(--accent-cyan);
+  }
+  .mcard ul li b{ color: var(--text); font-weight: 600; }
+
+  /* ============ TEAMS ============ */
+  .teams-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  }
+  .tcard{
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px 24px 20px; cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s;
+    box-shadow: var(--shadow-sm); overflow: hidden;
+  }
+  .tcard:hover{ border-color: var(--accent-violet); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .tcard.open{ background: var(--bg-panel-alt); border-color: var(--accent-violet); }
+  .tcard-top{ display:flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
+
+  .tcard-banner{
+    margin: -24px -24px 16px -24px; height: 108px; background-size: cover; background-position: center;
+    position: relative;
+  }
+  .tcard-banner-placeholder{
+    display:flex; align-items:center; justify-content:center;
+  }
+  .banner-icon{ width: 42px; height: 42px; stroke: rgba(255,255,255,0.9); opacity: .95; }
+  .tcard-hue-1{ background: linear-gradient(135deg, #0EA5B7, #6F4CE0); }
+  .tcard-hue-2{ background: linear-gradient(135deg, #6F4CE0, #C97F12); }
+  .tcard-hue-3{ background: linear-gradient(135deg, #2962B4, #0EA5B7); }
+  .tcard-hue-4{ background: linear-gradient(135deg, #8B6BF2, #2962B4); }
+  .tcard-hue-5{ background: linear-gradient(135deg, #0EA5B7, #2E8B57); }
+  .tcard-hue-6{ background: linear-gradient(135deg, #2E8B57, #0EA5B7); }
+  .tcard-hue-7{ background: linear-gradient(135deg, #C97F12, #6F4CE0); }
+  .tcard-hue-8{ background: linear-gradient(135deg, #2962B4, #C97F12); }
+
+  .m-cell{ display:flex; align-items:center; gap: 9px; }
+  .m-avatar{
+    width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  }
+  .m-avatar-initials{
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+    color: #fff; font-family: var(--mono); font-size: 10px; font-weight: 600;
+  }
+  .tcard-id{
+    font-family: var(--mono); font-size: 11.5px; color: var(--accent-cyan); letter-spacing: .06em;
+    display:flex; align-items:center; gap:7px;
+  }
+  .tcard-id .icon{ width:14px; height:14px; }
+  .tcard-acro{
+    font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); border: 1px solid var(--border-strong);
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap; background: var(--bg-panel-alt);
+  }
+  .tcard h3{ font-size: 17px; margin: 10px 0 8px; line-height: 1.3; }
+  .tcard .lead{ font-size: 13.5px; color: var(--text-muted); display:flex; align-items:center; gap:7px; }
+  .tcard .lead .icon{ width:14px; height:14px; color: var(--accent-violet); }
+  .tcard .lead b{ color: var(--text); font-weight: 600; }
+  .tcard .toggle-hint{ font-size: 12px; color: var(--accent-violet); margin-top: 14px; font-family: var(--mono); display:flex; align-items:center; gap:6px; font-weight: 500; }
+  .tcard .toggle-hint .icon{ width: 13px; height: 13px; transition: transform .25s; }
+  .tcard.open .toggle-hint .icon{ transform: rotate(180deg); }
+
+  .tcard-members{
+    max-height: 0; overflow: hidden; transition: max-height .35s ease;
+  }
+  .tcard.open .tcard-members{ max-height: 1000px; }
+  .tcard-block{ margin-top: 16px; }
+  .tcard-block h4{
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--text-dim); display:flex; align-items:center; gap: 6px; margin-bottom: 10px; font-weight: 500;
+  }
+  .tcard-block h4 .icon{ width: 13px; height: 13px; color: var(--accent-violet); }
+  .topic-tags{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .topic-tag{
+    font-size: 12px; padding: 5px 12px; border-radius: 999px; background: var(--bg-panel-alt);
+    color: var(--text-muted); border: 1px solid var(--border);
+  }
+  .pub-list{ list-style: none; }
+  .pub-list li{
+    font-size: 13px; color: var(--text-muted); padding: 8px 0 8px 18px; position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-list li::before{ content:"—"; position:absolute; left:0; color: var(--accent-cyan); }
+  .pub-list li a{ color: var(--accent-cyan); font-family: var(--mono); font-size: 11.5px; }
+  .pub-list li a:hover{ text-decoration: underline; }
+  .pub-empty{ font-size: 12.5px; color: var(--text-dim); font-style: italic; }
+  .tcard-members table{ width:100%; border-collapse: collapse; margin-top: 16px; }
+  .tcard-members th{
+    text-align:left; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--text-dim); padding: 8px 0; border-bottom: 1px solid var(--border);
+  }
+  .tcard-members td{
+    font-size: 13px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-muted);
+  }
+  .tcard-members td:first-child{ color: var(--text); font-weight: 500; }
+  .badge{
+    font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 999px; display:inline-block;
+  }
+  .badge.permanent{ background: rgba(14,165,183,0.12); color: var(--accent-cyan); }
+  .badge.associe{ background: rgba(201,127,18,0.12); color: var(--accent-amber); }
+  .badge.chef{ background: rgba(111,76,224,0.13); color: var(--accent-violet); }
+
+  .profile-links{ display:flex; align-items:center; gap: 8px; }
+  .profile-links a{
+    color: var(--text-dim); width: 26px; height: 26px; border-radius: 7px; background: var(--bg-panel-alt);
+    display:flex; align-items:center; justify-content:center; transition: background .2s, color .2s;
+  }
+  .profile-links a .icon{ width: 14px; height: 14px; }
+  .profile-links a:hover{ background: var(--accent-violet); color: #fff; }
+
+  .team-link-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .team-link{
+    display:inline-flex; gap:6px; align-items:center; margin-top:12px; font-size: 12px; font-weight: 600;
+    color: var(--accent-violet); background: var(--bg-panel-alt); border: 1px solid var(--border-strong);
+    padding: 6px 13px; border-radius: 999px; transition: background .2s, border-color .2s;
+  }
+  .team-link:hover{ background: var(--accent-violet); color: #fff; border-color: var(--accent-violet); }
+  .team-link .icon{ width: 13px; height: 13px; }
+
+  /* ============ DIRECTOR / ABOUT ============ */
+  .director{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px; align-items: center;
+  }
+  .director-photo{
+    aspect-ratio: 1/1; border-radius: var(--radius); border: 1px solid var(--border);
+    background: linear-gradient(160deg, var(--bg-panel-alt), var(--bg-raised));
+    display:flex; align-items:center; justify-content:center; position: relative; overflow:hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .director-img{
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
+  }
+  .director-photo::before{
+    content:"LB"; font-family: var(--display); font-size: 96px; font-weight: 700;
+    background: linear-gradient(120deg, var(--accent-cyan), var(--accent-violet));
+    -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .9;
+  }
+  .director-info .role{ font-family: var(--mono); font-size: 12px; color: var(--accent-violet); letter-spacing:.06em; text-transform: uppercase; display:flex; align-items:center; gap:8px; }
+  .director-info h3{ font-size: 28px; margin: 10px 0 16px; }
+  .director-info p{ color: var(--text-muted); font-size: 15px; margin-bottom: 22px; }
+  .dstats{ display:flex; gap: 30px; flex-wrap: wrap; margin-bottom: 22px; }
+  .dstats div strong{ display:block; font-family: var(--display); font-size: 24px; color: var(--text); }
+  .dstats div span{ font-size: 11.5px; color: var(--text-dim); font-family: var(--mono); }
+  .dlinks{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .dlinks a{
+    font-size: 13px; border: 1px solid var(--border-strong); padding: 9px 16px; border-radius: 8px;
+    transition: border-color .2s, color .2s; display:inline-flex; align-items:center; gap: 8px; background: var(--bg-panel);
+  }
+  .dlinks a .icon{ width: 15px; height: 15px; }
+  .dlinks a:hover{ border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+  /* ============ CONTACT ============ */
+  .contact-panel{
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 46px; display:grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    box-shadow: var(--shadow-md);
+  }
+  .cinfo h3{ font-size: 24px; margin-bottom: 14px; }
+  .cinfo p{ color: var(--text-muted); font-size: 14.5px; margin-bottom: 26px; max-width: 380px; }
+  .cline{ display:flex; gap: 14px; margin-bottom: 20px; font-size: 14px; align-items: flex-start; }
+  .cline .cicon{
+    width: 36px; height: 36px; border-radius: 9px; background: var(--bg-panel-alt); color: var(--accent-violet);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .cline .cicon .icon{ width: 17px; height: 17px; }
+  .cline .ctext{ padding-top: 6px; }
+  .cline .k{ display:block; font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing:.05em; margin-bottom: 3px; }
+  .cline .v{ color: var(--text); font-weight: 500; }
+  .cline .v a:hover{ color: var(--accent-cyan); }
+  .map-embed{ border-radius: 10px; overflow: hidden; border: 1px solid var(--border); min-height: 260px; box-shadow: var(--shadow-sm); }
+  .map-embed iframe{ width:100%; height:100%; min-height:260px; border:0; }
+
+  footer{
+    border-top: 1px solid var(--border); padding: 34px 0; text-align:center;
+  }
+  footer p{ font-size: 12.5px; color: var(--text-dim); }
+  footer .flogo{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 12px; }
+  footer .flogo img{ width: 46px; height:46px; border-radius: 10px; box-shadow: var(--shadow-sm); }
+  footer .flogo strong{ font-family: var(--display); font-size: 14px; }
+  .visitor-stats{ display:flex; align-items:center; justify-content:center; gap: 14px; margin-top: 16px; flex-wrap: wrap; }
+  .visitor-stats img{ height: 20px; border-radius: 4px; }
+  .gc-total{
+    font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 999px; background: var(--bg-panel);
+  }
+  .gc-total:empty{ display:none; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 880px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:block; }
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-visual{ order:-1; max-width: 340px; margin: 0 auto 20px; }
+    .facts .wrap{ grid-template-columns: repeat(2,1fr); row-gap: 26px; }
+    .mission-grid, .teams-grid{ grid-template-columns: 1fr; }
+    .director{ grid-template-columns: 1fr; }
+    .director-photo{ max-width: 220px; margin: 0 auto; }
+    .contact-panel{ grid-template-columns: 1fr; padding: 30px; }
+  }
+
+  /* ============ ARABIC / RTL ============ */
+  html[lang="ar"] body{ font-family: 'Cairo', var(--body); }
+  html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4{ font-family: 'Cairo', var(--display); }
+  html[lang="ar"] .eyebrow, html[lang="ar"] .mnum, html[lang="ar"] .tcard-id, html[lang="ar"] .tcard-acro,
+  html[lang="ar"] .hero-meta div, html[lang="ar"] .fact span, html[lang="ar"] .badge, html[lang="ar"] .cline .k,
+  html[lang="ar"] .net-caption, html[lang="ar"] .net-tooltip-hint, html[lang="ar"] .toggle-hint, html[lang="ar"] .lang-switch button{
+    font-family: 'Cairo', var(--mono);
+  }
+  html[dir="rtl"] body{ direction: rtl; }
+  html[dir="rtl"] .eyebrow::before{ order: 2; }
+  html[dir="rtl"] .fact{ border-left: none; border-right: 1px solid var(--border); padding-left: 0; padding-right: 18px; }
+  html[dir="rtl"] .mcard ul li, html[dir="rtl"] .pub-list li{ padding-left: 0; padding-right: 18px; }
+  html[dir="rtl"] .mcard ul li::before{ left: auto; right: 0; }
+  html[dir="rtl"] .pub-list li::before{ left: auto; right: 0; }
+  html[dir="rtl"] .tcard .toggle-hint .icon, html[dir="rtl"] .btn .icon{ transform: scaleX(-1); }
+  html[dir="rtl"] .tcard.open .toggle-hint .icon{ transform: scaleX(-1) rotate(180deg); }
+  html[dir="rtl"] .director-info .role,
+  html[dir="rtl"] .hero-meta div,
+  html[dir="rtl"] .cline,
+  html[dir="rtl"] .dlinks a,
+  html[dir="rtl"] .fact,
+  html[dir="rtl"] .lang-switch,
+  html[dir="rtl"] .tcard-id,
+  html[dir="rtl"] .lead{ direction: rtl; }
+</style>
+</head>
+<body>
+
+<!-- ===== ICON SPRITE ===== -->
+<svg style="display:none">
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" fill="none" stroke-width="1.8"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z" stroke="currentColor" fill="none" stroke-width="1.8"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.9V16h5v-1.2c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 2z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5M22 8v6" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="10" height="18" stroke="currentColor" fill="none" stroke-width="1.8"/><rect x="14" y="9" width="6" height="12" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M7 7h1M11 7h1M7 11h1M11 11h1M7 15h1M11 15h1M17 13h1M17 17h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M14.5 9.5c1.5-3 4-4.5 6-5-1.5 2-2.5 4.5-3 6.5M14.5 9.5c-1 1-2 2.5-2.5 4M14.5 9.5 9.5 14.5m0 0c-1.5.5-4 1.5-6 3 1.5-2 2.5-4.5 3-6m3 3-3-3M5 19s.5-2 2-3M14.5 9.5A5 5 0 0 1 12 5c1.8 0 3.5.8 4.7 2" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 8.5a3 3 0 1 1 0 6M21 20c0-2.8-2-5.1-4.7-5.8" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 2h6M10 2v6.2c0 .5-.2 1-.5 1.4L4.8 17c-1.2 1.6 0 4 2 4h10.4c2 0 3.2-2.4 2-4l-4.7-7.4c-.3-.4-.5-.9-.5-1.4V2" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 15h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="4" cy="5" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="20" cy="5" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="4" cy="19" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="20" cy="19" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M5.6 6.4 10 10.4M18.4 6.4 14 10.4M5.6 17.6 10 13.6M18.4 17.6 14 13.6" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="1" transform="rotate(-45 12 12)" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 9 1.5 1.5M11 6l1.5 1.5M14 3l1.5 1.5M6 11l1.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="9" ry="3.6" stroke="currentColor" fill="none" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" stroke="currentColor" fill="none" stroke-width="1.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" stroke="currentColor" fill="none" stroke-width="1.6" transform="rotate(120 12 12)"/></symbol>
+  <symbol id="i-dna" viewBox="0 0 24 24"><path d="M6 3c0 6 12 12 12 18M18 3c0 6-12 12-12 18" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/><path d="M7.5 7h9M6.5 12h11M7.5 17h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.8"/><rect x="9.5" y="9.5" width="5" height="5" stroke="currentColor" fill="none" stroke-width="1.6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.1 5.9l-1.7 1.7M7.6 16.4l-1.7 1.7M18.1 18.1l-1.7-1.7M7.6 7.6 5.9 5.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C10 4 4 10 4 18v2h2c8 0 14-6 14-16z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 19c3-5 7-9 12-12" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21 4 16.5v-9L12 3z" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 3v9M12 12 4 7.5M12 12l8-4.5M12 12v9" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4s1.8 4 4 4c0 2-1.5 3.2-3 3.6M17 8c-2.2 0-4 1.8-4 4s1.8 4 4 4c0 2-1.5 3.2-3 3.6" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M7 8.5a3.5 3.5 0 1 0 0 7c2.5 0 3.5-2 5-3.5s2.5-3.5 5-3.5a3.5 3.5 0 1 1 0 7c-2.5 0-3.5-2-5-3.5S9.5 8.5 7 8.5z" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 2h7l4 4v16H7z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v4h4M9.5 12h6M9.5 15.5h6M9.5 8.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" fill="none" stroke-width="1.7"/><path d="M8 17c.5-1.8 2-2.8 4-2.8s3.5 1 4 2.8" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="4.7" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<header class="site">
+  <nav>
+    <a href="#top" class="brand">
+      <img src="assets/logo.png" alt="MRISE Lab logo">
+      <div class="brand-text">
+        <strong>MRISE Lab</strong>
+        <span data-i18n="brand.sub">UNIV. AIN TEMOUCHENT</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#mission" data-i18n="nav.mission">Mission</a>
+      <a href="#research-areas" data-i18n="nav.areas">Research Areas</a>
+      <a href="#teams" data-i18n="nav.teams">Teams</a>
+      <a href="#direction" data-i18n="nav.direction">Direction</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a href="#contact" class="nav-cta"><svg class="icon"><use href="#i-mail"/></svg><span data-i18n="nav.cta">Contact us</span></a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg" alt="" class="hero-bg-image" onerror="this.style.display='none'">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow" data-i18n="hero.eyebrow">Faculty of Science and Technology — University of Ain Temouchent, Belhadj Bouchaib</span>
+        <h1 data-i18n-html="hero.title">Laboratory for Multidisciplinary <span class="acc">Research &amp; Innovation</span> in Sciences and Engineering</h1>
+        <p class="lede" data-i18n="hero.lede">MRISE Lab brings together 8 research teams working across materials science, chemistry, physics, biomathematics, artificial intelligence and systems engineering — driving scientific and technological innovation in Ain Temouchent.</p>
+        <div class="hero-meta">
+          <div><svg class="icon"><use href="#i-users"/></svg><strong>8</strong>&nbsp;<span data-i18n="hero.meta.teams">research teams</span></div>
+          <div><svg class="icon"><use href="#i-flask"/></svg><strong>57</strong>&nbsp;<span data-i18n="hero.meta.researchers">researchers</span></div>
+          <div><svg class="icon"><use href="#i-award"/></svg><span data-i18n="hero.meta.directorLabel">Director:</span>&nbsp;<strong>Dr Lamia Bennabi</strong></div>
+        </div>
+        <div class="btn-row">
+          <a href="#teams" class="btn btn-primary"><span data-i18n="hero.btnExplore">Explore our teams</span> <svg class="icon"><use href="#i-arrow-right"/></svg></a>
+          <a href="#contact" class="btn btn-ghost"><svg class="icon"><use href="#i-mail"/></svg><span data-i18n="nav.cta">Contact us</span></a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg class="net" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="hubGrad" cx="35%" cy="30%" r="80%">
+              <stop offset="0%" stop-color="#0EA5B7"/>
+              <stop offset="100%" stop-color="#6F4CE0"/>
+            </radialGradient>
+          </defs>
+          <g class="net-line">
+            <line x1="300" y1="300" x2="300" y2="80"/>
+            <line x1="300" y1="300" x2="455.6" y2="144.4"/>
+            <line x1="300" y1="300" x2="520" y2="300"/>
+            <line x1="300" y1="300" x2="455.6" y2="455.6"/>
+            <line x1="300" y1="300" x2="300" y2="520"/>
+            <line x1="300" y1="300" x2="144.4" y2="455.6"/>
+            <line x1="300" y1="300" x2="80" y2="300"/>
+            <line x1="300" y1="300" x2="144.4" y2="144.4"/>
+          </g>
+          <circle cx="300" cy="300" r="220" fill="none" stroke="rgba(23,29,51,0.07)" stroke-width="1"/>
+          <circle class="net-node hub" cx="300" cy="300" r="52"/>
+          <text class="net-hub-text" x="300" y="296" text-anchor="middle">MRISE</text>
+          <text class="net-hub-text" x="300" y="313" text-anchor="middle" style="font-size:10px; font-weight:500; opacity:.9">LAB</text>
+
+          <g id="node-1" class="net-node-group"><circle class="net-node" cx="300" cy="80" r="30"/><text class="net-num" x="300" y="86" text-anchor="middle">1</text></g>
+          <g id="node-2" class="net-node-group"><circle class="net-node" cx="455.6" cy="144.4" r="30"/><text class="net-num" x="455.6" y="150.4" text-anchor="middle">2</text></g>
+          <g id="node-3" class="net-node-group"><circle class="net-node" cx="520" cy="300" r="30"/><text class="net-num" x="520" y="306" text-anchor="middle">3</text></g>
+          <g id="node-4" class="net-node-group"><circle class="net-node" cx="455.6" cy="455.6" r="30"/><text class="net-num" x="455.6" y="461.6" text-anchor="middle">4</text></g>
+          <g id="node-5" class="net-node-group"><circle class="net-node" cx="300" cy="520" r="30"/><text class="net-num" x="300" y="526" text-anchor="middle">5</text></g>
+          <g id="node-6" class="net-node-group"><circle class="net-node" cx="144.4" cy="455.6" r="30"/><text class="net-num" x="144.4" y="461.6" text-anchor="middle">6</text></g>
+          <g id="node-7" class="net-node-group"><circle class="net-node" cx="80" cy="300" r="30"/><text class="net-num" x="80" y="306" text-anchor="middle">7</text></g>
+          <g id="node-8" class="net-node-group"><circle class="net-node" cx="144.4" cy="144.4" r="30"/><text class="net-num" x="144.4" y="150.4" text-anchor="middle">8</text></g>
+        </svg>
+        <div id="netTooltip" class="net-tooltip">
+          <span class="net-tooltip-num" id="netTooltipNum">01</span>
+          <div>
+            <span class="net-tooltip-title" id="netTooltipTitle" data-i18n="hero.tooltipDefaultTitle">Tap a numbered node to preview a team</span>
+            <span class="net-tooltip-hint" id="netTooltipHint" data-i18n="hero.tooltipDefaultHint">Select any of the 8 nodes above</span>
+          </div>
+        </div>
+        <p class="net-caption" data-i18n="hero.netCaption">8 teams · 1 multidisciplinary laboratory</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUICK FACTS ================= -->
+  <section class="facts" style="padding-top:0;">
+    <div class="wrap">
+      <div class="fact"><svg class="icon"><use href="#i-users"/></svg><div><strong>8</strong><span data-i18n="facts.teams">RESEARCH TEAMS</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-flask"/></svg><div><strong>57</strong><span data-i18n="facts.researchers">RESEARCHERS</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-ruler"/></svg><div><strong>240 m²</strong><span data-i18n="facts.area">4 OFFICES · 2 WORKSHOPS</span></div></div>
+      <div class="fact"><svg class="icon"><use href="#i-building"/></svg><div><strong>02</strong><span data-i18n="facts.support">SUPPORT STAFF</span></div></div>
+    </div>
+  </section>
+
+  <!-- ================= MISSION ================= -->
+  <section id="mission">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="mission.eyebrow">Why this laboratory</span>
+        <h2 data-i18n="mission.h2">One multidisciplinary laboratory, four levers of impact</h2>
+        <p data-i18n="mission.p">The creation of the laboratory at the University of Ain Temouchent, Belhadj Bouchaib strengthens scientific research, academic training, the institution's reputation, and technology transfer.</p>
+      </div>
+
+      <div class="mission-grid">
+        <div class="mcard">
+          <div class="mcard-top">
+            <span class="mnum" data-i18n="mission.c1.num">01 — RESEARCH</span>
+            <div class="mcard-icon"><svg class="icon"><use href="#i-lightbulb"/></svg></div>
+          </div>
+          <h3 data-i18n="mission.c1.h3">Strengthening scientific research</h3>
+          <ul>
+            <li data-i18n-html="mission.c1.li1"><b>Encourage innovation</b> through cross-disciplinary collaboration to solve complex problems.</li>
+            <li data-i18n-html="mission.c1.li2"><b>Develop research projects</b> with appropriate equipment and framework.</li>
+            <li data-i18n-html="mission.c1.li3"><b>Facilitate access to funding</b>, both national and international.</li>
+            <li data-i18n-html="mission.c1.li4"><b>Increase scientific output</b> and the quality of publications.</li>
+          </ul>
+        </div>
+
+        <div class="mcard">
+          <div class="mcard-top">
+            <span class="mnum" data-i18n="mission.c2.num">02 — TRAINING</span>
+            <div class="mcard-icon"><svg class="icon"><use href="#i-cap"/></svg></div>
+          </div>
+          <h3 data-i18n="mission.c2.h3">Improving academic and professional training</h3>
+          <ul>
+            <li data-i18n-html="mission.c2.li1"><b>Train students and PhD candidates</b> in a hands-on learning environment.</li>
+            <li data-i18n-html="mission.c2.li2"><b>Develop technical skills</b> in equipment handling and research methodology.</li>
+            <li data-i18n-html="mission.c2.li3"><b>Supervise internships</b> and final-year projects.</li>
+            <li data-i18n-html="mission.c2.li4"><b>Host seminars and workshops</b> as a platform for scientific exchange.</li>
+          </ul>
+        </div>
+
+        <div class="mcard">
+          <div class="mcard-top">
+            <span class="mnum" data-i18n="mission.c3.num">03 — INSTITUTION</span>
+            <div class="mcard-icon"><svg class="icon"><use href="#i-building"/></svg></div>
+          </div>
+          <h3 data-i18n="mission.c3.h3">Contributing to the institution's development</h3>
+          <ul>
+            <li data-i18n-html="mission.c3.li1"><b>Strengthen visibility</b> and reputation, nationally and internationally.</li>
+            <li data-i18n-html="mission.c3.li2"><b>Build partnerships</b> with universities, companies and research institutions.</li>
+            <li data-i18n-html="mission.c3.li3"><b>Advance applied research</b> serving the socio-economic sector of Ain Temouchent.</li>
+          </ul>
+        </div>
+
+        <div class="mcard">
+          <div class="mcard-top">
+            <span class="mnum" data-i18n="mission.c4.num">04 — INNOVATION</span>
+            <div class="mcard-icon"><svg class="icon"><use href="#i-rocket"/></svg></div>
+          </div>
+          <h3 data-i18n="mission.c4.h3">Innovation and technology transfer</h3>
+          <ul>
+            <li data-i18n-html="mission.c4.li1"><b>Develop patents and prototypes</b> in chemistry, materials physics, engineering, biology, pharmaceuticals and AI.</li>
+            <li data-i18n-html="mission.c4.li2"><b>Collaborate with companies</b> to enable technology transfer.</li>
+            <li data-i18n-html="mission.c4.li3"><b>Support the incubation</b> of startups and entrepreneurial projects.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESEARCH AREAS ================= -->
+  <section id="research-areas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="areas.eyebrow">Cross-cutting expertise</span>
+        <h2 data-i18n="areas.h2">Research areas</h2>
+        <p data-i18n="areas.p">MRISE Lab's 8 teams work across five interconnected scientific domains, from fundamental materials science to applied AI and systems engineering.</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-flask"/></svg><img src="assets/areas/chemistry.jpg" alt="" class="area-photo" onerror="this.style.display='none'"></div>
+          <h3 data-i18n="areas.c1.h3">Chemistry &amp; Nanomaterials</h3>
+          <p data-i18n="areas.c1.p">Development and characterization of advanced materials and nanocomposites.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-atom"/></svg><img src="assets/areas/physics.jpg" alt="" class="area-photo" onerror="this.style.display='none'"></div>
+          <h3 data-i18n="areas.c2.h3">Physics &amp; Materials Science</h3>
+          <p data-i18n="areas.c2.p">Research on physical properties, materials characterization and advanced materials.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-dna"/></svg><img src="assets/areas/biology.jpg" alt="" class="area-photo" onerror="this.style.display='none'"></div>
+          <h3 data-i18n="areas.c3.h3">Biological Sciences &amp; Biomathematics</h3>
+          <p data-i18n="areas.c3.p">Mathematical and computational approaches to biological and biomedical problems.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-cpu"/></svg><img src="assets/areas/ai.jpg" alt="" class="area-photo" onerror="this.style.display='none'"></div>
+          <h3 data-i18n="areas.c4.h3">Artificial Intelligence</h3>
+          <p data-i18n="areas.c4.p">Machine learning, data analysis and intelligent systems.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon"><svg class="icon"><use href="#i-gear"/></svg><img src="assets/areas/engineering.jpg" alt="" class="area-photo" onerror="this.style.display='none'"></div>
+          <h3 data-i18n="areas.c5.h3">Systems Engineering</h3>
+          <p data-i18n="areas.c5.p">Modeling, optimization, control and engineering applications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TEAMS ================= -->
+  <!-- ================= DAILY QUOTE ================= -->
+  <section id="daily-quote">
+    <div class="wrap">
+      <div class="quote-panel">
+        <svg class="quote-mark"><use href="#i-quote"/></svg>
+        <p class="quote-text" id="quoteText">—</p>
+        <div class="quote-author-row">
+          <span class="quote-avatar" id="quoteAvatar">—</span>
+          <div>
+            <span class="quote-author" id="quoteAuthor">—</span>
+            <span class="quote-field" id="quoteField">—</span>
+          </div>
+        </div>
+        <span class="quote-caption" data-i18n="quote.caption">A new quote from science every day</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="teams">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="teams.eyebrow">8 teams</span>
+        <h2 data-i18n="teams.h2">Our research teams</h2>
+        <p data-i18n="teams.p">Each team covers its own thematic focus within the laboratory. Click a team to view its research topics, members, and publications.</p>
+      </div>
+      <div class="teams-grid" id="teamsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= DIRECTOR ================= -->
+  <section id="direction">
+    <div class="wrap director">
+      <div class="director-photo" aria-hidden="true">
+        <img src="assets/director-lamia-bennabi.jpg" alt="Dr Lamia Bennabi" class="director-img" onerror="this.style.display='none'">
+      </div>
+      <div class="director-info">
+        <span class="role"><svg class="icon"><use href="#i-award"/></svg><span data-i18n="director.role">Laboratory Director</span></span>
+        <h3>Dr Lamia Bennabi</h3>
+        <p data-i18n="director.bio">Associate Professor (MCA), member of the Scientific Committee of the Department of Materials Science — Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib. Also leader of Team 1, "Chemical and Biological Studies on Nanomaterials Composites."</p>
+        <div class="dstats">
+          <div><strong>15</strong><span data-i18n="director.publications">PUBLICATIONS</span></div>
+          <div><strong>42</strong><span data-i18n="director.citations">CITATIONS</span></div>
+          <div><strong>4</strong><span data-i18n="director.hindex">H-INDEX</span></div>
+        </div>
+        <div class="dlinks">
+          <a href="mailto:lamia.bennabi@univ-temouchent.edu.dz"><svg class="icon"><use href="#i-mail"/></svg>lamia.bennabi@univ-temouchent.edu.dz</a>
+          <a href="https://scholar.google.com/citations?user=jzgAGz4AAAAJ&hl=fr" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>Google Scholar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+        <h2 data-i18n="contact.h2">Have a question, a partnership, or a collaboration in mind?</h2>
+      </div>
+      <div class="contact-panel">
+        <div class="cinfo">
+          <h3>MRISE Lab</h3>
+          <p data-i18n="contact.p">Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib.</p>
+
+          <div class="cline">
+            <div class="cicon"><svg class="icon"><use href="#i-pin"/></svg></div>
+            <div class="ctext"><span class="k" data-i18n="contact.address">Address</span><span class="v">Route de Sidi Bel Abbès, N101, Ain Temouchent 46000, Algeria</span></div>
+          </div>
+          <div class="cline">
+            <div class="cicon"><svg class="icon"><use href="#i-mail"/></svg></div>
+            <div class="ctext"><span class="k" data-i18n="contact.email">Email</span><span class="v"><a href="mailto:lamia.bennabi@univ-temouchent.edu.dz">lamia.bennabi@univ-temouchent.edu.dz</a></span></div>
+          </div>
+          <div class="cline">
+            <div class="cicon"><svg class="icon"><use href="#i-phone"/></svg></div>
+            <div class="ctext"><span class="k" data-i18n="contact.phone">Phone</span><span class="v">043 79 83 97</span></div>
+          </div>
+          <div class="cline">
+            <div class="cicon"><svg class="icon"><use href="#i-globe"/></svg></div>
+            <div class="ctext"><span class="k" data-i18n="contact.website">Website</span><span class="v"><a href="https://www.univ-temouchent.edu.dz" target="_blank" rel="noopener">univ-temouchent.edu.dz</a></span></div>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe title="MRISE Lab location" loading="lazy" src="https://www.google.com/maps?q=Route%20de%20Sidi%20Bel%20Abb%C3%A8s%2C%20N101%2C%20Ain%20Temouchent%2046000%2C%20Algeria&z=14&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo">
+      <img src="assets/logo.png" alt="MRISE Lab logo">
+      <strong>MRISE Lab</strong>
+    </div>
+    <p>© <span id="year"></span> <span data-i18n="footer.copyright">Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering — University of Ain Temouchent, Belhadj Bouchaib.</span></p>
+
+    <!--
+      VISITOR COUNTER — two options wired up below.
+      See the "visitor-counter-setup" comment near the closing </body> tag for setup steps.
+    -->
+    <div class="visitor-stats">
+      <!-- Option 1: no-signup badge (works immediately once the site is live at a public URL) -->
+      <img id="visitorBadge"
+           src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbentouts.github.io%2FLabLMRISE.github.io%2F&label=Visitors&countColor=%236F4CE0&style=flat"
+           alt="Visitor count badge">
+
+      <!-- Option 2: live total pulled from GoatCounter (needs the free signup, see setup notes) -->
+      <span id="gcTotal" class="gc-total"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Option 2: GoatCounter analytics script — replace mrise-lab after signup, see setup notes below -->
+<script data-goatcounter="https://mrise-lab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Option 2: pull the live total from GoatCounter's public counter endpoint.
+// Does nothing (fails silently) until you've completed the setup steps below.
+fetch('https://mrise-lab.goatcounter.com/counter/TOTAL.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (data && data.count) {
+      document.getElementById('gcTotal').textContent = data.count + ' total visits';
+    }
+  })
+  .catch(() => { /* GoatCounter not configured yet — badge above still works */ });
+
+// ==================================================================
+// ============ TRANSLATIONS (EN / FR / AR) ============
+// ==================================================================
+const I18N = {
+  en: {
+    "brand.sub": "UNIV. AIN TEMOUCHENT",
+    "nav.mission": "Mission",
+    "nav.areas": "Research Areas",
+    "nav.teams": "Teams",
+    "nav.direction": "Direction",
+    "nav.contact": "Contact",
+    "nav.cta": "Contact us",
+    "hero.eyebrow": "Faculty of Science and Technology — University of Ain Temouchent, Belhadj Bouchaib",
+    "hero.title": 'Laboratory for Multidisciplinary <span class="acc">Research &amp; Innovation</span> in Sciences and Engineering',
+    "hero.lede": "MRISE Lab brings together 8 research teams working across materials science, chemistry, physics, biomathematics, artificial intelligence and systems engineering — driving scientific and technological innovation in Ain Temouchent.",
+    "hero.meta.teams": "research teams",
+    "hero.meta.researchers": "researchers",
+    "hero.meta.directorLabel": "Director:",
+    "hero.btnExplore": "Explore our teams",
+    "hero.tooltipDefaultTitle": "Tap a numbered node to preview a team",
+    "hero.tooltipDefaultHint": "Select any of the 8 nodes above",
+    "hero.netCaption": "8 teams · 1 multidisciplinary laboratory",
+    "facts.teams": "RESEARCH TEAMS",
+    "facts.researchers": "RESEARCHERS",
+    "facts.area": "4 OFFICES · 2 WORKSHOPS",
+    "facts.support": "SUPPORT STAFF",
+    "mission.eyebrow": "Why this laboratory",
+    "mission.h2": "One multidisciplinary laboratory, four levers of impact",
+    "mission.p": "The creation of the laboratory at the University of Ain Temouchent, Belhadj Bouchaib strengthens scientific research, academic training, the institution's reputation, and technology transfer.",
+    "mission.c1.num": "01 — RESEARCH",
+    "mission.c1.h3": "Strengthening scientific research",
+    "mission.c1.li1": "<b>Encourage innovation</b> through cross-disciplinary collaboration to solve complex problems.",
+    "mission.c1.li2": "<b>Develop research projects</b> with appropriate equipment and framework.",
+    "mission.c1.li3": "<b>Facilitate access to funding</b>, both national and international.",
+    "mission.c1.li4": "<b>Increase scientific output</b> and the quality of publications.",
+    "mission.c2.num": "02 — TRAINING",
+    "mission.c2.h3": "Improving academic and professional training",
+    "mission.c2.li1": "<b>Train students and PhD candidates</b> in a hands-on learning environment.",
+    "mission.c2.li2": "<b>Develop technical skills</b> in equipment handling and research methodology.",
+    "mission.c2.li3": "<b>Supervise internships</b> and final-year projects.",
+    "mission.c2.li4": "<b>Host seminars and workshops</b> as a platform for scientific exchange.",
+    "mission.c3.num": "03 — INSTITUTION",
+    "mission.c3.h3": "Contributing to the institution's development",
+    "mission.c3.li1": "<b>Strengthen visibility</b> and reputation, nationally and internationally.",
+    "mission.c3.li2": "<b>Build partnerships</b> with universities, companies and research institutions.",
+    "mission.c3.li3": "<b>Advance applied research</b> serving the socio-economic sector of Ain Temouchent.",
+    "mission.c4.num": "04 — INNOVATION",
+    "mission.c4.h3": "Innovation and technology transfer",
+    "mission.c4.li1": "<b>Develop patents and prototypes</b> in chemistry, materials physics, engineering, biology, pharmaceuticals and AI.",
+    "mission.c4.li2": "<b>Collaborate with companies</b> to enable technology transfer.",
+    "mission.c4.li3": "<b>Support the incubation</b> of startups and entrepreneurial projects.",
+    "areas.eyebrow": "Cross-cutting expertise",
+    "areas.h2": "Research areas",
+    "areas.p": "MRISE Lab's 8 teams work across five interconnected scientific domains, from fundamental materials science to applied AI and systems engineering.",
+    "areas.c1.h3": "Chemistry &amp; Nanomaterials",
+    "areas.c1.p": "Development and characterization of advanced materials and nanocomposites.",
+    "areas.c2.h3": "Physics &amp; Materials Science",
+    "areas.c2.p": "Research on physical properties, materials characterization and advanced materials.",
+    "areas.c3.h3": "Biological Sciences &amp; Biomathematics",
+    "areas.c3.p": "Mathematical and computational approaches to biological and biomedical problems.",
+    "areas.c4.h3": "Artificial Intelligence",
+    "areas.c4.p": "Machine learning, data analysis and intelligent systems.",
+    "areas.c5.h3": "Systems Engineering",
+    "areas.c5.p": "Modeling, optimization, control and engineering applications.",
+    "teams.eyebrow": "8 teams",
+    "teams.h2": "Our research teams",
+    "teams.p": "Each team covers its own thematic focus within the laboratory. Click a team to view its research topics, members, and publications.",
+    "director.role": "Laboratory Director",
+    "director.bio": 'Associate Professor (MCA), member of the Scientific Committee of the Department of Materials Science — Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib. Also leader of Team 1, "Chemical and Biological Studies on Nanomaterials Composites."',
+    "director.publications": "PUBLICATIONS",
+    "director.citations": "CITATIONS",
+    "director.hindex": "H-INDEX",
+    "contact.eyebrow": "Contact",
+    "contact.h2": "Have a question, a partnership, or a collaboration in mind?",
+    "contact.p": "Faculty of Science and Technology, University of Ain Temouchent, Belhadj Bouchaib.",
+    "contact.address": "Address",
+    "contact.email": "Email",
+    "contact.phone": "Phone",
+    "contact.website": "Website",
+    "footer.copyright": "Laboratory for Multidisciplinary Research and Innovation in Sciences and Engineering — University of Ain Temouchent, Belhadj Bouchaib.",
+    "quote.caption": "A new quote from science every day"
+  },
+  fr: {
+    "brand.sub": "UNIV. AIN TÉMOUCHENT",
+    "nav.mission": "Mission",
+    "nav.areas": "Domaines de recherche",
+    "nav.teams": "Équipes",
+    "nav.direction": "Direction",
+    "nav.contact": "Contact",
+    "nav.cta": "Nous contacter",
+    "hero.eyebrow": "Faculté des Sciences et de la Technologie — Université de Ain Temouchent, Belhadj Bouchaib",
+    "hero.title": 'Laboratoire de Recherche Multidisciplinaire et d\'<span class="acc">Innovation</span> en Sciences et Ingénierie',
+    "hero.lede": "MRISE Lab réunit 8 équipes de recherche autour des matériaux, de la chimie, de la physique, des biomathématiques, de l'intelligence artificielle et de l'ingénierie des systèmes — au service de l'innovation scientifique et technologique à Ain Temouchent.",
+    "hero.meta.teams": "équipes de recherche",
+    "hero.meta.researchers": "chercheurs",
+    "hero.meta.directorLabel": "Directrice :",
+    "hero.btnExplore": "Découvrir nos équipes",
+    "hero.tooltipDefaultTitle": "Touchez un nœud numéroté pour voir une équipe",
+    "hero.tooltipDefaultHint": "Sélectionnez l'un des 8 nœuds ci-dessus",
+    "hero.netCaption": "8 équipes · 1 laboratoire multidisciplinaire",
+    "facts.teams": "ÉQUIPES DE RECHERCHE",
+    "facts.researchers": "CHERCHEURS",
+    "facts.area": "4 BUREAUX · 2 ATELIERS",
+    "facts.support": "PERSONNEL DE SOUTIEN",
+    "mission.eyebrow": "Pourquoi ce laboratoire",
+    "mission.h2": "Un laboratoire multidisciplinaire, quatre leviers d'impact",
+    "mission.p": "La création du laboratoire à l'Université de Ain Temouchent, Belhadj Bouchaib renforce la recherche scientifique, la formation académique, le rayonnement de l'établissement et le transfert de technologie.",
+    "mission.c1.num": "01 — RECHERCHE",
+    "mission.c1.h3": "Renforcement de la recherche scientifique",
+    "mission.c1.li1": "<b>Encourager l'innovation</b> par la collaboration entre disciplines pour résoudre des problèmes complexes.",
+    "mission.c1.li2": "<b>Développer des projets de recherche</b> avec des équipements et un cadre adaptés.",
+    "mission.c1.li3": "<b>Faciliter l'obtention de financements</b>, nationaux et internationaux.",
+    "mission.c1.li4": "<b>Accroître la production scientifique</b> et la qualité des publications.",
+    "mission.c2.num": "02 — FORMATION",
+    "mission.c2.h3": "Amélioration de la formation académique et professionnelle",
+    "mission.c2.li1": "<b>Former les étudiants et doctorants</b> dans un environnement d'apprentissage pratique.",
+    "mission.c2.li2": "<b>Développer les compétences techniques</b> en manipulation d'équipements et méthodologie.",
+    "mission.c2.li3": "<b>Encadrer les stages</b> et projets de fin d'études.",
+    "mission.c2.li4": "<b>Organiser séminaires et workshops</b> comme plateforme d'échange scientifique.",
+    "mission.c3.num": "03 — ÉTABLISSEMENT",
+    "mission.c3.h3": "Contribution au développement de l'établissement",
+    "mission.c3.li1": "<b>Renforcer la visibilité</b> et la notoriété, nationale et internationale.",
+    "mission.c3.li2": "<b>Développer des partenariats</b> avec universités, entreprises et institutions.",
+    "mission.c3.li3": "<b>Valoriser la recherche appliquée</b> au service du secteur socio-économique d'Ain Temouchent.",
+    "mission.c4.num": "04 — INNOVATION",
+    "mission.c4.h3": "Innovation et transfert de technologie",
+    "mission.c4.li1": "<b>Développer brevets et prototypes</b> en chimie, physique des matériaux, ingénierie, biologie, pharmaceutique et IA.",
+    "mission.c4.li2": "<b>Collaborer avec les entreprises</b> pour le transfert technologique.",
+    "mission.c4.li3": "<b>Accompagner l'incubation</b> de startups et projets entrepreneuriaux.",
+    "areas.eyebrow": "Expertise transversale",
+    "areas.h2": "Domaines de recherche",
+    "areas.p": "Les 8 équipes de MRISE Lab couvrent cinq domaines scientifiques interconnectés, de la science des matériaux fondamentale à l'IA appliquée et l'ingénierie des systèmes.",
+    "areas.c1.h3": "Chimie &amp; Nanomatériaux",
+    "areas.c1.p": "Développement et caractérisation de matériaux avancés et de nanocomposites.",
+    "areas.c2.h3": "Physique &amp; Science des Matériaux",
+    "areas.c2.p": "Recherche sur les propriétés physiques, la caractérisation et les matériaux avancés.",
+    "areas.c3.h3": "Sciences Biologiques &amp; Biomathématiques",
+    "areas.c3.p": "Approches mathématiques et computationnelles des problèmes biologiques et biomédicaux.",
+    "areas.c4.h3": "Intelligence Artificielle",
+    "areas.c4.p": "Apprentissage automatique, analyse de données et systèmes intelligents.",
+    "areas.c5.h3": "Ingénierie des Systèmes",
+    "areas.c5.p": "Modélisation, optimisation, contrôle et applications en ingénierie.",
+    "teams.eyebrow": "8 équipes",
+    "teams.h2": "Nos équipes de recherche",
+    "teams.p": "Chaque équipe couvre un axe thématique propre au sein du laboratoire. Cliquez sur une équipe pour voir ses thèmes de recherche, ses membres et ses publications.",
+    "director.role": "Directrice du laboratoire",
+    "director.bio": 'Maître de Conférences A (MCA), membre du Comité scientifique du Département de Sciences de la Matière — Faculté des Sciences et de la Technologie, Université de Ain Temouchent, Belhadj Bouchaib. Également cheffe de l\'Équipe 1, « Chemical and Biological Studies on Nanomaterials Composites ».',
+    "director.publications": "PUBLICATIONS",
+    "director.citations": "CITATIONS",
+    "director.hindex": "INDICE H",
+    "contact.eyebrow": "Contact",
+    "contact.h2": "Une question, un partenariat, une collaboration en tête ?",
+    "contact.p": "Faculté des Sciences et de la Technologie, Université de Ain Temouchent, Belhadj Bouchaib.",
+    "contact.address": "Adresse",
+    "contact.email": "Email",
+    "contact.phone": "Téléphone",
+    "contact.website": "Site web",
+    "footer.copyright": "Laboratoire de Recherche Multidisciplinaire et d'Innovation en Sciences et Ingénierie — Université de Ain Temouchent, Belhadj Bouchaib.",
+    "quote.caption": "Une nouvelle citation scientifique chaque jour"
+  },
+  ar: {
+    "brand.sub": "جامعة عين تموشنت",
+    "nav.mission": "الرسالة",
+    "nav.areas": "مجالات البحث",
+    "nav.teams": "الفرق",
+    "nav.direction": "الإدارة",
+    "nav.contact": "اتصل بنا",
+    "nav.cta": "اتصل بنا",
+    "hero.eyebrow": "كلية العلوم والتكنولوجيا — جامعة عين تموشنت، بلحاج بوشعيب",
+    "hero.title": 'مخبر البحث المتعدد التخصصات <span class="acc">للابتكار</span> في العلوم والهندسة',
+    "hero.lede": "يجمع مخبر MRISE ثماني فرق بحثية تعمل في مجالات علوم المواد والكيمياء والفيزياء والرياضيات الحيوية والذكاء الاصطناعي وهندسة الأنظمة، لدفع الابتكار العلمي والتكنولوجي في عين تموشنت.",
+    "hero.meta.teams": "فرق بحثية",
+    "hero.meta.researchers": "باحث",
+    "hero.meta.directorLabel": "المديرة:",
+    "hero.btnExplore": "اكتشف فرقنا",
+    "hero.tooltipDefaultTitle": "اضغط على عقدة مرقّمة لمعاينة فريق",
+    "hero.tooltipDefaultHint": "اختر أحد العقد الثماني أعلاه",
+    "hero.netCaption": "8 فرق · مخبر واحد متعدد التخصصات",
+    "facts.teams": "فرق بحثية",
+    "facts.researchers": "باحثون",
+    "facts.area": "4 مكاتب · ورشتان",
+    "facts.support": "أعوان الدعم",
+    "mission.eyebrow": "لماذا هذا المخبر",
+    "mission.h2": "مخبر متعدد التخصصات، أربعة روافع للأثر",
+    "mission.p": "يعزّز إنشاء المخبر في جامعة عين تموشنت، بلحاج بوشعيب البحث العلمي والتكوين الأكاديمي وسمعة المؤسسة ونقل التكنولوجيا.",
+    "mission.c1.num": "01 — البحث",
+    "mission.c1.h3": "تعزيز البحث العلمي",
+    "mission.c1.li1": "<b>تشجيع الابتكار</b> من خلال التعاون بين التخصصات لحل المشكلات المعقدة.",
+    "mission.c1.li2": "<b>تطوير مشاريع بحثية</b> بتجهيزات وإطار عمل مناسبين.",
+    "mission.c1.li3": "<b>تسهيل الحصول على التمويل</b> الوطني والدولي.",
+    "mission.c1.li4": "<b>زيادة الإنتاج العلمي</b> وجودة المنشورات.",
+    "mission.c2.num": "02 — التكوين",
+    "mission.c2.h3": "تحسين التكوين الأكاديمي والمهني",
+    "mission.c2.li1": "<b>تكوين الطلبة والدكاترة</b> في بيئة تعلّم عملية.",
+    "mission.c2.li2": "<b>تطوير المهارات التقنية</b> في استخدام التجهيزات ومنهجية البحث.",
+    "mission.c2.li3": "<b>الإشراف على التربصات</b> ومشاريع نهاية الدراسة.",
+    "mission.c2.li4": "<b>تنظيم ندوات وورشات عمل</b> كمنصة للتبادل العلمي.",
+    "mission.c3.num": "03 — المؤسسة",
+    "mission.c3.h3": "المساهمة في تطوير المؤسسة",
+    "mission.c3.li1": "<b>تعزيز الظهور</b> والسمعة على المستويين الوطني والدولي.",
+    "mission.c3.li2": "<b>بناء شراكات</b> مع الجامعات والشركات ومؤسسات البحث.",
+    "mission.c3.li3": "<b>تثمين البحث التطبيقي</b> لخدمة القطاع الاجتماعي والاقتصادي بعين تموشنت.",
+    "mission.c4.num": "04 — الابتكار",
+    "mission.c4.h3": "الابتكار ونقل التكنولوجيا",
+    "mission.c4.li1": "<b>تطوير براءات اختراع ونماذج أولية</b> في الكيمياء وفيزياء المواد والهندسة والبيولوجيا والصيدلة والذكاء الاصطناعي.",
+    "mission.c4.li2": "<b>التعاون مع الشركات</b> لتفعيل نقل التكنولوجيا.",
+    "mission.c4.li3": "<b>دعم احتضان</b> المؤسسات الناشئة والمشاريع الريادية.",
+    "areas.eyebrow": "خبرة متعددة المجالات",
+    "areas.h2": "مجالات البحث",
+    "areas.p": "تعمل فرق MRISE Lab الثماني عبر خمسة مجالات علمية مترابطة، من علوم المواد الأساسية إلى الذكاء الاصطناعي التطبيقي وهندسة الأنظمة.",
+    "areas.c1.h3": "الكيمياء والمواد النانوية",
+    "areas.c1.p": "تطوير وتوصيف المواد المتقدمة والمركبات النانوية.",
+    "areas.c2.h3": "الفيزياء وعلوم المواد",
+    "areas.c2.p": "بحوث حول الخصائص الفيزيائية وتوصيف المواد المتقدمة.",
+    "areas.c3.h3": "العلوم البيولوجية والرياضيات الحيوية",
+    "areas.c3.p": "مقاربات رياضية وحاسوبية للمشكلات البيولوجية والطبية الحيوية.",
+    "areas.c4.h3": "الذكاء الاصطناعي",
+    "areas.c4.p": "التعلم الآلي وتحليل البيانات والأنظمة الذكية.",
+    "areas.c5.h3": "هندسة الأنظمة",
+    "areas.c5.p": "النمذجة والتحسين والتحكم والتطبيقات الهندسية.",
+    "teams.eyebrow": "8 فرق",
+    "teams.h2": "فرقنا البحثية",
+    "teams.p": "يغطي كل فريق محوراً موضوعياً خاصاً به داخل المخبر. اضغط على فريق لعرض محاور بحثه وأعضائه ومنشوراته.",
+    "director.role": "مديرة المخبر",
+    "director.bio": 'أستاذة محاضرة قسم أ (MCA)، عضو اللجنة العلمية لقسم علوم المادة — كلية العلوم والتكنولوجيا، جامعة عين تموشنت، بلحاج بوشعيب. كما تقود الفريق 1، "دراسات كيميائية وبيولوجية حول مركبات المواد النانوية".',
+    "director.publications": "المنشورات",
+    "director.citations": "الاستشهادات",
+    "director.hindex": "مؤشر H",
+    "contact.eyebrow": "اتصل بنا",
+    "contact.h2": "هل لديك سؤال أو شراكة أو تعاون في ذهنك؟",
+    "contact.p": "كلية العلوم والتكنولوجيا، جامعة عين تموشنت، بلحاج بوشعيب.",
+    "contact.address": "العنوان",
+    "contact.email": "البريد الإلكتروني",
+    "contact.phone": "الهاتف",
+    "contact.website": "الموقع الإلكتروني",
+    "footer.copyright": "مخبر البحث المتعدد التخصصات للابتكار في العلوم والهندسة — جامعة عين تموشنت، بلحاج بوشعيب.",
+    "quote.caption": "اقتباس علمي جديد كل يوم"
+  }
+};
+
+// Role badge labels + generic team-card UI strings (used by the JS team-card renderer)
+const ROLE_LABELS = {
+  en: { chef: "Team Leader", permanent: "Permanent Member", associe: "Associate Member", phd: "Member — PhD Student" },
+  fr: { chef: "Cheffe / Chef d'équipe", permanent: "Membre permanent", associe: "Membre associé", phd: "Membre — doctorant" },
+  ar: { chef: "رئيس/ة الفريق", permanent: "عضو دائم", associe: "عضو منتسب", phd: "عضو — طالب دكتوراه" }
+};
+const TEAM_UI = {
+  en: { team: "TEAM", teamLeader: "Team Leader", viewMembers: "View members", topics: "Research topics", members: "Members", publications: "Recent publications", pubsEmpty: "Publications for this team will be added soon.", teamPage: "Team page", homepage: "Personal homepage", thName: "Name", thAffiliation: "Affiliation", thRole: "Role", thLinks: "Links" },
+  fr: { team: "ÉQUIPE", teamLeader: "Cheffe / Chef d'équipe", viewMembers: "Voir les membres", topics: "Thèmes de recherche", members: "Membres", publications: "Publications récentes", pubsEmpty: "Les publications de cette équipe seront ajoutées prochainement.", teamPage: "Page de l'équipe", homepage: "Page personnelle", thName: "Nom", thAffiliation: "Affiliation", thRole: "Rôle", thLinks: "Liens" },
+  ar: { team: "الفريق", teamLeader: "رئيس/ة الفريق", viewMembers: "عرض الأعضاء", topics: "محاور البحث", members: "الأعضاء", publications: "المنشورات الحديثة", pubsEmpty: "ستُضاف منشورات هذا الفريق قريباً.", teamPage: "صفحة الفريق", homepage: "الصفحة الشخصية", thName: "الاسم", thAffiliation: "الانتماء", thRole: "الصفة", thLinks: "روابط" }
+};
+
+let currentLang = localStorage.getItem('mrise-lang') || 'en';
+
+// ==================================================================
+// ============ QUOTE OF THE DAY ============
+// ==================================================================
+// Historical quotes from science, changing automatically once per day
+// (deterministic by day-of-year, so every visitor sees the same one on a given day).
+const FIELD_LABELS = {
+  en: { physicist: "Physicist", mathematician: "Mathematician", chemist: "Chemist", engineer: "Engineer",
+        chemistPhysicist: "Chemist & Physicist", physicistMathematician: "Physicist & Mathematician",
+        chemistBiologist: "Chemist & Biologist", mathEngineer: "Mathematician & Engineer",
+        compSciEngineer: "Computer Scientist & Engineer" },
+  fr: { physicist: "Physicienne", mathematician: "Mathématicien", chemist: "Chimiste", engineer: "Ingénieur",
+        chemistPhysicist: "Chimiste et physicienne", physicistMathematician: "Physicien et mathématicien",
+        chemistBiologist: "Chimiste et biologiste", mathEngineer: "Mathématicienne et ingénieure",
+        compSciEngineer: "Informaticienne et ingénieure" },
+  ar: { physicist: "فيزيائي", mathematician: "رياضياتي", chemist: "كيميائي", engineer: "مهندس",
+        chemistPhysicist: "كيميائية وفيزيائية", physicistMathematician: "فيزيائي ورياضياتي",
+        chemistBiologist: "كيميائي وعالم أحياء", mathEngineer: "رياضياتية ومهندسة",
+        compSciEngineer: "عالمة حاسوب ومهندسة" }
+};
+
+const QUOTES = [
+  { text: "Imagination is more important than knowledge.", author: "Albert Einstein", field: "physicist" },
+  { text: "Try not to become a man of success, but rather try to become a man of value.", author: "Albert Einstein", field: "physicist" },
+  { text: "Nothing in life is to be feared, it is only to be understood.", author: "Marie Curie", field: "chemistPhysicist" },
+  { text: "Be less curious about people and more curious about ideas.", author: "Marie Curie", field: "chemistPhysicist" },
+  { text: "Intelligence is the ability to adapt to change.", author: "Stephen Hawking", field: "physicist" },
+  { text: "However difficult life may seem, there is always something you can do and succeed at.", author: "Stephen Hawking", field: "physicist" },
+  { text: "If I have seen further, it is by standing on the shoulders of giants.", author: "Isaac Newton", field: "physicistMathematician" },
+  { text: "The present is theirs; the future, for which I really worked, is mine.", author: "Nikola Tesla", field: "engineer" },
+  { text: "We can only see a short distance ahead, but we can see plenty there that needs to be done.", author: "Alan Turing", field: "mathematician" },
+  { text: "I would rather have questions that can't be answered than answers that can't be questioned.", author: "Richard Feynman", field: "physicist" },
+  { text: "Nothing is too wonderful to be true, if it be consistent with the laws of nature.", author: "Michael Faraday", field: "chemistPhysicist" },
+  { text: "Chance favors the prepared mind.", author: "Louis Pasteur", field: "chemistBiologist" },
+  { text: "Mathematics is the queen of the sciences.", author: "Carl Friedrich Gauss", field: "mathematician" },
+  { text: "The most dangerous phrase in the language is, \u2018We\u2019ve always done it this way.\u2019", author: "Grace Hopper", field: "compSciEngineer" },
+  { text: "Like what you do, and then you will do your best.", author: "Katherine Johnson", field: "mathEngineer" },
+  { text: "Give me a place to stand, and I shall move the world.", author: "Archimedes", field: "mathEngineer" },
+  { text: "The Analytical Engine has no pretensions whatever to originate anything.", author: "Ada Lovelace", field: "mathematician" }
+];
+
+function renderDailyQuote(){
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((now - startOfYear) / 86400000);
+  const q = QUOTES[dayOfYear % QUOTES.length];
+  const initials = q.author.split(' ').filter(Boolean).map(w => w[0]).join('').toUpperCase();
+
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  const fieldEl = document.getElementById('quoteField');
+  const avatarEl = document.getElementById('quoteAvatar');
+  if (!textEl) return;
+
+  textEl.textContent = '\u201c' + q.text + '\u201d';
+  authorEl.textContent = q.author;
+  fieldEl.textContent = (FIELD_LABELS[currentLang] && FIELD_LABELS[currentLang][q.field]) || q.field;
+  avatarEl.textContent = initials;
+}
+
+
+function applyTranslations(lang){
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('#langSwitch button').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  localStorage.setItem('mrise-lang', lang);
+  renderTeamCards();
+  renderDailyQuote();
+}
+
+document.querySelectorAll('#langSwitch button').forEach(btn => {
+  btn.addEventListener('click', () => applyTranslations(btn.getAttribute('data-lang')));
+});
+
+// ---- Teams data ----
+const teams = [
+  {
+    n: 1,
+    icon: "flask",
+    acro: "",
+    title: "Chemical and Biological Studies on Nanomaterials Composites",
+    lead: "Dr Lamia Bennabi",
+    topics: ["Nanomaterials", "Polymer composites", "Chemical characterization", "Biological applications"],
+    members: [
+      ["Lamia Bennabi", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Asmaa Argoub", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Ilham Abdelemalek", "University of Tiaret", "associe", "associe"],
+      ["Houcine Benouar", "Faculty of Biology, University of Naama", "associe", "associe"]
+    ]
+  },
+  {
+    n: 2,
+    icon: "ruler",
+    acro: "",
+    title: "Polymers and Composite Materials",
+    lead: "Dr Wahiba Chaibi",
+    topics: ["Polymer synthesis", "Composite materials", "Materials characterization", "Mechanical properties"],
+    members: [
+      ["Wahiba Chaibi", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Radjaa Beneabboun", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Zahra Derriche", "University of Ain Temouchent", "permanent", "permanent"],
+      ["Nabila Bekhti", "University of Mascara", "associe", "associe"]
+    ]
+  },
+  {
+    n: 3,
+    icon: "atom",
+    acro: "",
+    title: "Physical Engineering of Materials",
+    lead: "Dr Aze Eddine Adjadj",
+    topics: ["Materials physics", "Thin films", "Structural characterization", "Physical properties of materials"],
+    members: [
+      ["Dr Aze Eddine Adjadj", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Boucif Abedesslam", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Amina Belkadi", "FST, University of Ain Temouchent", "permanent", "permanent"]
+    ]
+  },
+  {
+    n: 4,
+    icon: "cpu",
+    acro: "",
+    title: "Innovative Materials, AI and Environmental Valorization",
+    lead: "Pr Hafida Marouf",
+    topics: ["Innovative materials", "Machine learning for materials prediction", "Environmental valorization", "Data-driven materials design"],
+    members: [
+      ["Dr Hafida Marouf", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Nawel Dounane", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Fatima Beddad", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Fethi Mouaici", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Abderrahmane Saïd", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Khadidja Benslama", "University of Relizane", "associe", "associe"],
+      ["Aicha Ramli", "University of Mascara", "associe", "associe"]
+    ]
+  },
+  {
+    n: 5,
+    icon: "dna",
+    acro: "MCASM",
+    title: "Advanced Biomathematics Innovation",
+    lead: "Pr Soufiane Bentout",
+    topics: ["Mathematical biology", "Epidemiological modeling", "Dynamical systems", "Computational biomathematics"],
+    publications: [
+      "Bentout, S. (2026). Analysis of traveling wave solutions for an SIS model with age structure. <i>Zeitschrift für angewandte Mathematik und Physik</i>, 77, 79. <a href=\"https://doi.org/10.1007/s00033-025-02703-7\" target=\"_blank\" rel=\"noopener\">doi.org/10.1007/s00033-025-02703-7</a>",
+      "Bentout, S., Djilali, S., Naik, P.A. (2026). Asymptotic profiles of a generalized reaction-diffusion viral-infection model with logistic source. <i>Journal of Mathematical Analysis and Applications</i>, 556(1), 130146. <a href=\"https://doi.org/10.1016/j.jmaa.2025.130146\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.jmaa.2025.130146</a>",
+      "Djilali, S., Bentout, S., Kuniya, T. (2026). Threshold analysis for a diffusive SIS epidemic model with infection-age. <i>Mathematical Biosciences</i>, 109729. <a href=\"https://doi.org/10.1016/j.mbs.2026.109729\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.mbs.2026.109729</a>"
+    ],
+    link: "https://bentouts.github.io/Team1/Team1.html",
+    homepage: "https://bentouts.github.io/My-homepage/",
+    members: [
+      ["Soufiane Bentout", "FST, University of Ain Temouchent", "chef", "chef", {
+        scholar: "https://scholar.google.com/citations?user=mfAJBVcAAAAJ&hl=fr",
+        orcid: "https://orcid.org/0000-0002-3699-7346",
+        researchgate: "https://www.researchgate.net/profile/Soufiane-Bentout",
+        homepage: "https://bentouts.github.io/My-homepage/"
+      }],
+      ["Zoukha Belattar", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Fatima Boukhalfa", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Imane Mammar", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Salih Djilali", "FSEI, University of Chlef", "associe", "associe"]
+    ]
+  },
+  {
+    n: 6,
+    icon: "leaf",
+    acro: "",
+    title: "Environment and Stochastic Processes",
+    lead: "Dr Affaf Tabti",
+    topics: ["Stochastic modeling", "Environmental systems", "Applied probability", "Data analysis"],
+    members: [
+      ["Affaf Tabti", "FST, University of Ain Temouchent", "chef", "chef"],
+      ["Djamila Bennafla", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Rahmouna Macene", "FST, University of Ain Temouchent", "permanent", "permanent"],
+      ["Ibrahim Sedouk", "FSEI, University of Bechar", "associe", "associe"]
+    ]
+  },
+  {
+    n: 7,
+    icon: "gear",
+    acro: "ISE-FMAS",
+    title: "Industrial Systems Engineering: Fluids, Materials and Advanced Structures",
+    lead: "Pr Hamidou Benzenine",
+    topics: ["Fluid mechanics", "Advanced structures", "Systems modeling", "Industrial optimization"],
+    members: [
+      ["Pr Hamidou Benzenine", "Professor", "chef", "chef"],
+      ["Dr Kadour Bahram", "MCA", "permanent", "permanent"],
+      ["Dr Ahmed Saimi", "MCA", "permanent", "permanent"],
+      ["Dr Bouhelal Guendouz", "MCB", "permanent", "permanent"],
+      ["Abdelkader Brakna", "PhD Student", "phd", "associe"]
+    ]
+  },
+  {
+    n: 8,
+    icon: "cube",
+    acro: "HPAMEA",
+    title: "High-Performance Advanced Materials for Engineering Applications",
+    lead: "Dr Mohammed Chaib",
+    topics: ["High-performance materials", "Mechanical engineering applications", "Materials testing", "Structural design"],
+    members: [
+      ["Dr Mohammed Chaib", "MCA", "chef", "chef"],
+      ["Pr Abdelkader Ziadi", "Professor", "permanent", "permanent"],
+      ["Dr Bouchra Achour", "MCB", "permanent", "permanent"],
+      ["Dr Sid Ahmed Dahmane", "PhD", "permanent", "permanent"],
+      ["Mahmoud Meguehout", "—", "associe", "associe"]
+    ]
+  }
+];
+
+function renderTeamCards(){
+  const grid = document.getElementById('teamsGrid');
+  const openIds = new Set(Array.from(grid.querySelectorAll('.tcard.open')).map(c => c.id));
+  grid.innerHTML = '';
+
+  teams.forEach(team => {
+    const card = document.createElement('div');
+    card.className = 'tcard';
+    card.id = 'team-' + team.n;
+    if (openIds.has(card.id)) card.classList.add('open');
+
+    const rows = team.members.map(m => {
+      const roleKey = m[3];
+      const roleLabel = (ROLE_LABELS[currentLang] && ROLE_LABELS[currentLang][m[2]]) || m[2];
+      const p = m[4];
+      const initials = m[0].split(' ').filter(Boolean).map(w => w[0]).slice(0,2).join('').toUpperCase();
+      const avatarHtml = (p && p.photo)
+        ? `<img class="m-avatar" src="${p.photo}" alt="${m[0]}">`
+        : `<span class="m-avatar m-avatar-initials">${initials}</span>`;
+      const linksHtml = p ? `<div class="profile-links">
+          ${p.homepage ? `<a href="${p.homepage}" target="_blank" rel="noopener" title="Personal homepage"><svg class="icon"><use href="#i-target"/></svg></a>` : ''}
+          ${p.orcid ? `<a href="${p.orcid}" target="_blank" rel="noopener" title="ORCID"><svg class="icon"><use href="#i-badge"/></svg></a>` : ''}
+          ${p.scholar ? `<a href="${p.scholar}" target="_blank" rel="noopener" title="Google Scholar"><svg class="icon"><use href="#i-cap"/></svg></a>` : ''}
+          ${p.researchgate ? `<a href="${p.researchgate}" target="_blank" rel="noopener" title="ResearchGate"><svg class="icon"><use href="#i-network"/></svg></a>` : ''}
+          ${p.email ? `<a href="mailto:${p.email}" title="${p.email}"><svg class="icon"><use href="#i-mail"/></svg></a>` : ''}
+        </div>` : '';
+      return `<tr>
+        <td><div class="m-cell">${avatarHtml}<span>${m[0]}</span></div></td>
+        <td>${m[1]}</td>
+        <td><span class="badge ${roleKey}">${roleLabel}</span></td>
+        <td>${linksHtml}</td>
+      </tr>`;
+    }).join('');
+
+    const t = TEAM_UI[currentLang];
+
+    const topicsHtml = (team.topics && team.topics.length)
+      ? `<div class="tcard-block">
+          <h4><svg class="icon"><use href="#i-target"/></svg>${t.topics}</h4>
+          <div class="topic-tags">${team.topics.map(x => `<span class="topic-tag">${x}</span>`).join('')}</div>
+        </div>`
+      : '';
+
+    const pubsHtml = `<div class="tcard-block">
+        <h4><svg class="icon"><use href="#i-doc"/></svg>${t.publications}</h4>
+        ${(team.publications && team.publications.length)
+          ? `<ul class="pub-list">${team.publications.map(p => `<li>${p}</li>`).join('')}</ul>`
+          : `<p class="pub-empty">${t.pubsEmpty}</p>`}
+      </div>`;
+
+    const bannerHtml = team.photo
+      ? `<div class="tcard-banner" style="background-image:url('${team.photo}')"></div>`
+      : `<div class="tcard-banner tcard-banner-placeholder tcard-hue-${team.n}">
+          <svg class="banner-icon"><use href="#i-${team.icon}"/></svg>
+        </div>`;
+
+    card.innerHTML = `
+      ${bannerHtml}
+      <div class="tcard-top">
+        <span class="tcard-id"><svg class="icon"><use href="#i-network"/></svg>${t.team} ${String(team.n).padStart(2,'0')}</span>
+        ${team.acro ? `<span class="tcard-acro">${team.acro}</span>` : ''}
+      </div>
+      <h3>${team.title}</h3>
+      <p class="lead"><svg class="icon"><use href="#i-award"/></svg>${t.teamLeader}: <b>${team.lead}</b></p>
+      <div class="team-link-row">
+        ${team.link ? `<a class="team-link" href="${team.link}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>${t.teamPage}</a>` : ''}
+        ${team.homepage ? `<a class="team-link" href="${team.homepage}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-target"/></svg>${t.homepage}</a>` : ''}
+      </div>
+      <div class="toggle-hint">
+        ${t.viewMembers}
+        <svg class="icon"><use href="#i-chevron"/></svg>
+      </div>
+      <div class="tcard-members">
+        ${topicsHtml}
+        <div class="tcard-block">
+          <h4><svg class="icon"><use href="#i-users"/></svg>${t.members}</h4>
+          <table>
+            <thead><tr><th>${t.thName}</th><th>${t.thAffiliation}</th><th>${t.thRole}</th><th>${t.thLinks}</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        ${pubsHtml}
+      </div>
+    `;
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.team-link')) return;
+      card.classList.toggle('open');
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+// ---- Hero network diagram interactivity ----
+const tooltip = document.getElementById('netTooltip');
+const tooltipNum = document.getElementById('netTooltipNum');
+const tooltipTitle = document.getElementById('netTooltipTitle');
+const tooltipHint = document.getElementById('netTooltipHint');
+let activeNode = null;
+
+teams.forEach(team => {
+  const node = document.getElementById('node-' + team.n);
+  if (!node) return;
+
+  node.addEventListener('click', () => {
+    tooltipNum.textContent = String(team.n).padStart(2, '0');
+    tooltipTitle.textContent = team.title;
+    const leaderWord = TEAM_UI[currentLang].teamLeader;
+    tooltipHint.textContent = leaderWord + ': ' + team.lead + ' — ↓';
+    tooltip.classList.add('filled');
+
+    if (activeNode) activeNode.classList.remove('active');
+    node.classList.add('active');
+    activeNode = node;
+
+    const targetCard = document.getElementById('team-' + team.n);
+    if (targetCard) {
+      targetCard.classList.add('open');
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      targetCard.style.borderColor = 'var(--accent-violet)';
+    }
+  });
+});
+
+// ---- Initialize language on load ----
+applyTranslations(currentLang);
+</script>
+
+</body>
+</html>
