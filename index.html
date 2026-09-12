@@ -403,6 +403,7 @@
   .profile-links a .icon{ width: 14px; height: 14px; }
   .profile-links a:hover{ background: var(--accent-violet); color: #fff; }
 
+  .team-link-row{ display:flex; flex-wrap:wrap; gap:8px; }
   .team-link{
     display:inline-flex; gap:6px; align-items:center; margin-top:12px; font-size: 12px; font-weight: 600;
     color: var(--accent-violet); background: var(--bg-panel-alt); border: 1px solid var(--border-strong);
@@ -1135,9 +1136,9 @@ const ROLE_LABELS = {
   ar: { chef: "رئيس/ة الفريق", permanent: "عضو دائم", associe: "عضو منتسب", phd: "عضو — طالب دكتوراه" }
 };
 const TEAM_UI = {
-  en: { team: "TEAM", teamLeader: "Team Leader", viewMembers: "View members", topics: "Research topics", members: "Members", publications: "Recent publications", pubsEmpty: "Publications for this team will be added soon.", teamPage: "Team page", thName: "Name", thAffiliation: "Affiliation", thRole: "Role", thLinks: "Links" },
-  fr: { team: "ÉQUIPE", teamLeader: "Cheffe / Chef d'équipe", viewMembers: "Voir les membres", topics: "Thèmes de recherche", members: "Membres", publications: "Publications récentes", pubsEmpty: "Les publications de cette équipe seront ajoutées prochainement.", teamPage: "Page de l'équipe", thName: "Nom", thAffiliation: "Affiliation", thRole: "Rôle", thLinks: "Liens" },
-  ar: { team: "الفريق", teamLeader: "رئيس/ة الفريق", viewMembers: "عرض الأعضاء", topics: "محاور البحث", members: "الأعضاء", publications: "المنشورات الحديثة", pubsEmpty: "ستُضاف منشورات هذا الفريق قريباً.", teamPage: "صفحة الفريق", thName: "الاسم", thAffiliation: "الانتماء", thRole: "الصفة", thLinks: "روابط" }
+  en: { team: "TEAM", teamLeader: "Team Leader", viewMembers: "View members", topics: "Research topics", members: "Members", publications: "Recent publications", pubsEmpty: "Publications for this team will be added soon.", teamPage: "Team page", homepage: "Personal homepage", thName: "Name", thAffiliation: "Affiliation", thRole: "Role", thLinks: "Links" },
+  fr: { team: "ÉQUIPE", teamLeader: "Cheffe / Chef d'équipe", viewMembers: "Voir les membres", topics: "Thèmes de recherche", members: "Membres", publications: "Publications récentes", pubsEmpty: "Les publications de cette équipe seront ajoutées prochainement.", teamPage: "Page de l'équipe", homepage: "Page personnelle", thName: "Nom", thAffiliation: "Affiliation", thRole: "Rôle", thLinks: "Liens" },
+  ar: { team: "الفريق", teamLeader: "رئيس/ة الفريق", viewMembers: "عرض الأعضاء", topics: "محاور البحث", members: "الأعضاء", publications: "المنشورات الحديثة", pubsEmpty: "ستُضاف منشورات هذا الفريق قريباً.", teamPage: "صفحة الفريق", homepage: "الصفحة الشخصية", thName: "الاسم", thAffiliation: "الانتماء", thRole: "الصفة", thLinks: "روابط" }
 };
 
 let currentLang = localStorage.getItem('mrise-lang') || 'en';
@@ -1300,11 +1301,13 @@ const teams = [
       "Djilali, S., Bentout, S., Kuniya, T. (2026). Threshold analysis for a diffusive SIS epidemic model with infection-age. <i>Mathematical Biosciences</i>, 109729. <a href=\"https://doi.org/10.1016/j.mbs.2026.109729\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.mbs.2026.109729</a>"
     ],
     link: "https://bentouts.github.io/Team1/Team1.html",
+    homepage: "https://bentouts.github.io/My-homepage/",
     members: [
       ["Soufiane Bentout", "FST, University of Ain Temouchent", "chef", "chef", {
         scholar: "https://scholar.google.com/citations?user=mfAJBVcAAAAJ&hl=fr",
         orcid: "https://orcid.org/0000-0002-3699-7346",
-        researchgate: "https://www.researchgate.net/profile/Soufiane-Bentout"
+        researchgate: "https://www.researchgate.net/profile/Soufiane-Bentout",
+        homepage: "https://bentouts.github.io/My-homepage/"
       }],
       ["Zoukha Belattar", "FST, University of Ain Temouchent", "permanent", "permanent"],
       ["Fatima Boukhalfa", "FST, University of Ain Temouchent", "permanent", "permanent"],
@@ -1378,6 +1381,7 @@ function renderTeamCards(){
         ? `<img class="m-avatar" src="${p.photo}" alt="${m[0]}">`
         : `<span class="m-avatar m-avatar-initials">${initials}</span>`;
       const linksHtml = p ? `<div class="profile-links">
+          ${p.homepage ? `<a href="${p.homepage}" target="_blank" rel="noopener" title="Personal homepage"><svg class="icon"><use href="#i-target"/></svg></a>` : ''}
           ${p.orcid ? `<a href="${p.orcid}" target="_blank" rel="noopener" title="ORCID"><svg class="icon"><use href="#i-badge"/></svg></a>` : ''}
           ${p.scholar ? `<a href="${p.scholar}" target="_blank" rel="noopener" title="Google Scholar"><svg class="icon"><use href="#i-cap"/></svg></a>` : ''}
           ${p.researchgate ? `<a href="${p.researchgate}" target="_blank" rel="noopener" title="ResearchGate"><svg class="icon"><use href="#i-network"/></svg></a>` : ''}
@@ -1421,7 +1425,10 @@ function renderTeamCards(){
       </div>
       <h3>${team.title}</h3>
       <p class="lead"><svg class="icon"><use href="#i-award"/></svg>${t.teamLeader}: <b>${team.lead}</b></p>
-      ${team.link ? `<a class="team-link" href="${team.link}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>${t.teamPage}</a>` : ''}
+      <div class="team-link-row">
+        ${team.link ? `<a class="team-link" href="${team.link}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>${t.teamPage}</a>` : ''}
+        ${team.homepage ? `<a class="team-link" href="${team.homepage}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-target"/></svg>${t.homepage}</a>` : ''}
+      </div>
       <div class="toggle-hint">
         ${t.viewMembers}
         <svg class="icon"><use href="#i-chevron"/></svg>
