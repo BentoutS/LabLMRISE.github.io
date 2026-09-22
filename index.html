@@ -1149,15 +1149,15 @@ let currentLang = localStorage.getItem('mrise-lang') || 'en';
 // Historical quotes from science, changing automatically once per day
 // (deterministic by day-of-year, so every visitor sees the same one on a given day).
 const FIELD_LABELS = {
-  en: { physicist: "Physicist", mathematician: "Mathematician", chemist: "Chemist", engineer: "Engineer",
+  en: { physicist: "Physicist", mathematician: "Mathematician", chemist: "Chemist", engineer: "Engineer", biologist: "Biologist",
         chemistPhysicist: "Chemist & Physicist", physicistMathematician: "Physicist & Mathematician",
         chemistBiologist: "Chemist & Biologist", mathEngineer: "Mathematician & Engineer",
         compSciEngineer: "Computer Scientist & Engineer" },
-  fr: { physicist: "Physicienne", mathematician: "Mathématicien", chemist: "Chimiste", engineer: "Ingénieur",
+  fr: { physicist: "Physicienne", mathematician: "Mathématicien", chemist: "Chimiste", engineer: "Ingénieur", biologist: "Biologiste",
         chemistPhysicist: "Chimiste et physicienne", physicistMathematician: "Physicien et mathématicien",
         chemistBiologist: "Chimiste et biologiste", mathEngineer: "Mathématicienne et ingénieure",
         compSciEngineer: "Informaticienne et ingénieure" },
-  ar: { physicist: "فيزيائي", mathematician: "رياضياتي", chemist: "كيميائي", engineer: "مهندس",
+  ar: { physicist: "فيزيائي", mathematician: "رياضياتي", chemist: "كيميائي", engineer: "مهندس", biologist: "عالم أحياء",
         chemistPhysicist: "كيميائية وفيزيائية", physicistMathematician: "فيزيائي ورياضياتي",
         chemistBiologist: "كيميائي وعالم أحياء", mathEngineer: "رياضياتية ومهندسة",
         compSciEngineer: "عالمة حاسوب ومهندسة" }
@@ -1180,7 +1180,14 @@ const QUOTES = [
   { text: "The most dangerous phrase in the language is, \u2018We\u2019ve always done it this way.\u2019", author: "Grace Hopper", field: "compSciEngineer" },
   { text: "Like what you do, and then you will do your best.", author: "Katherine Johnson", field: "mathEngineer" },
   { text: "Give me a place to stand, and I shall move the world.", author: "Archimedes", field: "mathEngineer" },
-  { text: "The Analytical Engine has no pretensions whatever to originate anything.", author: "Ada Lovelace", field: "mathematician" }
+  { text: "The Analytical Engine has no pretensions whatever to originate anything.", author: "Ada Lovelace", field: "mathematician" },
+  { text: "In nature nothing exists alone.", author: "Rachel Carson", field: "biologist" },
+  { text: "The true logic of this world is in the calculus of probabilities.", author: "James Clerk Maxwell", field: "physicist" },
+  { text: "An investment in knowledge pays the best interest.", author: "Benjamin Franklin", field: "physicist" },
+  { text: "The best material model of a cat is another, or preferably the same, cat.", author: "Norbert Wiener", field: "mathEngineer" },
+  { text: "The eternal silence of these infinite spaces frightens me.", author: "Blaise Pascal", field: "physicistMathematician" },
+  { text: "Nothing is lost, nothing is created, everything is transformed.", author: "Antoine Lavoisier", field: "chemist" },
+  { text: "In mathematics you don't understand things. You just get used to them.", author: "John von Neumann", field: "mathematician" }
 ];
 
 function renderDailyQuote(){
@@ -1298,7 +1305,8 @@ const teams = [
     publications: [
       "Bentout, S. (2026). Analysis of traveling wave solutions for an SIS model with age structure. <i>Zeitschrift für angewandte Mathematik und Physik</i>, 77, 79. <a href=\"https://doi.org/10.1007/s00033-025-02703-7\" target=\"_blank\" rel=\"noopener\">doi.org/10.1007/s00033-025-02703-7</a>",
       "Bentout, S., Djilali, S., Naik, P.A. (2026). Asymptotic profiles of a generalized reaction-diffusion viral-infection model with logistic source. <i>Journal of Mathematical Analysis and Applications</i>, 556(1), 130146. <a href=\"https://doi.org/10.1016/j.jmaa.2025.130146\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.jmaa.2025.130146</a>",
-      "Djilali, S., Bentout, S., Kuniya, T. (2026). Threshold analysis for a diffusive SIS epidemic model with infection-age. <i>Mathematical Biosciences</i>, 109729. <a href=\"https://doi.org/10.1016/j.mbs.2026.109729\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.mbs.2026.109729</a>"
+      "Djilali, S., Bentout, S., Kuniya, T. (2026). Threshold analysis for a diffusive SIS epidemic model with infection-age. <i>Mathematical Biosciences</i>, 109729. <a href=\"https://doi.org/10.1016/j.mbs.2026.109729\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.mbs.2026.109729</a>",
+      "Bentout, S. (2026). Global Dynamics of a Budget-Constrained Nonlocal SIS Model with Beddington-DeAngelis Incidence. <i>Communications in Nonlinear Science and Numerical Simulation</i>, 110811. <a href=\"https://doi.org/10.1016/j.cnsns.2026.110811\" target=\"_blank\" rel=\"noopener\">doi.org/10.1016/j.cnsns.2026.110811</a>"
     ],
     link: "https://bentouts.github.io/Team1/Team1.html",
     homepage: "https://bentouts.github.io/My-homepage/",
