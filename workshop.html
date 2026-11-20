@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshop 2 — Materials, Polymers and Formulations for Health and Environment</title>
+<meta name="description" content="Workshop 2 — Materials, polymers and formulations for health and the environment. University of Ain Temouchent Belhadj Bouchaib, Thursday 3 December 2026.">
+<link rel="icon" href="assets/univ-temouchent.png">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#06201E;--forest:#0D3B38;--teal:#14A89A;--mint:#9FE8D8;--copper:#E2793C;--sand:#FBF7EE;--sand2:#F2EBDB;--text:#13211F;--muted:#4C5E5B;--line:rgba(19,33,31,.12);--r:18px;--serif:'Fraunces',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--sand);color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.kicker{font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s}
+header.solid{background:rgba(6,32,30,.92);backdrop-filter:blur(12px);box-shadow:0 6px 24px rgba(0,0,0,.18)}
+nav{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logos{display:flex;align-items:center;gap:10px}
+.logos img{height:46px;width:46px;object-fit:contain;background:#fff;border-radius:12px;padding:3px}
+.links{display:flex;gap:26px;align-items:center}
+.links a{color:rgba(255,255,255,.78);font-size:14px;font-weight:500}.links a:hover{color:var(--mint)}
+.lang{display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:rgba(255,255,255,.7);font:600 12px var(--sans);padding:6px 11px;border-radius:999px;cursor:pointer}
+.lang button.active{background:var(--copper);color:#fff}
+/* hero */
+.hero{position:relative;color:#fff;padding:150px 0 90px;background:radial-gradient(circle at 80% 10%,rgba(20,168,154,.35),transparent 45%),radial-gradient(circle at 5% 90%,rgba(226,121,60,.22),transparent 40%),linear-gradient(160deg,var(--ink),var(--forest));overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97'%3E%3Cpath d='M28 2 54 17v30L28 62 2 47V17zM28 62v30M2 47-24 62M54 47l26 15' fill='none' stroke='%239FE8D8' stroke-opacity='.13' stroke-width='1.2'/%3E%3C/svg%3E");mask-image:linear-gradient(120deg,transparent 20%,#000 90%);-webkit-mask-image:linear-gradient(120deg,transparent 20%,#000 90%)}
+.hero .wrap{position:relative}
+.tag{display:inline-flex;gap:8px;align-items:center;background:rgba(159,232,216,.12);border:1px solid rgba(159,232,216,.35);color:var(--mint);padding:6px 16px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:.12em}
+.hero h1{font-size:clamp(34px,5.6vw,66px);max-width:900px;margin:22px 0 20px;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--mint)}
+.hero .lede{font-size:18px;color:rgba(255,255,255,.78);max-width:640px;margin-bottom:34px}
+.facts{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
+.fact{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 20px}
+.fact small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);font-weight:600}
+.fact b{font-family:var(--serif);font-size:19px;font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:46px}
+.btn{padding:14px 26px;border-radius:12px;font-weight:600;font-size:15px;border:0;cursor:pointer;font-family:var(--sans);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-c{background:var(--copper);color:#fff}.btn-c:hover{background:#c9692f}
+.btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}.btn-o:hover{border-color:var(--mint);color:var(--mint)}
+.count{display:flex;gap:12px}
+.count div{min-width:84px;text-align:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 8px}
+.count b{display:block;font-family:var(--serif);font-size:34px;line-height:1.1}
+.count span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mint)}
+.over{font-family:var(--serif);font-size:20px;color:var(--mint)}
+/* sections */
+section{padding:84px 0}
+.head{max-width:680px;margin-bottom:44px}
+.head h2{font-size:clamp(28px,3.6vw,42px);margin-top:10px}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.theme{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 22px;transition:transform .25s,box-shadow .25s}
+.theme:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(6,32,30,.1)}
+.ico{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--forest),var(--teal));display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.theme h3{font-size:20px;margin-bottom:6px}.theme p{font-size:14px;color:var(--muted)}
+.alt{background:var(--sand2)}
+.chairs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.chair{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;border-top:4px solid var(--teal)}
+.chair.hl{background:var(--forest);color:#fff;border-color:var(--copper);border-top-color:var(--copper)}
+.chair small{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--copper)}
+.chair.hl small{color:var(--mint)}
+.chair h3{font-size:21px;margin:10px 0 6px}.chair p{font-size:14px;color:var(--muted)}.chair.hl p{color:rgba(255,255,255,.75)}
+/* programme */
+.prog{display:grid;gap:12px}
+.grp{margin-top:26px;display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:22px;color:var(--forest)}
+.grp:first-child{margin-top:0}.grp::after{content:"";flex:1;height:1px;background:var(--line)}
+.grp i{font-style:normal;font-family:var(--sans);font-size:12px;font-weight:600;color:#fff;background:var(--copper);border-radius:999px;padding:3px 12px;letter-spacing:.1em}
+.row{display:grid;grid-template-columns:150px 1fr;gap:20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;align-items:start}
+.row .t{font-weight:600;font-size:14px;color:var(--teal);font-variant-numeric:tabular-nums;padding-top:3px}
+.row h3{font-size:18px;font-family:var(--sans);font-weight:600}
+.row ul{margin-top:8px}.row li{font-size:14.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin-bottom:4px}
+.row li::before{content:"";position:absolute;inset-inline-start:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--copper)}
+.row.pause{background:transparent;border-style:dashed}.row.pause h3{font-weight:500;color:var(--muted)}
+.partners{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+.partners span{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.06em;color:var(--forest);background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 34px}
+.coms{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.com{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.com h3{font-size:24px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--copper);display:inline-block}
+.com li{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.com li:last-child{border:0}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--forest),var(--teal));color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.com li em{font-style:normal;margin-inline-start:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.cta{background:linear-gradient(135deg,var(--forest),var(--ink));color:#fff;border-radius:26px;padding:54px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.cta h2{font-size:clamp(26px,3vw,36px);margin-bottom:8px}.cta p{color:rgba(255,255,255,.75);max-width:460px}
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:44px 0;font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .logos img{height:52px;width:52px}
+footer a{color:var(--mint)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+html[lang="ar"] body,html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .btn,html[lang="ar"] .lang button{font-family:'Cairo',sans-serif}
+html[lang="ar"] .kicker,html[lang="ar"] .count span,html[lang="ar"] .fact small,html[lang="ar"] .chair small{letter-spacing:0}
+html[lang="ar"] .hero h1 em{font-style:normal}
+@media(max-width:900px){.links{display:none}.themes{grid-template-columns:1fr 1fr}.chairs,.coms{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:4px}.hero{padding-top:120px}.cta{padding:34px}}
+@media(max-width:520px){.themes{grid-template-columns:1fr}.count div{min-width:68px}.count b{font-size:26px}.logos img{height:38px;width:38px}}
+</style>
+</head>
+<body>
+<header id="hd"><nav>
+  <div class="logos"><img src="assets/univ-temouchent.png" alt="University of Ain Temouchent"><img src="assets/logo.png" alt="MRISE Lab"></div>
+  <div class="links"><a href="#themes" data-i="thL"></a><a href="#programme" data-i="progH"></a><a href="#committees" data-i="comH"></a><a href="#contact" data-i="contact"></a><a href="index.html" data-i="back"></a></div>
+  <div class="lang" id="lang"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="ar">AR</button></div>
+</nav></header>
+<main>
+<div class="hero"><div class="wrap">
+  <span class="tag" data-i="edition"></span>
+  <h1 data-ih="title"></h1>
+  <p class="lede" data-i="lede"></p>
+  <div class="facts">
+    <div class="fact"><small data-i="dateL"></small><b data-i="date"></b></div>
+    <div class="fact"><small data-i="timeL"></small><b>08:30 – 15:00</b></div>
+    <div class="fact"><small data-i="placeL"></small><b data-i="place"></b></div>
+  </div>
+  <div class="btns"><a class="btn btn-c" href="#programme" data-i="btnProg"></a><button class="btn btn-o" id="cal" data-i="cal"></button></div>
+  <div id="cd"></div>
+</div></div>
+
+<section id="themes"><div class="wrap">
+  <div class="head rv"><span class="kicker" data-i="thL"></span><h2 data-i="thH"></h2></div>
+  <div class="themes rv">
+    <div class="theme"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 4.3v8.4L12 20l-7.5-4.3V7.3z"/><path d="M12 12l7.5-4.3M12 12v8M12 12L4.5 7.7"/></svg></div><h3 data-i="th0"></h3><p data-i="td0"></p></div>
+    <div class="theme"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="5" cy="8" r="2.2"/><circle cx="12" cy="15" r="2.2"/><circle cx="19" cy="8" r="2.2"/><path d="M6.8 9.4l3.4 4.2M13.8 13.6l3.4-4.2"/></svg></div><h3 data-i="th1"></h3><p data-i="td1"></p></div>
+    <div class="theme"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div><h3 data-i="th2"></h3><p data-i="td2"></p></div>
+    <div class="theme"><div class="ico"><svg viewBox="0 0 24 24"><path d="M20 4C10 4 4 10 4 18v2h2c8 0 14-6 14-16z"/><path d="M7 19c3-5 7-9 12-12"/></svg></div><h3 data-i="th3"></h3><p data-i="td3"></p></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <div class="head rv"><span class="kicker" data-i="patL"></span><h2 data-i="patH"></h2></div>
+  <div class="chairs rv">
+    <div class="chair"><small data-i="honor"></small><h3>Pr. ZIADI Abdelkader</h3><p data-i="rector"></p></div>
+    <div class="chair"><small data-i="honor"></small><h3>Pr. FLITI Mohammed</h3><p data-i="dean"></p></div>
+    <div class="chair hl"><small data-i="chair"></small><h3>Dr. BENNABI Lamia</h3><p data-i="director"></p></div>
+  </div>
+</div></section>
+
+<section id="programme"><div class="wrap">
+  <div class="head rv"><span class="kicker" data-i="progL"></span><h2 data-i="progH"></h2></div>
+  <div class="prog rv" id="tl"></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <div class="head rv"><span class="kicker" data-i="partL"></span><h2 data-i="partH"></h2></div>
+  <div class="partners rv"><span>SONATRACH</span><span>CHIALI</span></div>
+</div></section>
+
+<section id="committees"><div class="wrap">
+  <div class="head rv"><span class="kicker" data-i="comL"></span><h2 data-i="comH"></h2></div>
+  <div class="coms rv">
+    <div class="com"><h3 data-i="org"></h3><ul id="orgList"></ul></div>
+    <div class="com"><h3 data-i="sci"></h3><ul id="sciList"></ul></div>
+  </div>
+</div></section>
+
+<section id="contact" style="padding-top:20px"><div class="wrap"><div class="cta rv">
+  <div><h2 data-i="ctaH"></h2><p data-i="ctaP"></p></div>
+  <a class="btn btn-c" href="mailto:lamia.bennabi@univ-temouchent.edu.dz">lamia.bennabi@univ-temouchent.edu.dz</a>
+</div></div></section>
+</main>
+<footer><div class="wrap">
+  <div class="logos"><img src="assets/univ-temouchent.png" alt=""><img src="assets/logo.png" alt=""></div>
+  <div>© <span id="y"></span> MRISE Lab — Université Belhadj Bouchaib, Ain Témouchent<br><span data-i="addr"></span> · <a href="index.html" data-i="back"></a></div>
+</div></footer>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+const T={
+en:{back:"← Back to lab site",edition:"WORKSHOP 2",eyebrow:"Faculty of Science and Technology · MRISE Lab",
+title:'Materials, polymers and <span class="acc">formulations</span> for health and the environment',
+lede:"A one-day meeting bringing together university researchers and industrial partners to discuss innovations in materials and polymers, and their applications in health and environment.",
+dateL:"Date",date:"Thursday, 3 December 2026",timeL:"Time",placeL:"Venue",place:"University of Ain Temouchent",
+btnProg:"View programme",btnCom:"Committees",patL:"Patronage",patH:"Honorary presidents & workshop chair",honor:"Honorary president",chair:"Workshop chair",
+rector:"Rector of the University Belhadj Bouchaib, Ain Témouchent",dean:"Dean of the Faculty of Science and Technology",director:"Director of the MRISE Laboratory",
+progL:"One day, four moments",progH:"Programme",comL:"Who is behind it",comH:"Committees",org:"Organizing committee",sci:"Scientific committee",
+g1:"Inaugural session",g2:"Scientific session 1",g3:"Scientific session 2 — Workshops",g4:"Closing",
+reception:"Welcome of participants",opening:"Opening ceremony",rectorW:"Address by the Rector: Pr ZIADI Abdelkader",deanW:"Address by the Dean of the Faculty: Pr FLITI Mohammed",dirW:"Address by the MRISE Laboratory Director: Dr BENNABI Lamia",
+s1:"Materials and polymers: innovations and applications",c1:"Talk 1: SONATRACH representative",c2:"Talk 2: CHIALI representative",c3:"Talk 3: University speaker",
+brk:"Coffee break and networking",s2:"Formulations and applications in health and environment",w1:"Polymeric formulations for health and biomedical applications",w2:"Polymers and innovative materials for industrial applications",w3:"Scientific discussion",
+round:"Round table: university research and the needs of the industrial sector",lunch:"Lunch",debate:"General debate and collaboration prospects",
+close:"Closing ceremony",x1:"Summary of the proceedings",x2:"Thanks to speakers and partners",x3:"Official closing",
+addr:"Route de Sidi Bel Abbès, N101, Ain Témouchent 46000, Algeria"},
+fr:{back:"← Retour au site du laboratoire",edition:"WORKSHOP 2",eyebrow:"Faculté des Sciences et de la Technologie · MRISE Lab",
+title:'Matériaux, polymères et <span class="acc">formulations</span> pour la santé et l\'environnement',
+lede:"Une journée réunissant chercheurs universitaires et partenaires industriels autour des innovations en matériaux et polymères, et de leurs applications dans les domaines de la santé et de l'environnement.",
+dateL:"Date",date:"Jeudi 3 décembre 2026",timeL:"Horaire",placeL:"Lieu",place:"Université de Ain Témouchent",
+btnProg:"Voir le programme",btnCom:"Comités",patL:"Parrainage",patH:"Présidents d'honneur et présidente du workshop",honor:"Président d'honneur",chair:"Présidente du workshop",
+rector:"Recteur de l'Université Belhadj Bouchaib, Ain Témouchent",dean:"Doyen de la Faculté des Sciences et de la Technologie",director:"Directrice du laboratoire MRISE",
+progL:"Une journée, quatre temps",progH:"Programme",comL:"Qui est derrière",comH:"Comités",org:"Comité d'organisation",sci:"Comité scientifique",
+g1:"Session inaugurale",g2:"Session scientifique 1",g3:"Session scientifique 2 — Ateliers",g4:"Clôture",
+reception:"Accueil des participants",opening:"Cérémonie d'ouverture",rectorW:"Mot du Recteur : Pr ZIADI Abdelkader",deanW:"Mot du Doyen de la Faculté : Pr FLITI Mohammed",dirW:"Mot de la Directrice du laboratoire MRISE : Dr BENNABI Lamia",
+s1:"Matériaux et polymères : innovations et applications",c1:"Conférence 1 : Intervention du représentant de SONATRACH",c2:"Conférence 2 : Intervention du représentant de CHIALI",c3:"Conférence 3 : Intervention universitaire",
+brk:"Pause-café et échanges",s2:"Formulations et applications dans les domaines de la santé et de l'environnement",w1:"Formulations polymériques pour la santé et les applications biomédicales",w2:"Polymères et matériaux innovants pour les applications industrielles",w3:"Discussion scientifique",
+round:"Table ronde : recherche universitaire et besoins du secteur industriel",lunch:"Déjeuner",debate:"Débat général et perspectives de collaboration",
+close:"Cérémonie de clôture",x1:"Synthèse des travaux",x2:"Remerciements aux intervenants et partenaires",x3:"Clôture officielle",
+addr:"Route de Sidi Bel Abbès, N101, Ain Témouchent 46000, Algérie"},
+ar:{back:"→ العودة إلى موقع المخبر",edition:"الورشة 2",eyebrow:"كلية العلوم والتكنولوجيا · مخبر MRISE",
+title:'المواد والبوليمرات و<span class="acc">التركيبات</span> من أجل الصحة والبيئة',
+lede:"يوم علمي يجمع الباحثين الجامعيين والشركاء الصناعيين لمناقشة ابتكارات المواد والبوليمرات وتطبيقاتها في مجالي الصحة والبيئة.",
+dateL:"التاريخ",date:"الخميس 3 ديسمبر 2026",timeL:"التوقيت",placeL:"المكان",place:"جامعة عين تموشنت",
+btnProg:"عرض البرنامج",btnCom:"اللجان",patL:"الرعاية",patH:"الرؤساء الشرفيون ورئيسة الورشة",honor:"رئيس شرفي",chair:"رئيسة الورشة",
+rector:"مدير جامعة بلحاج بوشعيب، عين تموشنت",dean:"عميد كلية العلوم والتكنولوجيا",director:"مديرة مخبر MRISE",
+progL:"يوم واحد، أربع محطات",progH:"البرنامج",comL:"فريق العمل",comH:"اللجان",org:"اللجنة التنظيمية",sci:"اللجنة العلمية",
+g1:"الجلسة الافتتاحية",g2:"الجلسة العلمية 1",g3:"الجلسة العلمية 2 — ورشات",g4:"الاختتام",
+reception:"استقبال المشاركين",opening:"حفل الافتتاح",rectorW:"كلمة مدير الجامعة: أ.د. زيادي عبد القادر",deanW:"كلمة عميد الكلية: أ.د. فليتي محمد",dirW:"كلمة مديرة المخبر MRISE: د. بن نابي لمياء",
+s1:"المواد والبوليمرات: ابتكارات وتطبيقات",c1:"المداخلة 1: ممثل سوناطراك",c2:"المداخلة 2: ممثل شيالي",c3:"المداخلة 3: مداخلة جامعية",
+brk:"استراحة قهوة وتبادل",s2:"التركيبات وتطبيقاتها في مجالي الصحة والبيئة",w1:"التركيبات البوليمرية للصحة والتطبيقات الطبية الحيوية",w2:"البوليمرات والمواد المبتكرة للتطبيقات الصناعية",w3:"نقاش علمي",
+round:"مائدة مستديرة: البحث الجامعي واحتياجات القطاع الصناعي",lunch:"غداء",debate:"نقاش عام وآفاق التعاون",
+close:"حفل الاختتام",x1:"خلاصة الأشغال",x2:"شكر المتدخلين والشركاء",x3:"الاختتام الرسمي",
+addr:"طريق سيدي بلعباس، الطريق الوطني 101، عين تموشنت 46000، الجزائر"}
+};
+const PROG=[
+ {g:"g1"},
+ {t:"08:30 – 09:00",k:"reception"},
+ {t:"09:00 – 09:30",k:"opening",s:["rectorW","deanW","dirW"]},
+ {g:"g2"},
+ {t:"09:30 – 10:30",k:"s1",s:["c1","c2","c3"]},
+ {t:"10:30 – 11:00",k:"brk",p:1},
+ {g:"g3"},
+ {t:"11:00 – 12:00",k:"s2",s:["w1","w2","w3"]},
+ {t:"12:00 – 12:30",k:"round"},
+ {t:"12:30 – 13:30",k:"lunch",p:1},
+ {g:"g4"},
+ {t:"13:30 – 14:30",k:"debate"},
+ {t:"14:30 – 15:00",k:"close",s:["x1","x2","x3"]}
+];
+const ORG=[["Dr. SEDIRI Khaldia",""],["Dr. BELDJILLALI Mohamed","Univ_AT"],["Dr. FEKIH Nadia","Univ_AT"],["Dr. ALLAL Asma","Univ_AT"],["Dr. BENDIAF Houaria","Univ_AT"],["Dr. BENGRINE Asma","Univ_AT"],["Dr. NOUALI Fatiha","Univ_AT"],["Dr. ARGOUB Asmaa","Univ_AT"],["Dr. AYACHI Hicham",""]];
+const SCI=[["Pr. BAILICHE Zohra","Univ_AT"],["Pr. BERICHI Amina","Univ_AT"],["Pr. BENTOUT Soufiane","Univ_AT"],["Pr. MAROUF Hafida","Univ_AT"],["Pr. BENZENINE Hamidou","Univ_AT"],["Dr. CHAIBI Wahiba",""],["Dr. CHAIB Mohamed","Univ Oran"],["Dr. ADJAJ Azedine","Univ_AT"],["Dr. BAHRAM Kadour","Univ_AT"],["Dr. BELDJILLALI Mohamed","Univ_AT"],["Dr. BENYETTOU Fatma","Univ_AT"],["Dr. RAMDANI Nassima","Univ_AT"],["Dr. TABTI Affaf","Univ_AT"]];
+
+const X={
+en:{contact:"Contact",thL:"Four pillars",thH:"What the day is about",th0:"Materials",td0:"Innovative and high-performance materials",th1:"Polymers",td1:"Synthesis, formulation and characterization",th2:"Health",td2:"Biomedical and pharmaceutical applications",th3:"Environment",td3:"Sustainable solutions and valorization",partL:"With the participation of",partH:"Industry meets academia",cal:"Add to calendar",d:"Days",h:"Hours",m:"Min",s:"Sec",over:"This workshop has taken place.",ctaH:"Join us on 3 December",ctaP:"For information and participation, contact the organizing committee."},
+fr:{contact:"Contact",thL:"Quatre piliers",thH:"De quoi parle cette journée",th0:"Matériaux",td0:"Matériaux innovants et hautes performances",th1:"Polymères",td1:"Synthèse, formulation et caractérisation",th2:"Santé",td2:"Applications biomédicales et pharmaceutiques",th3:"Environnement",td3:"Solutions durables et valorisation",partL:"Avec la participation de",partH:"L'industrie rencontre l'université",cal:"Ajouter au calendrier",d:"Jours",h:"Heures",m:"Min",s:"Sec",over:"Ce workshop a eu lieu.",ctaH:"Rejoignez-nous le 3 décembre",ctaP:"Pour toute information ou participation, contactez le comité d'organisation."},
+ar:{contact:"اتصل بنا",thL:"أربعة محاور",thH:"موضوع هذا اليوم العلمي",th0:"المواد",td0:"مواد مبتكرة وعالية الأداء",th1:"البوليمرات",td1:"التركيب والصياغة والتوصيف",th2:"الصحة",td2:"التطبيقات الطبية الحيوية والصيدلانية",th3:"البيئة",td3:"حلول مستدامة وتثمين",partL:"بمشاركة",partH:"لقاء الصناعة بالجامعة",cal:"أضف إلى التقويم",d:"أيام",h:"ساعات",m:"دقائق",s:"ثوان",over:"انعقدت هذه الورشة.",ctaH:"انضموا إلينا في 3 ديسمبر",ctaP:"للاستفسار والمشاركة، تواصلوا مع اللجنة التنظيمية."}
+};
+for(const l in X)Object.assign(T[l],X[l]);
+const ini=n=>n.replace(/^(Dr|Pr)\.?\s+/,'').split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const li=a=>a.map(p=>`<li><span class="av">${ini(p[0])}</span>${p[0]}<em>${p[1]}</em></li>`).join('');
+document.getElementById('orgList').innerHTML=li(ORG);
+document.getElementById('sciList').innerHTML=li(SCI);
+const TARGET=new Date(2026,11,3,8,30,0);
+let cur='en';
+function tick(){
+  const d=T[cur],box=document.getElementById('cd'),ms=TARGET-new Date();
+  if(ms<=0){box.innerHTML=`<p class="over">${d.over}</p>`;return}
+  const v=[Math.floor(ms/864e5),Math.floor(ms/36e5)%24,Math.floor(ms/6e4)%60,Math.floor(ms/1e3)%60];
+  box.innerHTML='<div class="count">'+['d','h','m','s'].map((k,i)=>`<div><b>${String(v[i]).padStart(2,'0')}</b><span>${d[k]}</span></div>`).join('')+'</div>';
+}
+setInterval(tick,1000);
+function apply(l){
+  cur=l;const d=T[l];
+  document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-i]').forEach(e=>e.textContent=d[e.dataset.i]);
+  document.querySelectorAll('[data-ih]').forEach(e=>e.innerHTML=d[e.dataset.ih]);
+  document.getElementById('tl').innerHTML=PROG.map(r=>r.g?`<div class="grp">${d[r.g]}</div>`:
+    `<div class="row${r.p?' pause':''}"><span class="t">${r.t}</span><div><h3>${d[r.k]}</h3>${r.s?'<ul>'+r.s.map(x=>`<li>${d[x]}</li>`).join('')+'</ul>':''}</div></div>`).join('');
+  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  try{localStorage.setItem('mrise-lang',l)}catch(e){}
+  tick();
+}
+document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>apply(b.dataset.l));
+document.getElementById('cal').onclick=()=>{
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MRISE Lab//Workshop 2//EN','BEGIN:VEVENT','UID:workshop2-20261203@mrise-lab','DTSTAMP:20261120T000000Z','DTSTART:20261203T083000','DTEND:20261203T150000','SUMMARY:Workshop 2 - Materiaux, polymeres et formulations pour la sante et l\'environnement','LOCATION:Universite de Ain Temouchent Belhadj Bouchaib','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='workshop-mrise.ics';a.click();
+};
+const hd=document.getElementById('hd');
+const sc=()=>hd.classList.toggle('solid',scrollY>40);addEventListener('scroll',sc);sc();
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12}):null;
+document.querySelectorAll('.rv').forEach(e=>io?io.observe(e):e.classList.add('in'));
+let L='en';try{L=localStorage.getItem('mrise-lang')||'en'}catch(e){}
+apply(T[L]?L:'en');
+</script>
+</body>
+</html>
