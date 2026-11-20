@@ -760,15 +760,62 @@
 
   <!-- ================= TEAMS ================= -->
   <!-- ================= DAILY QUOTE ================= -->
-  <section style="padding:0 0 60px">
+  <style>
+.wl{display:none}
+html[lang="en"] .wl-en,html[lang="fr"] .wl-fr,html[lang="ar"] .wl-ar{display:inline}
+.wsx{padding:0 0 70px}
+.wsx-card{position:relative;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;overflow:hidden;text-decoration:none;color:#fff;border-radius:24px;padding:54px;
+  background:radial-gradient(circle at 90% 10%,rgba(14,165,183,.55),transparent 50%),linear-gradient(135deg,#3F27A8,#6F4CE0 55%,#0EA5B7);
+  box-shadow:0 24px 56px rgba(111,76,224,.35);transition:transform .3s,box-shadow .3s}
+.wsx-card:hover{transform:translateY(-5px);box-shadow:0 32px 66px rgba(111,76,224,.45)}
+.wsx-card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97'%3E%3Cpath d='M28 2 54 17v30L28 62 2 47V17zM28 62v30M2 47-24 62M54 47l26 15' fill='none' stroke='white' stroke-opacity='.1' stroke-width='1.2'/%3E%3C/svg%3E")}
+.wsx-card>*{position:relative}
+.wsx-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.wsx-b{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.14em;padding:7px 16px;border-radius:999px}
+.wsx-b1{background:#FFC857;color:#2A1A00}
+.wsx-b2{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4)}
+.wsx-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,54px);line-height:1.08;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.wsx-title em{font-style:normal;color:#FFC857}
+.wsx-sub{font-size:17px;color:rgba(255,255,255,.88);max-width:600px;margin-bottom:24px}
+.wsx-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.wsx-meta>span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:12px;padding:10px 18px;font-size:14.5px;font-weight:600}
+.wsx-btn{display:inline-flex;gap:10px;background:#fff;color:#4B2FB8;font-size:16px;font-weight:700;padding:15px 30px;border-radius:14px;box-shadow:0 10px 24px rgba(0,0,0,.2);transition:background .2s,color .2s}
+.wsx-card:hover .wsx-btn{background:#FFC857;color:#2A1A00}
+.wsx-date{text-align:center;background:#fff;color:#171D33;border-radius:22px;min-width:180px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.wsx-date .m{display:block;background:#FFC857;color:#2A1A00;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.2em;font-size:16px;padding:10px}
+.wsx-date .d{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:90px;line-height:1.05;padding-top:8px;color:#6F4CE0}
+.wsx-date .y{display:block;font-size:20px;font-weight:600}
+.wsx-date .w{display:block;font-size:13px;color:#4E5872;padding:2px 0 16px;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:820px){.wsx-card{grid-template-columns:1fr;padding:32px 24px}.wsx-date{min-width:0;display:flex;align-items:center;justify-content:center;gap:14px;border-radius:16px;padding:6px 18px}.wsx-date .m,.wsx-date .w{display:none}.wsx-date .d{font-size:52px;padding:0}}
+</style>
+
+<section class="wsx">
   <div class="wrap">
-    <a href="workshop.html" class="quote-panel" style="display:block;text-decoration:none">
-      <span class="eyebrow">Workshop 2 · 3 Dec 2026</span>
-      <h2 style="font-size:clamp(22px,3vw,30px);margin:14px 0 10px">Materials, polymers and formulations for health and the environment</h2>
-      <span class="quote-caption">View the programme and committees →</span>
+    <a href="workshop.html" class="wsx-card">
+      <div>
+        <div class="wsx-badges"><span class="wsx-b wsx-b1">WORKSHOP 2</span><span class="wsx-b wsx-b2"><span class="wl wl-en">UPCOMING EVENT</span><span class="wl wl-fr">ÉVÉNEMENT À VENIR</span><span class="wl wl-ar">حدث قادم</span></span></div>
+        <h2 class="wsx-title">
+          <span class="wl wl-en">Materials, polymers and <em>formulations</em> for health and the environment</span>
+          <span class="wl wl-fr">Matériaux, polymères et <em>formulations</em> pour la santé et l'environnement</span>
+          <span class="wl wl-ar">المواد والبوليمرات و<em>التركيبات</em> من أجل الصحة والبيئة</span>
+        </h2>
+        <p class="wsx-sub">
+          <span class="wl wl-en">A day of talks, workshops and a round table between university researchers and industry.</span>
+          <span class="wl wl-fr">Une journée de conférences, d'ateliers et de table ronde entre chercheurs et industriels.</span>
+          <span class="wl wl-ar">يوم من المحاضرات والورشات والمائدة المستديرة بين الباحثين والصناعيين.</span>
+        </p>
+        <div class="wsx-meta"><span>🕗 08:30 – 15:00</span><span>📍 <span class="wl wl-en">University of Ain Temouchent</span><span class="wl wl-fr">Université de Ain Témouchent</span><span class="wl wl-ar">جامعة عين تموشنت</span></span></div>
+        <span class="wsx-btn"><span class="wl wl-en">View the programme and committees</span><span class="wl wl-fr">Voir le programme et les comités</span><span class="wl wl-ar">عرض البرنامج واللجان</span> →</span>
+      </div>
+      <div class="wsx-date">
+        <span class="m"><span class="wl wl-en">DEC</span><span class="wl wl-fr">DÉC</span><span class="wl wl-ar">ديسمبر</span></span>
+        <span class="d">3</span><span class="y">2026</span>
+        <span class="w"><span class="wl wl-en">Thursday</span><span class="wl wl-fr">Jeudi</span><span class="wl wl-ar">الخميس</span></span>
+      </div>
     </a>
   </div>
 </section>
+
   <section id="daily-quote">
     <div class="wrap">
       <div class="quote-panel">
